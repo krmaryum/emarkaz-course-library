@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>eMarkaz Course Library | ای مرکز کورس لائبریری</title>
+  <meta name="description" content="کلاس وار اور سمسٹر وار اردو اسلامی کورس لائبریری، جس میں پی ڈی ایف کتابیں اور مطالعاتی مواد شامل ہے۔" />
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+    body {
+      font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Segoe UI", Arial, sans-serif;
+      background:#06111f; color:#fff; overflow-x:hidden; line-height:1.9;
+    }
+    body::before {
+      content:""; position:fixed; inset:0;
+      background:radial-gradient(circle at 15% 10%, rgba(34,211,238,.25), transparent 28%),
+                 radial-gradient(circle at 90% 22%, rgba(16,185,129,.20), transparent 34%),
+                 radial-gradient(circle at 45% 100%, rgba(139,92,246,.20), transparent 30%);
+      z-index:-2;
+    }
+    body::after {
+      content:""; position:fixed; inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+      background-size:46px 46px; z-index:-1; mask-image:linear-gradient(to bottom,black,transparent 92%);
+    }
+    a { color:inherit; text-decoration:none; }
+    .container { width:min(1180px,92%); margin:auto; }
+    header { position:sticky; top:0; z-index:10; padding:22px 0; background:rgba(6,17,31,.65); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,.08); }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .logo { width:52px; height:52px; border-radius:18px; display:grid; place-items:center; background:rgba(255,255,255,.11); border:1px solid rgba(255,255,255,.15); color:#67e8f9; font-weight:900; font-family:Arial, sans-serif; }
+    .brand h3 { font-size:22px; line-height:1.2; }
+    .brand p { color:#cbd5e1; font-size:13px; font-family:Arial, sans-serif; direction:ltr; text-align:right; }
+    nav ul { display:flex; list-style:none; gap:22px; color:#dbeafe; font-size:15px; }
+    nav a:hover { color:#67e8f9; }
+    .hero { min-height:72vh; display:grid; align-items:center; padding:80px 0 55px; }
+    .badge, .tag { display:inline-block; padding:9px 17px; border-radius:999px; background:rgba(103,232,249,.13); border:1px solid rgba(255,255,255,.14); color:#a5f3fc; font-size:14px; margin-bottom:18px; font-weight:700; }
+    h1 { font-size:clamp(42px,7vw,82px); line-height:1.35; letter-spacing:-1px; margin-bottom:18px; }
+    .gradient { background:linear-gradient(90deg,#67e8f9,#22c55e,#a78bfa); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .hero p { max-width:850px; color:#dbeafe; font-size:20px; }
+    .buttons { display:flex; flex-wrap:wrap; gap:14px; margin-top:28px; }
+    .btn { padding:13px 20px; border-radius:16px; font-weight:800; transition:.3s; display:inline-flex; align-items:center; justify-content:center; gap:8px; font-family:Arial, sans-serif; direction:ltr; }
+    .btn-primary { background:#67e8f9; color:#06111f; }
+    .btn-outline { background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18); color:white; }
+    .btn:hover { transform:translateY(-5px); box-shadow:0 20px 45px rgba(103,232,249,.16); }
+    section { padding:58px 0; }
+    .section-label { color:#67e8f9; text-transform:uppercase; letter-spacing:4px; font-size:13px; margin-bottom:12px; font-weight:800; font-family:Arial, sans-serif; direction:ltr; }
+    .section-title { font-size:clamp(32px,4vw,52px); margin-bottom:22px; line-height:1.45; }
+    .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+    .card { padding:30px; min-height:310px; display:flex; flex-direction:column; justify-content:space-between; }
+    .glass { background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.16); backdrop-filter:blur(20px); border-radius:28px; box-shadow:0 25px 70px rgba(0,0,0,.28); transition:.35s ease; }
+    .glass:hover { transform:translateY(-8px); border-color:rgba(103,232,249,.55); background:rgba(255,255,255,.15); }
+    .card h3 { font-size:28px; margin-bottom:8px; }
+    .english { font-family:Arial, sans-serif; direction:ltr; text-align:right; color:#cbd5e1; font-size:16px; }
+    .card p { color:#dbeafe; font-size:16px; }
+    .course-code { font-family:Arial, sans-serif; direction:ltr; color:#67e8f9; font-weight:900; font-size:18px; }
+    .semester-list { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:24px; }
+    .semester { padding:18px; border-radius:20px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.13); color:#e2e8f0; transition:.25s; text-align:center; }
+    .semester:hover { transform:translateY(-5px); color:#67e8f9; border-color:rgba(103,232,249,.55); }
+    .note { color:#cbd5e1; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); padding:22px; border-radius:24px; }
+    footer { text-align:center; padding:30px; color:#94a3b8; border-top:1px solid rgba(255,255,255,.08); font-family:Arial, sans-serif; direction:ltr; }
+    @media (max-width:1000px) { .grid { grid-template-columns:repeat(2,1fr); } .semester-list { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:720px) { nav ul { display:none; } .grid { grid-template-columns:1fr; } .semester-list { grid-template-columns:1fr; } .brand h3 { font-size:18px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <div class="logo">EM</div>
+        <div>
+          <h3>ای مرکز کورس لائبریری</h3>
+          <p>Urdu Islamic Course Library</p>
+        </div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="#home">ہوم</a></li>
+          <li><a href="#courses">کورسز</a></li>
+          <li><a href="#semesters">سمسٹرز</a></li>
+          <li><a href="#guide">رہنمائی</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="container hero">
+      <div>
+        <span class="badge">PDF Books Library</span>
+        <h1>ای مرکز <span class="gradient">اسلامی کورس</span> لائبریری</h1>
+        <p>کلاس وار اور سمسٹر وار اردو اسلامی کورس لائبریری، جس میں پی ڈی ایف کتابیں اور مطالعاتی مواد شامل ہے۔</p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="#courses">View Courses</a>
+          <a class="btn btn-outline" href="#guide">How to Add Books</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses" class="container">
+      <p class="section-label">Courses</p>
+      <h2 class="section-title">ہمارے کورسز</h2>
+      <div class="grid">
+        <article class="card glass">
+          <div>
+            <span class="tag course-code">AC</span>
+            <h3>عالم کورس</h3>
+            <p class="english">Alim Course</p>
+            <p>عالم کورس کی کتابیں  📚 کلاس اور سمسٹر کے مطابق یہاں موجود ہیں۔</p>
+          </div>
+          <div class="buttons"><a class="btn btn-primary" href="#ac">Open</a></div>
+        </article>
+        <article class="card glass">
+          <div>
+            <span class="tag course-code">DC</span>
+            <h3>علم دین کورس</h3>
+            <p class="english">Ilm-e-Deen Course</p>
+            <p>علم دین کورس کی کتابیں  📚 کلاس اور سمسٹر کے مطابق یہاں موجود ہیں۔</p>
+          </div>
+          <div class="buttons"><a class="btn btn-primary" href="#dc">Open</a></div>
+        </article>
+        <article class="card glass">
+          <div>
+            <span class="tag course-code">TIF</span>
+            <h3>تخصص فی الافتاء</h3>
+            <p class="english">Takhasus fil Ifta</p>
+            <p>تخصص فی الافتاء کورس کی کتابیں  📚 کلاس اور سمسٹر کے مطابق یہاں موجود ہیں۔</p>
+          </div>
+          <div class="buttons"><a class="btn btn-primary" href="#tif">Open</a></div>
+        </article>
+        <article class="card glass">
+          <div>
+            <span class="tag course-code">TFA</span>
+            <h3>تخصص فی العقائد</h3>
+            <p class="english">Takhasus fil Aqaid</p>
+            <p>تخصص فی العقائد کورس کی کتابیں  📚 کلاس اور سمسٹر کے مطابق یہاں موجود ہیں۔</p>
+          </div>
+          <div class="buttons"><a class="btn btn-primary" href="#tfa">Open</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="semesters" class="container">
+      <p class="section-label">Semesters</p>
+      <h2 class="section-title">کورس اور سمسٹر فولڈرز</h2>
+
+      <div id="ac" class="note">
+        <h3>AC - عالم کورس</h3>
+        <div class="semester-list">
+          <a class="semester" href="books/ac-alim-course/semester-01/">Semester 01</a>
+          <a class="semester" href="books/ac-alim-course/semester-02/">Semester 02</a>
+          <a class="semester" href="books/ac-alim-course/semester-03/">Semester 03</a>
+          <a class="semester" href="books/ac-alim-course/semester-04/">Semester 04</a>
+          <a class="semester" href="books/ac-alim-course/semester-05/">Semester 05</a>
+          <a class="semester" href="books/ac-alim-course/semester-06/">Semester 06</a>
+          <a class="semester" href="books/ac-alim-course/semester-07/">Semester 07</a>
+          <a class="semester" href="books/ac-alim-course/semester-08/">Semester 08</a>
+        </div>
+      </div>
+      <br>
+      <div id="dc" class="note">
+        <h3>DC - علم دین کورس</h3>
+        <div class="semester-list">
+          <a class="semester" href="books/dc-ilm-e-deen-course/semester-01/">Semester 01</a>
+          <a class="semester" href="books/dc-ilm-e-deen-course/semester-02/">Semester 02</a>
+        </div>
+      </div>
+      <br>
+      <div id="tif" class="note">
+        <h3>TIF - تخصص فی الافتاء</h3>
+        <div class="semester-list">
+          <a class="semester" href="books/tif-takhasus-fil-ifta/semester-01/">Semester 01</a>
+          <a class="semester" href="books/tif-takhasus-fil-ifta/semester-02/">Semester 02</a>
+        </div>
+      </div>
+      <br>
+      <div id="tfa" class="note">
+        <h3>TFA - تخصص فی العقائد</h3>
+        <div class="semester-list">
+          <a class="semester" href="books/tfa-takhasus-fil-aqaid/semester-01/">Semester 01</a>
+          <a class="semester" href="books/tfa-takhasus-fil-aqaid/semester-02/">Semester 02</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide" class="container">
+      <p class="section-label">Guide</p>
+      <h2 class="section-title">نئی کتاب کیسے شامل کریں؟</h2>
+      <div class="note" dir="ltr" style="font-family:Arial, sans-serif; text-align:left;">
+        <p>1. Put the PDF in the correct folder, for example:</p>
+        <p><code>books/ac-alim-course/semester-01/book-name.pdf</code></p>
+        <p>2. Use English lowercase filenames with hyphens for safe links.</p>
+        <p>3. Commit and push:</p>
+        <p><code>git add .</code></p>
+        <p><code>git commit -m "Add new course books"</code></p>
+        <p><code>git push origin main</code></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 eMarkaz Course Library. Built with HTML, CSS, and GitHub Pages.</p>
+  </footer>
+</body>
+</html>
