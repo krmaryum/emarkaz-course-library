@@ -1,12 +1,273 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>عالم کورس - سمسٹر 01</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background: linear-gradient(135deg, #f8fafc, #ecfeff);
+      color: #111827;
+      min-height: 100vh;
+      line-height: 1.9;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .back {
+      display: inline-block;
+      background: #064e3b;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .badge {
+      background: #d1fae5;
+      color: #065f46;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: bold;
+      border: 1px solid #a7f3d0;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 35px;
+      padding: 35px 20px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      color: #064e3b;
+      margin-bottom: 10px;
+    }
+
+    .hero h2 {
+      font-size: 24px;
+      color: #374151;
+      margin-bottom: 12px;
+    }
+
+    .hero p {
+      color: #4b5563;
+      font-size: 18px;
+    }
+
+    .books {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .book {
+      background: white;
+      border-radius: 22px;
+      padding: 24px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.07);
+      transition: 0.3s ease;
+    }
+
+    .book:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(6,95,70,0.16);
+      border-color: #10b981;
+    }
+
+    .book h3 {
+      font-size: 22px;
+      color: #111827;
+      margin-bottom: 18px;
+      min-height: 65px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.25s;
+    }
+
+    .open {
+      background: #059669;
+      color: white;
+    }
+
+    .download {
+      background: #1d4ed8;
+      color: white;
+    }
+
+    .btn:hover {
+      opacity: 0.88;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 45px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 18px;
+      }
+
+      .book h3 {
+        min-height: auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>عالم کورس - سمسٹر 01</h1>
-  <p>یہاں سمسٹر 01 کی کتابیں شامل کی جائیں گی۔</p>
-  <a href="../../../index.html">واپس ہوم پیج پر جائیں</a>
+  <div class="container">
+
+    <div class="top-bar">
+      <a class="back" href="../../../index.html">مرکزی صفحہ پر واپس جائیں</a>
+      <span class="badge">AC - Alim Course</span>
+    </div>
+
+    <section class="hero">
+      <h1>عالم کورس</h1>
+      <h2>سمسٹر 01</h2>
+      <p>یہاں سمسٹر 01 کی تمام پی ڈی ایف کتابیں شامل ہیں۔</p>
+    </section>
+
+    <section class="books">
+
+      <article class="book">
+        <h3>اسلامی عقائد، از متکلم اسلام حفظہ اللہ، جدید ایڈیشن 2025ء</h3>
+        <div class="buttons">
+          <a class="btn open" href="اسلامی عقائد، از متکلم اسلام حفظہ اللہ، جدید ایڈیشن 2025ء.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="اسلامی عقائد، از متکلم اسلام حفظہ اللہ، جدید ایڈیشن 2025ء.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>اصول عقائد</h3>
+        <div class="buttons">
+          <a class="btn open" href="اصول عقائد.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="اصول عقائد.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>قرآنی قاعدہ</h3>
+        <div class="buttons">
+          <a class="btn open" href="قرآنی قاعدہ.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="قرآنی قاعدہ.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>پارہ 1 - الم</h3>
+        <div class="buttons">
+          <a class="btn open" href="پارہ 1 - الم.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="پارہ 1 - الم.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>پارہ 2 - سیقول</h3>
+        <div class="buttons">
+          <a class="btn open" href="پارہ 2 - سیقول.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="پارہ 2 - سیقول.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>پارہ 3 - تلک الرسل</h3>
+        <div class="buttons">
+          <a class="btn open" href="پارہ 3 - تلک الرسل.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="پارہ 3 - تلک الرسل.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>کتاب الحدیث 1</h3>
+        <div class="buttons">
+          <a class="btn open" href="کتاب الحدیث-1.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="کتاب الحدیث-1.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>کتاب الصرف 1</h3>
+        <div class="buttons">
+          <a class="btn open" href="کتاب الصرف-1.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="کتاب الصرف-1.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>کتاب العقائد</h3>
+        <div class="buttons">
+          <a class="btn open" href="کتاب العقائد.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="کتاب العقائد.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>کتاب الفقہ 1</h3>
+        <div class="buttons">
+          <a class="btn open" href="کتاب الفقہ-1.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="کتاب الفقہ-1.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+      <article class="book">
+        <h3>کتاب النحو 1</h3>
+        <div class="buttons">
+          <a class="btn open" href="کتاب النحو-1.pdf" target="_blank">کتاب کھولیں</a>
+          <a class="btn download" href="کتاب النحو-1.pdf" download>ڈاؤن لوڈ کریں</a>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>
+      <p>© eMarkaz Course Library - عالم کورس</p>
+    </footer>
+
+  </div>
 </body>
 </html>
