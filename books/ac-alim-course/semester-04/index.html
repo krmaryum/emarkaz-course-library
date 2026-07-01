@@ -3,304 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>عالم کورس - سمسٹر 04</title>
+  <title>عالم کورس - سمسٹر 04 | eMarkaz Course Library</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
-      background: linear-gradient(135deg, #f8fafc, #ecfeff);
-      color: #111827;
-      min-height: 100vh;
-      line-height: 1.9;
-      padding: 30px;
-    }
-    .container { max-width: 1180px; margin: auto; }
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 30px;
-      flex-wrap: wrap;
-    }
-    .back {
-      display: inline-block;
-      background: #064e3b;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .badge {
-      background: #d1fae5;
-      color: #065f46;
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-weight: bold;
-      border: 1px solid #a7f3d0;
-      direction: ltr;
-    }
-    .hero {
-      text-align: center;
-      margin-bottom: 35px;
-      padding: 35px 20px;
-      background: white;
-      border-radius: 24px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-      border: 1px solid #e5e7eb;
-    }
-    .hero h1 { font-size: clamp(32px, 5vw, 56px); color: #064e3b; margin-bottom: 10px; }
-    .hero h2 { font-size: 24px; color: #374151; margin-bottom: 12px; }
-    .hero p { color: #4b5563; font-size: 18px; }
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-    }
-    .book-card, .empty-card {
-      background: white;
-      border-radius: 22px;
-      padding: 24px;
-      border: 1px solid #e5e7eb;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-      transition: 0.3s ease;
-    }
-    .book-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 45px rgba(6,95,70,0.16);
-      border-color: #10b981;
-    }
-    .file-type {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #ecfdf5;
-      color: #065f46;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 13px;
-      margin-bottom: 14px;
-      direction: ltr;
-    }
-    .book-card h3 { font-size: 22px; color: #111827; margin-bottom: 18px; min-height: 65px; }
-    .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn {
-      display: inline-block;
-      padding: 10px 16px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.25s;
-    }
-    .open { background: #059669; color: white; }
-    .download { background: #1d4ed8; color: white; }
-    .btn:hover { opacity: 0.88; transform: translateY(-2px); }
-    footer { text-align: center; margin-top: 45px; color: #6b7280; font-size: 14px; }
-    @media (max-width: 600px) {
-      body { padding: 18px; }
-      .book-card h3 { min-height: auto; }
-    }
-  </style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif; background:linear-gradient(135deg,#f8fafc,#ecfeff); color:#111827; min-height:100vh; line-height:1.9; padding:30px; }
+    .container { max-width:1180px; margin:auto; }
+    .top-bar { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:30px; flex-wrap:wrap; }
+    .back { display:inline-block; background:#064e3b; color:white; padding:10px 18px; border-radius:12px; text-decoration:none; font-weight:bold; margin-left:8px; }
+    .badge { background:#d1fae5; color:#065f46; padding:8px 16px; border-radius:999px; font-weight:bold; border:1px solid #a7f3d0; direction:ltr; }
+    .hero { text-align:center; margin-bottom:35px; padding:35px 20px; background:white; border-radius:24px; box-shadow:0 15px 40px rgba(0,0,0,.08); border:1px solid #e5e7eb; }
+    .hero h1 { font-size:clamp(32px,5vw,56px); color:#064e3b; margin-bottom:10px; }
+    .hero h2 { font-size:24px; color:#374151; margin-bottom:12px; }
+    .hero p { color:#4b5563; font-size:18px; direction:ltr; }
+    .section-title { color:#064e3b; margin:30px 0 18px; font-size:30px; }
+    .books-grid,.folders-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:22px; }
+    .book-card,.folder-card,.empty-card { background:white; border-radius:22px; padding:24px; border:1px solid #e5e7eb; box-shadow:0 12px 30px rgba(0,0,0,.07); transition:.3s ease; }
+    .book-card:hover,.folder-card:hover { transform:translateY(-6px); box-shadow:0 20px 45px rgba(6,95,70,.16); border-color:#10b981; }
+    .file-type { display:inline-flex; align-items:center; gap:8px; background:#ecfdf5; color:#065f46; padding:6px 12px; border-radius:999px; font-weight:800; font-size:13px; margin-bottom:14px; direction:ltr; }
+    .book-card h3,.folder-card h3 { font-size:22px; color:#111827; margin-bottom:12px; min-height:55px; }
+    .english { font-family:Arial,sans-serif; direction:ltr; color:#4b5563; margin-bottom:16px; }
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn { display:inline-block; padding:10px 16px; border-radius:12px; text-decoration:none; font-weight:bold; transition:.25s; }
+    .open { background:#059669; color:white; }
+    .download { background:#1d4ed8; color:white; }
+    .btn:hover { opacity:.88; transform:translateY(-2px); }
+    footer { text-align:center; margin-top:45px; color:#6b7280; font-size:14px; }
+    @media (max-width:600px) { body { padding:18px; } .book-card h3,.folder-card h3 { min-height:auto; } }
+    </style>
 </head>
 <body>
   <div class="container">
     <div class="top-bar">
-      <a class="back" href="../../../index.html">مرکزی صفحہ پر واپس جائیں</a>
+      <div>
+        <a class="back" href="../../../index.html">مرکزی صفحہ</a>
+        <a class="back" href="../../../index.html">واپس</a>
+      </div>
       <span class="badge">AC - Alim Course</span>
     </div>
 
     <section class="hero">
-      <h1>عالم کورس</h1>
-      <h2>سمسٹر 04</h2>
-      <p>اس صفحہ پر اس سمسٹر کی تمام دستیاب فائلیں موجود ہیں۔ کل فائلیں: 23</p>
+      <h1>عالم کورس - سمسٹر 04</h1>
+      <h2>AC - Alim Course - semester-04</h2>
+      <p>books/ac-alim-course/semester-04</p>
+      <p>Folders: 0 | Files: 23</p>
     </section>
 
+    <h2 class="section-title">فولڈرز</h2>
+    <section class="folders-grid">
+
+      <article class="empty-card"><h3>کوئی ذیلی فولڈر نہیں</h3><p>یہاں مزید فولڈر شامل کیے جا سکتے ہیں۔</p></article>
+    </section>
+
+    <h2 class="section-title">فائلیں</h2>
     <section class="books-grid">
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>الفقه الميسر, الجزء الثاني</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D8%A7%D9%84%D9%81%D9%82%D9%87%20%D8%A7%D9%84%D9%85%D9%8A%D8%B3%D8%B1%2C%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D9%84%D9%81%D9%82%D9%87%20%D8%A7%D9%84%D9%85%D9%8A%D8%B3%D8%B1%2C%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D9%84%D9%81%D9%82%D9%87%20%D8%A7%D9%84%D9%85%D9%8A%D8%B3%D8%B1%2C%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D9%84%D9%81%D9%82%D9%87%20%D8%A7%D9%84%D9%85%D9%8A%D8%B3%D8%B1%2C%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>النحو [العربی] الجزء الاول</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D8%A7%D9%84%D9%86%D8%AD%D9%88%20%5B%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%DB%8C%5D%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%20%D8%A7%D9%84%D8%A7%D9%88%D9%84.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D9%84%D9%86%D8%AD%D9%88%20%5B%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%DB%8C%5D%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%20%D8%A7%D9%84%D8%A7%D9%88%D9%84.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D9%84%D9%86%D8%AD%D9%88%20%5B%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%DB%8C%5D%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%20%D8%A7%D9%84%D8%A7%D9%88%D9%84.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D9%84%D9%86%D8%AD%D9%88%20%5B%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%DB%8C%5D%20%D8%A7%D9%84%D8%AC%D8%B2%D8%A1%20%20%D8%A7%D9%84%D8%A7%D9%88%D9%84.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>عقیدہ طحاویہ</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81%20%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81%20%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%81.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81%20%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81%20%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>قصص النبيين 1</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%201.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%201.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%201.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%201.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>قصص النبيين 2</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%202.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%202.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%202.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%202.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>قصص النبيين 3</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%203.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%203.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%203.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%82%D8%B5%D8%B5%20%D8%A7%D9%84%D9%86%D8%A8%D9%8A%D9%8A%D9%86%203.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>كتاب العوامل (النسخة الجدیدة)</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B9%D9%88%D8%A7%D9%85%D9%84%20%28%D8%A7%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A7%D9%84%D8%AC%D8%AF%DB%8C%D8%AF%D8%A9%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B9%D9%88%D8%A7%D9%85%D9%84%20%28%D8%A7%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A7%D9%84%D8%AC%D8%AF%DB%8C%D8%AF%D8%A9%29.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B9%D9%88%D8%A7%D9%85%D9%84%20%28%D8%A7%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A7%D9%84%D8%AC%D8%AF%DB%8C%D8%AF%D8%A9%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%83%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B9%D9%88%D8%A7%D9%85%D9%84%20%28%D8%A7%D9%84%D9%86%D8%B3%D8%AE%D8%A9%20%D8%A7%D9%84%D8%AC%D8%AF%DB%8C%D8%AF%D8%A9%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>متن العقیدۃ الطحاویۃ</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%85%D8%AA%D9%86%20%D8%A7%D9%84%D8%B9%D9%82%DB%8C%D8%AF%DB%83%20%D8%A7%D9%84%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%83.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%AA%D9%86%20%D8%A7%D9%84%D8%B9%D9%82%DB%8C%D8%AF%DB%83%20%D8%A7%D9%84%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%83.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%85%D8%AA%D9%86%20%D8%A7%D9%84%D8%B9%D9%82%DB%8C%D8%AF%DB%83%20%D8%A7%D9%84%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%83.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%AA%D9%86%20%D8%A7%D9%84%D8%B9%D9%82%DB%8C%D8%AF%DB%83%20%D8%A7%D9%84%D8%B7%D8%AD%D8%A7%D9%88%DB%8C%DB%83.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>مسند الإمام الأعظم ابي حنيفة</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%84%D8%A5%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A3%D8%B9%D8%B8%D9%85%20%D8%A7%D8%A8%D9%8A%20%D8%AD%D9%86%D9%8A%D9%81%D8%A9.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%84%D8%A5%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A3%D8%B9%D8%B8%D9%85%20%D8%A7%D8%A8%D9%8A%20%D8%AD%D9%86%D9%8A%D9%81%D8%A9.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%84%D8%A5%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A3%D8%B9%D8%B8%D9%85%20%D8%A7%D8%A8%D9%8A%20%D8%AD%D9%86%D9%8A%D9%81%D8%A9.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%84%D8%A5%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A3%D8%B9%D8%B8%D9%85%20%D8%A7%D8%A8%D9%8A%20%D8%AD%D9%86%D9%8A%D9%81%D8%A9.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>مسند امام الاعظم</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A7%D8%B9%D8%B8%D9%85_.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A7%D8%B9%D8%B8%D9%85_.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A7%D8%B9%D8%B8%D9%85_.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%B3%D9%86%D8%AF%20%D8%A7%D9%85%D8%A7%D9%85%20%D8%A7%D9%84%D8%A7%D8%B9%D8%B8%D9%85_.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 10 واعلموا</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2010%20-%20%D9%88%D8%A7%D8%B9%D9%84%D9%85%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2010%20-%20%D9%88%D8%A7%D8%B9%D9%84%D9%85%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2010%20-%20%D9%88%D8%A7%D8%B9%D9%84%D9%85%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2010%20-%20%D9%88%D8%A7%D8%B9%D9%84%D9%85%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 11 یعتذرون</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2011%20-%20%DB%8C%D8%B9%D8%AA%D8%B0%D8%B1%D9%88%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2011%20-%20%DB%8C%D8%B9%D8%AA%D8%B0%D8%B1%D9%88%D9%86.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2011%20-%20%DB%8C%D8%B9%D8%AA%D8%B0%D8%B1%D9%88%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2011%20-%20%DB%8C%D8%B9%D8%AA%D8%B0%D8%B1%D9%88%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 12 وما من دآبۃ</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2012%20%D9%88%D9%85%D8%A7%20%D9%85%D9%86%20%D8%AF%D8%A2%D8%A8%DB%83.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2012%20%D9%88%D9%85%D8%A7%20%D9%85%D9%86%20%D8%AF%D8%A2%D8%A8%DB%83.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2012%20%D9%88%D9%85%D8%A7%20%D9%85%D9%86%20%D8%AF%D8%A2%D8%A8%DB%83.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2012%20%D9%88%D9%85%D8%A7%20%D9%85%D9%86%20%D8%AF%D8%A2%D8%A8%DB%83.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 13 وما ابرئ</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2013%20-%20%D9%88%D9%85%D8%A7%20%D8%A7%D8%A8%D8%B1%D8%A6.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2013%20-%20%D9%88%D9%85%D8%A7%20%D8%A7%D8%A8%D8%B1%D8%A6.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2013%20-%20%D9%88%D9%85%D8%A7%20%D8%A7%D8%A8%D8%B1%D8%A6.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2013%20-%20%D9%88%D9%85%D8%A7%20%D8%A7%D8%A8%D8%B1%D8%A6.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 14 ربما</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2014%20-%20%D8%B1%D8%A8%D9%85%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2014%20-%20%D8%B1%D8%A8%D9%85%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2014%20-%20%D8%B1%D8%A8%D9%85%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2014%20-%20%D8%B1%D8%A8%D9%85%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 4 لن تنالوا</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%204%20-%20%D9%84%D9%86%20%D8%AA%D9%86%D8%A7%D9%84%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%204%20-%20%D9%84%D9%86%20%D8%AA%D9%86%D8%A7%D9%84%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%204%20-%20%D9%84%D9%86%20%D8%AA%D9%86%D8%A7%D9%84%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%204%20-%20%D9%84%D9%86%20%D8%AA%D9%86%D8%A7%D9%84%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 5 والمحصنت</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%205%20-%20%D9%88%D8%A7%D9%84%D9%85%D8%AD%D8%B5%D9%86%D8%AA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%205%20-%20%D9%88%D8%A7%D9%84%D9%85%D8%AD%D8%B5%D9%86%D8%AA.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%205%20-%20%D9%88%D8%A7%D9%84%D9%85%D8%AD%D8%B5%D9%86%D8%AA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%205%20-%20%D9%88%D8%A7%D9%84%D9%85%D8%AD%D8%B5%D9%86%D8%AA.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 6 لا یحب اللہ</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%206%20-%20%D9%84%D8%A7%20%DB%8C%D8%AD%D8%A8%20%D8%A7%D9%84%D9%84%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%206%20-%20%D9%84%D8%A7%20%DB%8C%D8%AD%D8%A8%20%D8%A7%D9%84%D9%84%DB%81.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%206%20-%20%D9%84%D8%A7%20%DB%8C%D8%AD%D8%A8%20%D8%A7%D9%84%D9%84%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%206%20-%20%D9%84%D8%A7%20%DB%8C%D8%AD%D8%A8%20%D8%A7%D9%84%D9%84%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 7 واذا سمعوا</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%207%20-%20%D9%88%D8%A7%D8%B0%D8%A7%20%D8%B3%D9%85%D8%B9%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%207%20-%20%D9%88%D8%A7%D8%B0%D8%A7%20%D8%B3%D9%85%D8%B9%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%207%20-%20%D9%88%D8%A7%D8%B0%D8%A7%20%D8%B3%D9%85%D8%B9%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%207%20-%20%D9%88%D8%A7%D8%B0%D8%A7%20%D8%B3%D9%85%D8%B9%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 8 ولو اننا</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%208%20-%20%D9%88%D9%84%D9%88%20%D8%A7%D9%86%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%208%20-%20%D9%88%D9%84%D9%88%20%D8%A7%D9%86%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%208%20-%20%D9%88%D9%84%D9%88%20%D8%A7%D9%86%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%208%20-%20%D9%88%D9%84%D9%88%20%D8%A7%D9%86%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 9 قال الملا</h3>
-        <div class="buttons">
-          <a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%209%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85%D9%84%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%209%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85%D9%84%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%209%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85%D9%84%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%209%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85%D9%84%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>کتاب الحدیث 4</h3>
-        <div class="buttons">
-          <a class="btn open" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-4.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-4.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-4.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-4.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
       <article class="book-card">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>کتاب الصرف 3</h3>
-        <div class="buttons">
-          <a class="btn open" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B5%D8%B1%D9%81%203.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B5%D8%B1%D9%81%203.pdf" download>ڈاؤن لوڈ کریں</a>
-        </div>
+        <div class="buttons"><a class="btn open" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B5%D8%B1%D9%81%203.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%B5%D8%B1%D9%81%203.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
     </section>
 
