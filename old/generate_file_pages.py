@@ -4,27 +4,17 @@ generate_file_pages.py
 
 Auto-generate pages for the eMarkaz Course Library.
 
-Controlled flexible version:
+Controlled flexible version with natural sorting:
 - Generates pages for approved public library roots only.
 - Keeps special course/semester handling for books/.
 - Supports nested folders.
+- Sorts files naturally by number, so Para 1, Para 2, Para 3 ... Para 30.
 - Keeps generated pages clean and professional.
 
 Default public roots:
     books/
     emarkaz-books/
     quran-juzz/
-
-To add a new public root later:
-    Add the folder name to PUBLIC_LIBRARY_ROOTS.
-
-Example:
-    PUBLIC_LIBRARY_ROOTS = [
-        "books",
-        "emarkaz-books",
-        "quran-juzz",
-        "arabic-books",
-    ]
 
 Run from repo root:
     python generate_file_pages.py
@@ -38,8 +28,6 @@ import re
 # ============================================================
 # Controlled public roots
 # ============================================================
-# The generator will ONLY create pages inside these root folders.
-# This avoids accidentally generating pages inside .git, assets, old, etc.
 PUBLIC_LIBRARY_ROOTS = [
     "books",
     "emarkaz-books",
@@ -101,6 +89,16 @@ SKIP_FILE_NAMES = {
     ".gitkeep",
     ".DS_Store",
 }
+
+def natural_key(value) -> list:
+    """
+    Sort like a human:
+    Para 1, Para 2, Para 10 instead of Para 1, Para 10, Para 2.
+    Works for English/Urdu/Arabic filenames if they contain normal digits.
+    """
+    text = value.name if isinstance(value, Path) else str(value)
+    text = text.lower()
+    return [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", text)]
 
 def clean_name(text: str) -> str:
     return " ".join(text.replace("_", " ").replace("-", " ").split())
@@ -280,7 +278,7 @@ def supported_files_in(folder: Path):
         if p.is_file()
         and p.name not in SKIP_FILE_NAMES
         and p.suffix.lower() in SUPPORTED_EXTENSIONS
-    ], key=lambda x: x.name.lower())
+    ], key=natural_key)
 
 def subfolders_in(folder: Path):
     return sorted([
@@ -288,7 +286,7 @@ def subfolders_in(folder: Path):
         if p.is_dir()
         and not p.name.startswith(".")
         and p.name not in SKIP_DIR_NAMES
-    ], key=lambda x: x.name.lower())
+    ], key=natural_key)
 
 def file_cards(files):
     cards = []
@@ -334,7 +332,6 @@ def find_semester_root(folder: Path):
     return None
 
 def display_names_for_page(root_folder: Path, current_folder: Path):
-    # Special handling for course semester folders inside books/<course>/semester-XX
     if root_folder == BOOKS_DIR:
         semester_root = find_semester_root(current_folder)
 
@@ -437,7 +434,7 @@ def generate_pages_for_root(root_folder: Path) -> int:
     ]
 
     count = 0
-    for folder in sorted(folders, key=lambda x: x.as_posix().lower()):
+    for folder in sorted(folders, key=lambda x: natural_key(x.as_posix())):
         html = library_page(root_folder, folder)
         output_file = folder / "index.html"
         output_file.write_text(html, encoding="utf-8")

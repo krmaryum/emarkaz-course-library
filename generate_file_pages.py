@@ -2,14 +2,16 @@
 """
 generate_file_pages.py
 
-Auto-generate pages for the eMarkaz Course Library.
+Auto-generate clean user-facing pages for the eMarkaz Course Library.
 
 Controlled flexible version with natural sorting:
 - Generates pages for approved public library roots only.
 - Keeps special course/semester handling for books/.
 - Supports nested folders.
-- Sorts files naturally by number, so Para 1, Para 2, Para 3 ... Para 30.
-- Keeps generated pages clean and professional.
+- Sorts files naturally by number.
+- Removes developer/debug messages from public pages.
+- Does not show empty-folder or empty-file instruction messages.
+- Does not show "Auto-generated page" footer.
 
 Default public roots:
     books/
@@ -25,9 +27,6 @@ from html import escape
 from urllib.parse import quote
 import re
 
-# ============================================================
-# Controlled public roots
-# ============================================================
 PUBLIC_LIBRARY_ROOTS = [
     "books",
     "emarkaz-books",
@@ -91,11 +90,6 @@ SKIP_FILE_NAMES = {
 }
 
 def natural_key(value) -> list:
-    """
-    Sort like a human:
-    Para 1, Para 2, Para 10 instead of Para 1, Para 10, Para 2.
-    Works for English/Urdu/Arabic filenames if they contain normal digits.
-    """
     text = value.name if isinstance(value, Path) else str(value)
     text = text.lower()
     return [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", text)]
@@ -207,7 +201,7 @@ def page_css() -> str:
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:22px;
     }
-    .book-card,.folder-card,.empty-card {
+    .book-card,.folder-card {
       background:white;
       border-radius:22px;
       padding:24px;
@@ -257,12 +251,6 @@ def page_css() -> str:
     .open { background:#059669; color:white; }
     .download { background:#1d4ed8; color:white; }
     .btn:hover { opacity:.88; transform:translateY(-2px); }
-    footer {
-      text-align:center;
-      margin-top:45px;
-      color:#6b7280;
-      font-size:14px;
-    }
     @media (max-width:600px) {
       body { padding:18px; }
       .book-card h3,.folder-card h3 { min-height:auto; }
@@ -377,16 +365,6 @@ def library_page(root_folder: Path, current_folder: Path):
 {file_cards(files)}
     </section>
 """
-    elif not subfolders:
-        files_section = """
-    <h2 class="section-title">فائلیں</h2>
-    <section class="books-grid">
-      <article class="empty-card">
-        <h3>ابھی کوئی فائل شامل نہیں کی گئی</h3>
-        <p>اس فولڈر میں فائل شامل کریں، پھر generator script دوبارہ چلائیں۔</p>
-      </article>
-    </section>
-"""
 
     return f"""<!DOCTYPE html>
 <html lang="ur" dir="rtl">
@@ -411,9 +389,6 @@ def library_page(root_folder: Path, current_folder: Path):
       <h2>{escape(title_en)}</h2>
     </section>
 {folders_section}{files_section}
-    <footer>
-      <p>© eMarkaz Course Library - Auto-generated page</p>
-    </footer>
   </div>
 </body>
 </html>
