@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatawaz | eMarkaz Course Library</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:linear-gradient(135deg,#f8fafc,#ecfeff);
+      color:#111827;
+      min-height:100vh;
+      line-height:1.9;
+      padding:30px;
+    }
+    .container { max-width:1180px; margin:auto; }
+    .top-bar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+    .back {
+      display:inline-block;
+      background:#064e3b;
+      color:white;
+      padding:10px 18px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      margin-left:8px;
+    }
+    .badge {
+      background:#d1fae5;
+      color:#065f46;
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:bold;
+      border:1px solid #a7f3d0;
+      direction:ltr;
+    }
+    .hero {
+      text-align:center;
+      margin-bottom:35px;
+      padding:35px 20px;
+      background:white;
+      border-radius:24px;
+      box-shadow:0 15px 40px rgba(0,0,0,.08);
+      border:1px solid #e5e7eb;
+    }
+    .hero h1 {
+      font-size:clamp(32px,5vw,56px);
+      color:#064e3b;
+      margin-bottom:10px;
+    }
+    .hero h2 {
+      font-size:24px;
+      color:#374151;
+      margin-bottom:0;
+      direction:ltr;
+    }
+    .section-title {
+      color:#064e3b;
+      margin:30px 0 18px;
+      font-size:30px;
+    }
+    .books-grid,.folders-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+    .book-card,.folder-card {
+      background:white;
+      border-radius:22px;
+      padding:24px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 12px 30px rgba(0,0,0,.07);
+      transition:.3s ease;
+    }
+    .book-card:hover,.folder-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 45px rgba(6,95,70,.16);
+      border-color:#10b981;
+    }
+    .file-type {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfdf5;
+      color:#065f46;
+      padding:6px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:14px;
+      direction:ltr;
+    }
+    .book-card h3,.folder-card h3 {
+      font-size:22px;
+      color:#111827;
+      margin-bottom:12px;
+      min-height:55px;
+    }
+    .english {
+      font-family:Arial,sans-serif;
+      direction:ltr;
+      color:#4b5563;
+      margin-bottom:16px;
+    }
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:.25s;
+    }
+    .open { background:#059669; color:white; }
+    .download { background:#1d4ed8; color:white; }
+    .btn:hover { opacity:.88; transform:translateY(-2px); }
+    @media (max-width:600px) {
+      body { padding:18px; }
+      .book-card h3,.folder-card h3 { min-height:auto; }
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div>
+        <a class="back" href="../index.html">مرکزی صفحہ</a>
+        <a class="back" href="../index.html">واپس</a>
+      </div>
+      <span class="badge">Fatawaz</span>
+    </div>
+
+    <section class="hero">
+      <h1>Fatawaz</h1>
+      <h2>Fatawaz</h2>
+    </section>
+
+    <h2 class="section-title">فائلیں</h2>
+    <section class="books-grid">
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>382کالا لباس پہننا</h3>
+        <div class="buttons"><a class="btn open" href="382%DA%A9%D8%A7%D9%84%D8%A7%20%D9%84%D8%A8%D8%A7%D8%B3%20%D9%BE%DB%81%D9%86%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="382%DA%A9%D8%A7%D9%84%D8%A7%20%D9%84%D8%A8%D8%A7%D8%B3%20%D9%BE%DB%81%D9%86%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>422نماز جمعہ کے لیے اذن عام کی شرط کا مطلب</h3>
+        <div class="buttons"><a class="btn open" href="422%D9%86%D9%85%D8%A7%D8%B2%20%D8%AC%D9%85%D8%B9%DB%81%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%A7%D8%B0%D9%86%20%D8%B9%D8%A7%D9%85%20%DA%A9%DB%8C%20%D8%B4%D8%B1%D8%B7%20%DA%A9%D8%A7%20%D9%85%D8%B7%D9%84%D8%A8.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="422%D9%86%D9%85%D8%A7%D8%B2%20%D8%AC%D9%85%D8%B9%DB%81%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%A7%D8%B0%D9%86%20%D8%B9%D8%A7%D9%85%20%DA%A9%DB%8C%20%D8%B4%D8%B1%D8%B7%20%DA%A9%D8%A7%20%D9%85%D8%B7%D9%84%D8%A8.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>565ذکر بالجہر کی شرعی حیثیت</h3>
+        <div class="buttons"><a class="btn open" href="565%D8%B0%DA%A9%D8%B1%20%D8%A8%D8%A7%D9%84%D8%AC%DB%81%D8%B1%20%DA%A9%DB%8C%20%D8%B4%D8%B1%D8%B9%DB%8C%20%D8%AD%DB%8C%D8%AB%DB%8C%D8%AA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="565%D8%B0%DA%A9%D8%B1%20%D8%A8%D8%A7%D9%84%D8%AC%DB%81%D8%B1%20%DA%A9%DB%8C%20%D8%B4%D8%B1%D8%B9%DB%8C%20%D8%AD%DB%8C%D8%AB%DB%8C%D8%AA.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>586نماز میں قرآن مجید دیکھ کر قرأت کرنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="586%D9%86%D9%85%D8%A7%D8%B2%20%D9%85%DB%8C%DA%BA%20%D9%82%D8%B1%D8%A2%D9%86%20%D9%85%D8%AC%DB%8C%D8%AF%20%D8%AF%DB%8C%DA%A9%DA%BE%20%DA%A9%D8%B1%20%D9%82%D8%B1%D8%A3%D8%AA%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="586%D9%86%D9%85%D8%A7%D8%B2%20%D9%85%DB%8C%DA%BA%20%D9%82%D8%B1%D8%A2%D9%86%20%D9%85%D8%AC%DB%8C%D8%AF%20%D8%AF%DB%8C%DA%A9%DA%BE%20%DA%A9%D8%B1%20%D9%82%D8%B1%D8%A3%D8%AA%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>842نمازِ عید کے شرکاء کی تعداد</h3>
+        <div class="buttons"><a class="btn open" href="842%D9%86%D9%85%D8%A7%D8%B2%D9%90%20%D8%B9%DB%8C%D8%AF%20%20%DA%A9%DB%92%20%D8%B4%D8%B1%DA%A9%D8%A7%D8%A1%20%DA%A9%DB%8C%20%D8%AA%D8%B9%D8%AF%D8%A7%D8%AF.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="842%D9%86%D9%85%D8%A7%D8%B2%D9%90%20%D8%B9%DB%8C%D8%AF%20%20%DA%A9%DB%92%20%D8%B4%D8%B1%DA%A9%D8%A7%D8%A1%20%DA%A9%DB%8C%20%D8%AA%D8%B9%D8%AF%D8%A7%D8%AF.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1632جمعہ کے دن عصر کے بعد درود پڑھنا</h3>
+        <div class="buttons"><a class="btn open" href="1632%D8%AC%D9%85%D8%B9%DB%81%20%DA%A9%DB%92%20%D8%AF%D9%86%20%D8%B9%D8%B5%D8%B1%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%AF%D8%B1%D9%88%D8%AF%20%D9%BE%DA%91%DA%BE%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1632%D8%AC%D9%85%D8%B9%DB%81%20%DA%A9%DB%92%20%D8%AF%D9%86%20%D8%B9%D8%B5%D8%B1%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%AF%D8%B1%D9%88%D8%AF%20%D9%BE%DA%91%DA%BE%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1654اونٹ کا گوشت کھانے سے وضو کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1654%D8%A7%D9%88%D9%86%D9%B9%20%DA%A9%D8%A7%20%DA%AF%D9%88%D8%B4%D8%AA%20%DA%A9%DA%BE%D8%A7%D9%86%DB%92%20%D8%B3%DB%92%20%D9%88%D8%B6%D9%88%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1654%D8%A7%D9%88%D9%86%D9%B9%20%DA%A9%D8%A7%20%DA%AF%D9%88%D8%B4%D8%AA%20%DA%A9%DA%BE%D8%A7%D9%86%DB%92%20%D8%B3%DB%92%20%D9%88%D8%B6%D9%88%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1656نماز جنازہ کے بعد دعا کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1656%D9%86%D9%85%D8%A7%D8%B2%20%D8%AC%D9%86%D8%A7%D8%B2%DB%81%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%AF%D8%B9%D8%A7%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1656%D9%86%D9%85%D8%A7%D8%B2%20%D8%AC%D9%86%D8%A7%D8%B2%DB%81%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%AF%D8%B9%D8%A7%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1661والد کی موجودگی میں لڑکی کا بھائ اسکا نکاح کرواسکتا ہے یا نہیں؟(1)</h3>
+        <div class="buttons"><a class="btn open" href="1661%D9%88%D8%A7%D9%84%D8%AF%20%DA%A9%DB%8C%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%DA%AF%DB%8C%20%D9%85%DB%8C%DA%BA%20%D9%84%DA%91%DA%A9%DB%8C%20%DA%A9%D8%A7%20%D8%A8%DA%BE%D8%A7%D8%A6%20%D8%A7%D8%B3%DA%A9%D8%A7%20%D9%86%DA%A9%D8%A7%D8%AD%20%DA%A9%D8%B1%D9%88%D8%A7%D8%B3%DA%A9%D8%AA%D8%A7%20%DB%81%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1661%D9%88%D8%A7%D9%84%D8%AF%20%DA%A9%DB%8C%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%DA%AF%DB%8C%20%D9%85%DB%8C%DA%BA%20%D9%84%DA%91%DA%A9%DB%8C%20%DA%A9%D8%A7%20%D8%A8%DA%BE%D8%A7%D8%A6%20%D8%A7%D8%B3%DA%A9%D8%A7%20%D9%86%DA%A9%D8%A7%D8%AD%20%DA%A9%D8%B1%D9%88%D8%A7%D8%B3%DA%A9%D8%AA%D8%A7%20%DB%81%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1671نفاس کی ایک صورت کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1671%D9%86%D9%81%D8%A7%D8%B3%20%DA%A9%DB%8C%20%D8%A7%DB%8C%DA%A9%20%D8%B5%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1671%D9%86%D9%81%D8%A7%D8%B3%20%DA%A9%DB%8C%20%D8%A7%DB%8C%DA%A9%20%D8%B5%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1674قرآنی الفاظ کو سکول اکیڈمی وغیرہ کے لیے بطورِ نام استعمال کرنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1674%D9%82%D8%B1%D8%A2%D9%86%DB%8C%20%D8%A7%D9%84%D9%81%D8%A7%D8%B8%20%DA%A9%D9%88%20%D8%B3%DA%A9%D9%88%D9%84%20%D8%A7%DA%A9%DB%8C%DA%88%D9%85%DB%8C%20%D9%88%D8%BA%DB%8C%D8%B1%DB%81%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%A8%D8%B7%D9%88%D8%B1%D9%90%20%D9%86%D8%A7%D9%85%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1674%D9%82%D8%B1%D8%A2%D9%86%DB%8C%20%D8%A7%D9%84%D9%81%D8%A7%D8%B8%20%DA%A9%D9%88%20%D8%B3%DA%A9%D9%88%D9%84%20%D8%A7%DA%A9%DB%8C%DA%88%D9%85%DB%8C%20%D9%88%D8%BA%DB%8C%D8%B1%DB%81%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%A8%D8%B7%D9%88%D8%B1%D9%90%20%D9%86%D8%A7%D9%85%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1675قسم کی ایک خاص صورت اور اسکا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1675%D9%82%D8%B3%D9%85%20%DA%A9%DB%8C%20%D8%A7%DB%8C%DA%A9%20%D8%AE%D8%A7%D8%B5%20%D8%B5%D9%88%D8%B1%D8%AA%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%B3%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1675%D9%82%D8%B3%D9%85%20%DA%A9%DB%8C%20%D8%A7%DB%8C%DA%A9%20%D8%AE%D8%A7%D8%B5%20%D8%B5%D9%88%D8%B1%D8%AA%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%B3%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1692وضو کے بعد آسمان کی طرف انگلی کا اشارہ کرکے دعا پڑھنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1692%D9%88%D8%B6%D9%88%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%A2%D8%B3%D9%85%D8%A7%D9%86%20%DA%A9%DB%8C%20%D8%B7%D8%B1%D9%81%20%D8%A7%D9%86%DA%AF%D9%84%DB%8C%20%DA%A9%D8%A7%20%D8%A7%D8%B4%D8%A7%D8%B1%DB%81%20%DA%A9%D8%B1%DA%A9%DB%92%20%D8%AF%D8%B9%D8%A7%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1692%D9%88%D8%B6%D9%88%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%A2%D8%B3%D9%85%D8%A7%D9%86%20%DA%A9%DB%8C%20%D8%B7%D8%B1%D9%81%20%D8%A7%D9%86%DA%AF%D9%84%DB%8C%20%DA%A9%D8%A7%20%D8%A7%D8%B4%D8%A7%D8%B1%DB%81%20%DA%A9%D8%B1%DA%A9%DB%92%20%D8%AF%D8%B9%D8%A7%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1821ناپاک دوائ لگاکر پڑھی گئ نماز کا حکم(1)</h3>
+        <div class="buttons"><a class="btn open" href="1821%D9%86%D8%A7%D9%BE%D8%A7%DA%A9%20%D8%AF%D9%88%D8%A7%D8%A6%20%D9%84%DA%AF%D8%A7%DA%A9%D8%B1%20%D9%BE%DA%91%DA%BE%DB%8C%20%DA%AF%D8%A6%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1821%D9%86%D8%A7%D9%BE%D8%A7%DA%A9%20%D8%AF%D9%88%D8%A7%D8%A6%20%D9%84%DA%AF%D8%A7%DA%A9%D8%B1%20%D9%BE%DA%91%DA%BE%DB%8C%20%DA%AF%D8%A6%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1822نقلی ناخن لگانے اور نماز پڑھنے کا حکم(1)</h3>
+        <div class="buttons"><a class="btn open" href="1822%D9%86%D9%82%D9%84%DB%8C%20%D9%86%D8%A7%D8%AE%D9%86%20%D9%84%DA%AF%D8%A7%D9%86%DB%92%20%D8%A7%D9%88%D8%B1%20%D9%86%D9%85%D8%A7%D8%B2%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1822%D9%86%D9%82%D9%84%DB%8C%20%D9%86%D8%A7%D8%AE%D9%86%20%D9%84%DA%AF%D8%A7%D9%86%DB%92%20%D8%A7%D9%88%D8%B1%20%D9%86%D9%85%D8%A7%D8%B2%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1827جس سے بدفعلی کی اس کے پیچھے نماز کا حکم(1)</h3>
+        <div class="buttons"><a class="btn open" href="1827%D8%AC%D8%B3%20%D8%B3%DB%92%20%D8%A8%D8%AF%D9%81%D8%B9%D9%84%DB%8C%20%DA%A9%DB%8C%20%D8%A7%D8%B3%20%DA%A9%DB%92%20%D9%BE%DB%8C%DA%86%DA%BE%DB%92%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1827%D8%AC%D8%B3%20%D8%B3%DB%92%20%D8%A8%D8%AF%D9%81%D8%B9%D9%84%DB%8C%20%DA%A9%DB%8C%20%D8%A7%D8%B3%20%DA%A9%DB%92%20%D9%BE%DB%8C%DA%86%DA%BE%DB%92%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1971نجاست لگے کپڑوں کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1971%D9%86%D8%AC%D8%A7%D8%B3%D8%AA%20%D9%84%DA%AF%DB%92%20%DA%A9%D9%BE%DA%91%D9%88%DA%BA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1971%D9%86%D8%AC%D8%A7%D8%B3%D8%AA%20%D9%84%DA%AF%DB%92%20%DA%A9%D9%BE%DA%91%D9%88%DA%BA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1982ایصال ثواب قبر اور آخرت پر جگہ فائدہ دے گا</h3>
+        <div class="buttons"><a class="btn open" href="1982%D8%A7%DB%8C%D8%B5%D8%A7%D9%84%20%D8%AB%D9%88%D8%A7%D8%A8%20%D9%82%D8%A8%D8%B1%20%D8%A7%D9%88%D8%B1%20%D8%A2%D8%AE%D8%B1%D8%AA%20%D9%BE%D8%B1%20%D8%AC%DA%AF%DB%81%20%D9%81%D8%A7%D8%A6%D8%AF%DB%81%20%D8%AF%DB%92%20%DA%AF%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1982%D8%A7%DB%8C%D8%B5%D8%A7%D9%84%20%D8%AB%D9%88%D8%A7%D8%A8%20%D9%82%D8%A8%D8%B1%20%D8%A7%D9%88%D8%B1%20%D8%A2%D8%AE%D8%B1%D8%AA%20%D9%BE%D8%B1%20%D8%AC%DA%AF%DB%81%20%D9%81%D8%A7%D8%A6%D8%AF%DB%81%20%D8%AF%DB%92%20%DA%AF%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>1986کھیل میں شرط لگانے اور نعرۂ تکبیر بلند کرنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="1986%DA%A9%DA%BE%DB%8C%D9%84%20%D9%85%DB%8C%DA%BA%20%D8%B4%D8%B1%D8%B7%20%D9%84%DA%AF%D8%A7%D9%86%DB%92%20%D8%A7%D9%88%D8%B1%20%D9%86%D8%B9%D8%B1%DB%82%20%D8%AA%DA%A9%D8%A8%DB%8C%D8%B1%20%D8%A8%D9%84%D9%86%D8%AF%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="1986%DA%A9%DA%BE%DB%8C%D9%84%20%D9%85%DB%8C%DA%BA%20%D8%B4%D8%B1%D8%B7%20%D9%84%DA%AF%D8%A7%D9%86%DB%92%20%D8%A7%D9%88%D8%B1%20%D9%86%D8%B9%D8%B1%DB%82%20%D8%AA%DA%A9%D8%A8%DB%8C%D8%B1%20%D8%A8%D9%84%D9%86%D8%AF%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2002مشترکہ میراث میں ذاتی رقم سے بناۓ گۓ مکان اور اسے تقسیم کرنے کا شرعی طریقہ</h3>
+        <div class="buttons"><a class="btn open" href="2002%D9%85%D8%B4%D8%AA%D8%B1%DA%A9%DB%81%20%D9%85%DB%8C%D8%B1%D8%A7%D8%AB%20%D9%85%DB%8C%DA%BA%20%D8%B0%D8%A7%D8%AA%DB%8C%20%D8%B1%D9%82%D9%85%20%D8%B3%DB%92%20%D8%A8%D9%86%D8%A7%DB%93%20%DA%AF%DB%93%20%D9%85%DA%A9%D8%A7%D9%86%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%B3%DB%92%20%D8%AA%D9%82%D8%B3%DB%8C%D9%85%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%B4%D8%B1%D8%B9%DB%8C%20%D8%B7%D8%B1%DB%8C%D9%82%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2002%D9%85%D8%B4%D8%AA%D8%B1%DA%A9%DB%81%20%D9%85%DB%8C%D8%B1%D8%A7%D8%AB%20%D9%85%DB%8C%DA%BA%20%D8%B0%D8%A7%D8%AA%DB%8C%20%D8%B1%D9%82%D9%85%20%D8%B3%DB%92%20%D8%A8%D9%86%D8%A7%DB%93%20%DA%AF%DB%93%20%D9%85%DA%A9%D8%A7%D9%86%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%B3%DB%92%20%D8%AA%D9%82%D8%B3%DB%8C%D9%85%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%B4%D8%B1%D8%B9%DB%8C%20%D8%B7%D8%B1%DB%8C%D9%82%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2003التحیات کا پس منظر</h3>
+        <div class="buttons"><a class="btn open" href="2003%D8%A7%D9%84%D8%AA%D8%AD%DB%8C%D8%A7%D8%AA%20%DA%A9%D8%A7%20%D9%BE%D8%B3%20%D9%85%D9%86%D8%B8%D8%B1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2003%D8%A7%D9%84%D8%AA%D8%AD%DB%8C%D8%A7%D8%AA%20%DA%A9%D8%A7%20%D9%BE%D8%B3%20%D9%85%D9%86%D8%B8%D8%B1.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2008معراج کی رات میں باربار نمازیں کم کروانیں میں حکمتیں</h3>
+        <div class="buttons"><a class="btn open" href="2008%D9%85%D8%B9%D8%B1%D8%A7%D8%AC%20%DA%A9%DB%8C%20%D8%B1%D8%A7%D8%AA%20%D9%85%DB%8C%DA%BA%20%D8%A8%D8%A7%D8%B1%D8%A8%D8%A7%D8%B1%20%D9%86%D9%85%D8%A7%D8%B2%DB%8C%DA%BA%20%DA%A9%D9%85%20%DA%A9%D8%B1%D9%88%D8%A7%D9%86%DB%8C%DA%BA%20%D9%85%DB%8C%DA%BA%20%D8%AD%DA%A9%D9%85%D8%AA%DB%8C%DA%BA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2008%D9%85%D8%B9%D8%B1%D8%A7%D8%AC%20%DA%A9%DB%8C%20%D8%B1%D8%A7%D8%AA%20%D9%85%DB%8C%DA%BA%20%D8%A8%D8%A7%D8%B1%D8%A8%D8%A7%D8%B1%20%D9%86%D9%85%D8%A7%D8%B2%DB%8C%DA%BA%20%DA%A9%D9%85%20%DA%A9%D8%B1%D9%88%D8%A7%D9%86%DB%8C%DA%BA%20%D9%85%DB%8C%DA%BA%20%D8%AD%DA%A9%D9%85%D8%AA%DB%8C%DA%BA.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2016نعتوں اور نظموں کے بیک گراؤنڈ. پر تلوار سے تلوار ٹکرانے کی آواز لگانا کیسا ہے؟</h3>
+        <div class="buttons"><a class="btn open" href="2016%D9%86%D8%B9%D8%AA%D9%88%DA%BA%20%D8%A7%D9%88%D8%B1%20%D9%86%D8%B8%D9%85%D9%88%DA%BA%20%DA%A9%DB%92%20%D8%A8%DB%8C%DA%A9%20%DA%AF%D8%B1%D8%A7%D8%A4%D9%86%DA%88.%20%D9%BE%D8%B1%20%D8%AA%D9%84%D9%88%D8%A7%D8%B1%20%D8%B3%DB%92%20%D8%AA%D9%84%D9%88%D8%A7%D8%B1%20%D9%B9%DA%A9%D8%B1%D8%A7%D9%86%DB%92%20%DA%A9%DB%8C%20%D8%A2%D9%88%D8%A7%D8%B2%20%D9%84%DA%AF%D8%A7%D9%86%D8%A7%20%DA%A9%DB%8C%D8%B3%D8%A7%20%DB%81%DB%92%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2016%D9%86%D8%B9%D8%AA%D9%88%DA%BA%20%D8%A7%D9%88%D8%B1%20%D9%86%D8%B8%D9%85%D9%88%DA%BA%20%DA%A9%DB%92%20%D8%A8%DB%8C%DA%A9%20%DA%AF%D8%B1%D8%A7%D8%A4%D9%86%DA%88.%20%D9%BE%D8%B1%20%D8%AA%D9%84%D9%88%D8%A7%D8%B1%20%D8%B3%DB%92%20%D8%AA%D9%84%D9%88%D8%A7%D8%B1%20%D9%B9%DA%A9%D8%B1%D8%A7%D9%86%DB%92%20%DA%A9%DB%8C%20%D8%A2%D9%88%D8%A7%D8%B2%20%D9%84%DA%AF%D8%A7%D9%86%D8%A7%20%DA%A9%DB%8C%D8%B3%D8%A7%20%DB%81%DB%92%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2018امام کے ساتھ رکوع پانے والے کے رکعت پالینے پر اجماع</h3>
+        <div class="buttons"><a class="btn open" href="2018%D8%A7%D9%85%D8%A7%D9%85%20%DA%A9%DB%92%20%D8%B3%D8%A7%D8%AA%DA%BE%20%D8%B1%DA%A9%D9%88%D8%B9%20%D9%BE%D8%A7%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%DA%A9%DB%92%20%D8%B1%DA%A9%D8%B9%D8%AA%20%D9%BE%D8%A7%D9%84%DB%8C%D9%86%DB%92%20%D9%BE%D8%B1%20%D8%A7%D8%AC%D9%85%D8%A7%D8%B9.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2018%D8%A7%D9%85%D8%A7%D9%85%20%DA%A9%DB%92%20%D8%B3%D8%A7%D8%AA%DA%BE%20%D8%B1%DA%A9%D9%88%D8%B9%20%D9%BE%D8%A7%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%DA%A9%DB%92%20%D8%B1%DA%A9%D8%B9%D8%AA%20%D9%BE%D8%A7%D9%84%DB%8C%D9%86%DB%92%20%D9%BE%D8%B1%20%D8%A7%D8%AC%D9%85%D8%A7%D8%B9.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2021اکاؤنٹ میں ایک ہزار روپے رکھنے پر فری منٹس ملنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2021%D8%A7%DA%A9%D8%A7%D8%A4%D9%86%D9%B9%20%D9%85%DB%8C%DA%BA%20%D8%A7%DB%8C%DA%A9%20%DB%81%D8%B2%D8%A7%D8%B1%20%D8%B1%D9%88%D9%BE%DB%92%20%D8%B1%DA%A9%DA%BE%D9%86%DB%92%20%D9%BE%D8%B1%20%D9%81%D8%B1%DB%8C%20%D9%85%D9%86%D9%B9%D8%B3%20%D9%85%D9%84%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2021%D8%A7%DA%A9%D8%A7%D8%A4%D9%86%D9%B9%20%D9%85%DB%8C%DA%BA%20%D8%A7%DB%8C%DA%A9%20%DB%81%D8%B2%D8%A7%D8%B1%20%D8%B1%D9%88%D9%BE%DB%92%20%D8%B1%DA%A9%DA%BE%D9%86%DB%92%20%D9%BE%D8%B1%20%D9%81%D8%B1%DB%8C%20%D9%85%D9%86%D9%B9%D8%B3%20%D9%85%D9%84%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2024قسطوں پر چیزیں خریدنے کا حکم(1)</h3>
+        <div class="buttons"><a class="btn open" href="2024%D9%82%D8%B3%D8%B7%D9%88%DA%BA%20%D9%BE%D8%B1%20%DA%86%DB%8C%D8%B2%DB%8C%DA%BA%20%D8%AE%D8%B1%DB%8C%D8%AF%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2024%D9%82%D8%B3%D8%B7%D9%88%DA%BA%20%D9%BE%D8%B1%20%DA%86%DB%8C%D8%B2%DB%8C%DA%BA%20%D8%AE%D8%B1%DB%8C%D8%AF%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2026نمازی کے آگے بیٹھے شخص کے دائین بائیں نکلنے کا حکم(1)</h3>
+        <div class="buttons"><a class="btn open" href="2026%D9%86%D9%85%D8%A7%D8%B2%DB%8C%20%DA%A9%DB%92%20%D8%A2%DA%AF%DB%92%20%D8%A8%DB%8C%D9%B9%DA%BE%DB%92%20%D8%B4%D8%AE%D8%B5%20%DA%A9%DB%92%20%D8%AF%D8%A7%D8%A6%DB%8C%D9%86%20%D8%A8%D8%A7%D8%A6%DB%8C%DA%BA%20%D9%86%DA%A9%D9%84%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2026%D9%86%D9%85%D8%A7%D8%B2%DB%8C%20%DA%A9%DB%92%20%D8%A2%DA%AF%DB%92%20%D8%A8%DB%8C%D9%B9%DA%BE%DB%92%20%D8%B4%D8%AE%D8%B5%20%DA%A9%DB%92%20%D8%AF%D8%A7%D8%A6%DB%8C%D9%86%20%D8%A8%D8%A7%D8%A6%DB%8C%DA%BA%20%D9%86%DA%A9%D9%84%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2028مسلمان میت کی عورت کا چہرہ غیر مسلم عورت دیکھ سکتی ہے؟</h3>
+        <div class="buttons"><a class="btn open" href="2028%D9%85%D8%B3%D9%84%D9%85%D8%A7%D9%86%20%D9%85%DB%8C%D8%AA%20%DA%A9%DB%8C%20%D8%B9%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%DA%86%DB%81%D8%B1%DB%81%20%D8%BA%DB%8C%D8%B1%20%D9%85%D8%B3%D9%84%D9%85%20%D8%B9%D9%88%D8%B1%D8%AA%20%D8%AF%DB%8C%DA%A9%DA%BE%20%D8%B3%DA%A9%D8%AA%DB%8C%20%DB%81%DB%92%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2028%D9%85%D8%B3%D9%84%D9%85%D8%A7%D9%86%20%D9%85%DB%8C%D8%AA%20%DA%A9%DB%8C%20%D8%B9%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%DA%86%DB%81%D8%B1%DB%81%20%D8%BA%DB%8C%D8%B1%20%D9%85%D8%B3%D9%84%D9%85%20%D8%B9%D9%88%D8%B1%D8%AA%20%D8%AF%DB%8C%DA%A9%DA%BE%20%D8%B3%DA%A9%D8%AA%DB%8C%20%DB%81%DB%92%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2030کسی خانقاہ میں اعتکاف کرنے کے لیے جانا</h3>
+        <div class="buttons"><a class="btn open" href="2030%DA%A9%D8%B3%DB%8C%20%D8%AE%D8%A7%D9%86%D9%82%D8%A7%DB%81%20%D9%85%DB%8C%DA%BA%20%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%AC%D8%A7%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2030%DA%A9%D8%B3%DB%8C%20%D8%AE%D8%A7%D9%86%D9%82%D8%A7%DB%81%20%D9%85%DB%8C%DA%BA%20%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%AC%D8%A7%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2042گھاس کاشت کرکے فروخت کرنے کی مخصوص صورت کا حکم(1)</h3>
+        <div class="buttons"><a class="btn open" href="2042%DA%AF%DA%BE%D8%A7%D8%B3%20%DA%A9%D8%A7%D8%B4%D8%AA%20%DA%A9%D8%B1%DA%A9%DB%92%20%D9%81%D8%B1%D9%88%D8%AE%D8%AA%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%DB%8C%20%D9%85%D8%AE%D8%B5%D9%88%D8%B5%20%D8%B5%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2042%DA%AF%DA%BE%D8%A7%D8%B3%20%DA%A9%D8%A7%D8%B4%D8%AA%20%DA%A9%D8%B1%DA%A9%DB%92%20%D9%81%D8%B1%D9%88%D8%AE%D8%AA%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%DB%8C%20%D9%85%D8%AE%D8%B5%D9%88%D8%B5%20%D8%B5%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2049تجارت یا رہائش کی غرض سے خریدے گۓ پلاٹ میں نیت بدلنے سے زکوٰۃ کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2049%D8%AA%D8%AC%D8%A7%D8%B1%D8%AA%20%DB%8C%D8%A7%20%D8%B1%DB%81%D8%A7%D8%A6%D8%B4%20%DA%A9%DB%8C%20%D8%BA%D8%B1%D8%B6%20%D8%B3%DB%92%20%D8%AE%D8%B1%DB%8C%D8%AF%DB%92%20%DA%AF%DB%93%20%D9%BE%D9%84%D8%A7%D9%B9%20%D9%85%DB%8C%DA%BA%20%D9%86%DB%8C%D8%AA%20%D8%A8%D8%AF%D9%84%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2049%D8%AA%D8%AC%D8%A7%D8%B1%D8%AA%20%DB%8C%D8%A7%20%D8%B1%DB%81%D8%A7%D8%A6%D8%B4%20%DA%A9%DB%8C%20%D8%BA%D8%B1%D8%B6%20%D8%B3%DB%92%20%D8%AE%D8%B1%DB%8C%D8%AF%DB%92%20%DA%AF%DB%93%20%D9%BE%D9%84%D8%A7%D9%B9%20%D9%85%DB%8C%DA%BA%20%D9%86%DB%8C%D8%AA%20%D8%A8%D8%AF%D9%84%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2059عورت کے کفن سے متعلق چندامور کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2059%D8%B9%D9%88%D8%B1%D8%AA%20%DA%A9%DB%92%20%DA%A9%D9%81%D9%86%20%D8%B3%DB%92%20%D9%85%D8%AA%D8%B9%D9%84%D9%82%20%DA%86%D9%86%D8%AF%D8%A7%D9%85%D9%88%D8%B1%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2059%D8%B9%D9%88%D8%B1%D8%AA%20%DA%A9%DB%92%20%DA%A9%D9%81%D9%86%20%D8%B3%DB%92%20%D9%85%D8%AA%D8%B9%D9%84%D9%82%20%DA%86%D9%86%D8%AF%D8%A7%D9%85%D9%88%D8%B1%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2065خاوند کا بیوی کی طرف سے زکوٰۃ ادا کرنا</h3>
+        <div class="buttons"><a class="btn open" href="2065%D8%AE%D8%A7%D9%88%D9%86%D8%AF%20%DA%A9%D8%A7%20%D8%A8%DB%8C%D9%88%DB%8C%20%DA%A9%DB%8C%20%D8%B7%D8%B1%D9%81%20%D8%B3%DB%92%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%D8%A7%D8%AF%D8%A7%20%DA%A9%D8%B1%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2065%D8%AE%D8%A7%D9%88%D9%86%D8%AF%20%DA%A9%D8%A7%20%D8%A8%DB%8C%D9%88%DB%8C%20%DA%A9%DB%8C%20%D8%B7%D8%B1%D9%81%20%D8%B3%DB%92%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%D8%A7%D8%AF%D8%A7%20%DA%A9%D8%B1%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2068تراویح پڑھانے کے لیے امام کا بالغ ہونا شرط ہے اور بلوغ کی عمر</h3>
+        <div class="buttons"><a class="btn open" href="2068%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%20%D9%BE%DA%91%DA%BE%D8%A7%D9%86%DB%92%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%A7%D9%85%D8%A7%D9%85%20%DA%A9%D8%A7%20%D8%A8%D8%A7%D9%84%D8%BA%20%DB%81%D9%88%D9%86%D8%A7%20%D8%B4%D8%B1%D8%B7%20%DB%81%DB%92%20%D8%A7%D9%88%D8%B1%20%D8%A8%D9%84%D9%88%D8%BA%20%DA%A9%DB%8C%20%D8%B9%D9%85%D8%B1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2068%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%20%D9%BE%DA%91%DA%BE%D8%A7%D9%86%DB%92%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D8%A7%D9%85%D8%A7%D9%85%20%DA%A9%D8%A7%20%D8%A8%D8%A7%D9%84%D8%BA%20%DB%81%D9%88%D9%86%D8%A7%20%D8%B4%D8%B1%D8%B7%20%DB%81%DB%92%20%D8%A7%D9%88%D8%B1%20%D8%A8%D9%84%D9%88%D8%BA%20%DA%A9%DB%8C%20%D8%B9%D9%85%D8%B1.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2073صلوٰۃ التسبیح کے قعدے میں تسبیحات,تشہد سے پہلے پڑھی جائیں یا بعد؟</h3>
+        <div class="buttons"><a class="btn open" href="2073%D8%B5%D9%84%D9%88%D9%B0%DB%83%20%D8%A7%D9%84%D8%AA%D8%B3%D8%A8%DB%8C%D8%AD%20%DA%A9%DB%92%20%D9%82%D8%B9%D8%AF%DB%92%20%D9%85%DB%8C%DA%BA%20%D8%AA%D8%B3%D8%A8%DB%8C%D8%AD%D8%A7%D8%AA%2C%D8%AA%D8%B4%DB%81%D8%AF%20%D8%B3%DB%92%20%D9%BE%DB%81%D9%84%DB%92%20%D9%BE%DA%91%DA%BE%DB%8C%20%D8%AC%D8%A7%D8%A6%DB%8C%DA%BA%20%DB%8C%D8%A7%20%D8%A8%D8%B9%D8%AF%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2073%D8%B5%D9%84%D9%88%D9%B0%DB%83%20%D8%A7%D9%84%D8%AA%D8%B3%D8%A8%DB%8C%D8%AD%20%DA%A9%DB%92%20%D9%82%D8%B9%D8%AF%DB%92%20%D9%85%DB%8C%DA%BA%20%D8%AA%D8%B3%D8%A8%DB%8C%D8%AD%D8%A7%D8%AA%2C%D8%AA%D8%B4%DB%81%D8%AF%20%D8%B3%DB%92%20%D9%BE%DB%81%D9%84%DB%92%20%D9%BE%DA%91%DA%BE%DB%8C%20%D8%AC%D8%A7%D8%A6%DB%8C%DA%BA%20%DB%8C%D8%A7%20%D8%A8%D8%B9%D8%AF%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2077ناف کی مالش اور ناک میں تیل ڈالنے سے روزے کا حکم(1)</h3>
+        <div class="buttons"><a class="btn open" href="2077%D9%86%D8%A7%D9%81%20%DA%A9%DB%8C%20%D9%85%D8%A7%D9%84%D8%B4%20%D8%A7%D9%88%D8%B1%20%D9%86%D8%A7%DA%A9%20%D9%85%DB%8C%DA%BA%20%D8%AA%DB%8C%D9%84%20%DA%88%D8%A7%D9%84%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B1%D9%88%D8%B2%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2077%D9%86%D8%A7%D9%81%20%DA%A9%DB%8C%20%D9%85%D8%A7%D9%84%D8%B4%20%D8%A7%D9%88%D8%B1%20%D9%86%D8%A7%DA%A9%20%D9%85%DB%8C%DA%BA%20%D8%AA%DB%8C%D9%84%20%DA%88%D8%A7%D9%84%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B1%D9%88%D8%B2%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2081کرونا ویکسین لگانے سے روزہ کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2081%DA%A9%D8%B1%D9%88%D9%86%D8%A7%20%D9%88%DB%8C%DA%A9%D8%B3%DB%8C%D9%86%20%D9%84%DA%AF%D8%A7%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B1%D9%88%D8%B2%DB%81%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2081%DA%A9%D8%B1%D9%88%D9%86%D8%A7%20%D9%88%DB%8C%DA%A9%D8%B3%DB%8C%D9%86%20%D9%84%DA%AF%D8%A7%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B1%D9%88%D8%B2%DB%81%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2082نابالغ بچوں کو ملنے والے تحائف کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2082%D9%86%D8%A7%D8%A8%D8%A7%D9%84%D8%BA%20%D8%A8%DA%86%D9%88%DA%BA%20%DA%A9%D9%88%20%D9%85%D9%84%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D8%AA%D8%AD%D8%A7%D8%A6%D9%81%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2082%D9%86%D8%A7%D8%A8%D8%A7%D9%84%D8%BA%20%D8%A8%DA%86%D9%88%DA%BA%20%DA%A9%D9%88%20%D9%85%D9%84%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D8%AA%D8%AD%D8%A7%D8%A6%D9%81%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2086کاروبار میں لگائ ہوئ رقم پر زکوٰۃ کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2086%DA%A9%D8%A7%D8%B1%D9%88%D8%A8%D8%A7%D8%B1%20%D9%85%DB%8C%DA%BA%20%D9%84%DA%AF%D8%A7%D8%A6%20%DB%81%D9%88%D8%A6%20%D8%B1%D9%82%D9%85%20%D9%BE%D8%B1%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2086%DA%A9%D8%A7%D8%B1%D9%88%D8%A8%D8%A7%D8%B1%20%D9%85%DB%8C%DA%BA%20%D9%84%DA%AF%D8%A7%D8%A6%20%DB%81%D9%88%D8%A6%20%D8%B1%D9%82%D9%85%20%D9%BE%D8%B1%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2088مسنون دعاؤں کو اعلان کے طور پر پڑھنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2088%D9%85%D8%B3%D9%86%D9%88%D9%86%20%D8%AF%D8%B9%D8%A7%D8%A4%DA%BA%20%DA%A9%D9%88%20%D8%A7%D8%B9%D9%84%D8%A7%D9%86%20%DA%A9%DB%92%20%D8%B7%D9%88%D8%B1%20%D9%BE%D8%B1%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2088%D9%85%D8%B3%D9%86%D9%88%D9%86%20%D8%AF%D8%B9%D8%A7%D8%A4%DA%BA%20%DA%A9%D9%88%20%D8%A7%D8%B9%D9%84%D8%A7%D9%86%20%DA%A9%DB%92%20%D8%B7%D9%88%D8%B1%20%D9%BE%D8%B1%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2089افطاری کے اعلان کے ساتھ دعائیں پڑھنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2089%D8%A7%D9%81%D8%B7%D8%A7%D8%B1%DB%8C%20%DA%A9%DB%92%20%D8%A7%D8%B9%D9%84%D8%A7%D9%86%20%DA%A9%DB%92%20%D8%B3%D8%A7%D8%AA%DA%BE%20%D8%AF%D8%B9%D8%A7%D8%A6%DB%8C%DA%BA%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2089%D8%A7%D9%81%D8%B7%D8%A7%D8%B1%DB%8C%20%DA%A9%DB%92%20%D8%A7%D8%B9%D9%84%D8%A7%D9%86%20%DA%A9%DB%92%20%D8%B3%D8%A7%D8%AA%DA%BE%20%D8%AF%D8%B9%D8%A7%D8%A6%DB%8C%DA%BA%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2090وقت افطار کا اعلان کیسے کیا جاۓ؟</h3>
+        <div class="buttons"><a class="btn open" href="2090%D9%88%D9%82%D8%AA%20%D8%A7%D9%81%D8%B7%D8%A7%D8%B1%20%DA%A9%D8%A7%20%D8%A7%D8%B9%D9%84%D8%A7%D9%86%20%DA%A9%DB%8C%D8%B3%DB%92%20%DA%A9%DB%8C%D8%A7%20%D8%AC%D8%A7%DB%93%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2090%D9%88%D9%82%D8%AA%20%D8%A7%D9%81%D8%B7%D8%A7%D8%B1%20%DA%A9%D8%A7%20%D8%A7%D8%B9%D9%84%D8%A7%D9%86%20%DA%A9%DB%8C%D8%B3%DB%92%20%DA%A9%DB%8C%D8%A7%20%D8%AC%D8%A7%DB%93%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2094قعدۂ اخیرہ میں دعاۓ ماثور کے بعد کوئ دعا پڑھنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2094%D9%82%D8%B9%D8%AF%DB%82%20%D8%A7%D8%AE%DB%8C%D8%B1%DB%81%20%D9%85%DB%8C%DA%BA%20%D8%AF%D8%B9%D8%A7%DB%93%20%D9%85%D8%A7%D8%AB%D9%88%D8%B1%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%DA%A9%D9%88%D8%A6%20%D8%AF%D8%B9%D8%A7%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2094%D9%82%D8%B9%D8%AF%DB%82%20%D8%A7%D8%AE%DB%8C%D8%B1%DB%81%20%D9%85%DB%8C%DA%BA%20%D8%AF%D8%B9%D8%A7%DB%93%20%D9%85%D8%A7%D8%AB%D9%88%D8%B1%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%DA%A9%D9%88%D8%A6%20%D8%AF%D8%B9%D8%A7%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2097کھانا کھانے لے دوران جماعت کھڑی ہوجاۓ تو کیا کیا جاۓ؟</h3>
+        <div class="buttons"><a class="btn open" href="2097%DA%A9%DA%BE%D8%A7%D9%86%D8%A7%20%DA%A9%DA%BE%D8%A7%D9%86%DB%92%20%D9%84%DB%92%20%D8%AF%D9%88%D8%B1%D8%A7%D9%86%20%D8%AC%D9%85%D8%A7%D8%B9%D8%AA%20%DA%A9%DA%BE%DA%91%DB%8C%20%DB%81%D9%88%D8%AC%D8%A7%DB%93%20%D8%AA%D9%88%20%DA%A9%DB%8C%D8%A7%20%DA%A9%DB%8C%D8%A7%20%D8%AC%D8%A7%DB%93%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2097%DA%A9%DA%BE%D8%A7%D9%86%D8%A7%20%DA%A9%DA%BE%D8%A7%D9%86%DB%92%20%D9%84%DB%92%20%D8%AF%D9%88%D8%B1%D8%A7%D9%86%20%D8%AC%D9%85%D8%A7%D8%B9%D8%AA%20%DA%A9%DA%BE%DA%91%DB%8C%20%DB%81%D9%88%D8%AC%D8%A7%DB%93%20%D8%AA%D9%88%20%DA%A9%DB%8C%D8%A7%20%DA%A9%DB%8C%D8%A7%20%D8%AC%D8%A7%DB%93%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2105آرٹیفشل انگھوٹی سے نماز پڑھنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2105%D8%A2%D8%B1%D9%B9%DB%8C%D9%81%D8%B4%D9%84%20%D8%A7%D9%86%DA%AF%DA%BE%D9%88%D9%B9%DB%8C%20%D8%B3%DB%92%20%D9%86%D9%85%D8%A7%D8%B2%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2105%D8%A2%D8%B1%D9%B9%DB%8C%D9%81%D8%B4%D9%84%20%D8%A7%D9%86%DA%AF%DA%BE%D9%88%D9%B9%DB%8C%20%D8%B3%DB%92%20%D9%86%D9%85%D8%A7%D8%B2%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2119اعتکاف سے متعلق چند مسائل کا جواب</h3>
+        <div class="buttons"><a class="btn open" href="2119%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%D8%B3%DB%92%20%D9%85%D8%AA%D8%B9%D9%84%D9%82%20%DA%86%D9%86%D8%AF%20%D9%85%D8%B3%D8%A7%D8%A6%D9%84%20%DA%A9%D8%A7%20%D8%AC%D9%88%D8%A7%D8%A8.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2119%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%D8%B3%DB%92%20%D9%85%D8%AA%D8%B9%D9%84%D9%82%20%DA%86%D9%86%D8%AF%20%D9%85%D8%B3%D8%A7%D8%A6%D9%84%20%DA%A9%D8%A7%20%D8%AC%D9%88%D8%A7%D8%A8.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2120اپنی زندگی میں قضا نمازوں کا فدیہ ادا کرنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2120%D8%A7%D9%BE%D9%86%DB%8C%20%D8%B2%D9%86%D8%AF%DA%AF%DB%8C%20%D9%85%DB%8C%DA%BA%20%D9%82%D8%B6%D8%A7%20%D9%86%D9%85%D8%A7%D8%B2%D9%88%DA%BA%20%DA%A9%D8%A7%20%D9%81%D8%AF%DB%8C%DB%81%20%D8%A7%D8%AF%D8%A7%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2120%D8%A7%D9%BE%D9%86%DB%8C%20%D8%B2%D9%86%D8%AF%DA%AF%DB%8C%20%D9%85%DB%8C%DA%BA%20%D9%82%D8%B6%D8%A7%20%D9%86%D9%85%D8%A7%D8%B2%D9%88%DA%BA%20%DA%A9%D8%A7%20%D9%81%D8%AF%DB%8C%DB%81%20%D8%A7%D8%AF%D8%A7%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2122منگنی کے بعد زنا,اسکے بعد نکاح اور اسکے بعد پیداہونے والے بچے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2122%D9%85%D9%86%DA%AF%D9%86%DB%8C%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%B2%D9%86%D8%A7%2C%D8%A7%D8%B3%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D9%86%DA%A9%D8%A7%D8%AD%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%B3%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D9%BE%DB%8C%D8%AF%D8%A7%DB%81%D9%88%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D8%A8%DA%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2122%D9%85%D9%86%DA%AF%D9%86%DB%8C%20%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D8%B2%D9%86%D8%A7%2C%D8%A7%D8%B3%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D9%86%DA%A9%D8%A7%D8%AD%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%B3%DA%A9%DB%92%20%D8%A8%D8%B9%D8%AF%20%D9%BE%DB%8C%D8%AF%D8%A7%DB%81%D9%88%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D8%A8%DA%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2133آنکھ میں دوائ ڈالنے اور منہ بھر قے آنے سے روزے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2133%D8%A2%D9%86%DA%A9%DA%BE%20%D9%85%DB%8C%DA%BA%20%D8%AF%D9%88%D8%A7%D8%A6%20%DA%88%D8%A7%D9%84%D9%86%DB%92%20%D8%A7%D9%88%D8%B1%20%D9%85%D9%86%DB%81%20%D8%A8%DA%BE%D8%B1%20%D9%82%DB%92%20%D8%A2%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B1%D9%88%D8%B2%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2133%D8%A2%D9%86%DA%A9%DA%BE%20%D9%85%DB%8C%DA%BA%20%D8%AF%D9%88%D8%A7%D8%A6%20%DA%88%D8%A7%D9%84%D9%86%DB%92%20%D8%A7%D9%88%D8%B1%20%D9%85%D9%86%DB%81%20%D8%A8%DA%BE%D8%B1%20%D9%82%DB%92%20%D8%A2%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B1%D9%88%D8%B2%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2138کووڈ ڈیوٹی کرنے والے عملہ کے لیے نماز کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2138%DA%A9%D9%88%D9%88%DA%88%20%DA%88%DB%8C%D9%88%D9%B9%DB%8C%20%DA%A9%D8%B1%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D8%B9%D9%85%D9%84%DB%81%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2138%DA%A9%D9%88%D9%88%DA%88%20%DA%88%DB%8C%D9%88%D9%B9%DB%8C%20%DA%A9%D8%B1%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D8%B9%D9%85%D9%84%DB%81%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2166قرض معاف کرنے سے زکوٰۃ ادا ہوگی یا نہیں؟</h3>
+        <div class="buttons"><a class="btn open" href="2166%D9%82%D8%B1%D8%B6%20%D9%85%D8%B9%D8%A7%D9%81%20%DA%A9%D8%B1%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%D8%A7%D8%AF%D8%A7%20%DB%81%D9%88%DA%AF%DB%8C%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2166%D9%82%D8%B1%D8%B6%20%D9%85%D8%B9%D8%A7%D9%81%20%DA%A9%D8%B1%D9%86%DB%92%20%D8%B3%DB%92%20%D8%B2%DA%A9%D9%88%D9%B0%DB%83%20%D8%A7%D8%AF%D8%A7%20%DB%81%D9%88%DA%AF%DB%8C%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2184فسخ نکاح کا صحیح طریقہ</h3>
+        <div class="buttons"><a class="btn open" href="2184%D9%81%D8%B3%D8%AE%20%D9%86%DA%A9%D8%A7%D8%AD%20%DA%A9%D8%A7%20%D8%B5%D8%AD%DB%8C%D8%AD%20%D8%B7%D8%B1%DB%8C%D9%82%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2184%D9%81%D8%B3%D8%AE%20%D9%86%DA%A9%D8%A7%D8%AD%20%DA%A9%D8%A7%20%D8%B5%D8%AD%DB%8C%D8%AD%20%D8%B7%D8%B1%DB%8C%D9%82%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2266آٹومیٹک مشین میں پاک وناپاک کپڑے اکٹھے دھونے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2266%D8%A2%D9%B9%D9%88%D9%85%DB%8C%D9%B9%DA%A9%20%D9%85%D8%B4%DB%8C%D9%86%20%D9%85%DB%8C%DA%BA%20%D9%BE%D8%A7%DA%A9%20%D9%88%D9%86%D8%A7%D9%BE%D8%A7%DA%A9%20%DA%A9%D9%BE%DA%91%DB%92%20%D8%A7%DA%A9%D9%B9%DA%BE%DB%92%20%D8%AF%DA%BE%D9%88%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2266%D8%A2%D9%B9%D9%88%D9%85%DB%8C%D9%B9%DA%A9%20%D9%85%D8%B4%DB%8C%D9%86%20%D9%85%DB%8C%DA%BA%20%D9%BE%D8%A7%DA%A9%20%D9%88%D9%86%D8%A7%D9%BE%D8%A7%DA%A9%20%DA%A9%D9%BE%DA%91%DB%92%20%D8%A7%DA%A9%D9%B9%DA%BE%DB%92%20%D8%AF%DA%BE%D9%88%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2273امام قرأت شروع کردے تو ثنا پڑھنی چاہیے یا نہیں؟</h3>
+        <div class="buttons"><a class="btn open" href="2273%D8%A7%D9%85%D8%A7%D9%85%20%D9%82%D8%B1%D8%A3%D8%AA%20%D8%B4%D8%B1%D9%88%D8%B9%20%DA%A9%D8%B1%D8%AF%DB%92%20%D8%AA%D9%88%20%D8%AB%D9%86%D8%A7%20%D9%BE%DA%91%DA%BE%D9%86%DB%8C%20%DA%86%D8%A7%DB%81%DB%8C%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2273%D8%A7%D9%85%D8%A7%D9%85%20%D9%82%D8%B1%D8%A3%D8%AA%20%D8%B4%D8%B1%D9%88%D8%B9%20%DA%A9%D8%B1%D8%AF%DB%92%20%D8%AA%D9%88%20%D8%AB%D9%86%D8%A7%20%D9%BE%DA%91%DA%BE%D9%86%DB%8C%20%DA%86%D8%A7%DB%81%DB%8C%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2316ادھار بیچنے پر قیمت میں اضافہ جائز ہے یا نہیں</h3>
+        <div class="buttons"><a class="btn open" href="2316%D8%A7%D8%AF%DA%BE%D8%A7%D8%B1%20%D8%A8%DB%8C%DA%86%D9%86%DB%92%20%D9%BE%D8%B1%20%D9%82%DB%8C%D9%85%D8%AA%20%D9%85%DB%8C%DA%BA%20%D8%A7%D8%B6%D8%A7%D9%81%DB%81%20%D8%AC%D8%A7%D8%A6%D8%B2%20%DB%81%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2316%D8%A7%D8%AF%DA%BE%D8%A7%D8%B1%20%D8%A8%DB%8C%DA%86%D9%86%DB%92%20%D9%BE%D8%B1%20%D9%82%DB%8C%D9%85%D8%AA%20%D9%85%DB%8C%DA%BA%20%D8%A7%D8%B6%D8%A7%D9%81%DB%81%20%D8%AC%D8%A7%D8%A6%D8%B2%20%DB%81%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2343حدیث انا مدینۃ العلم و علی بابھا کی تحقیق</h3>
+        <div class="buttons"><a class="btn open" href="2343%D8%AD%D8%AF%DB%8C%D8%AB%20%D8%A7%D9%86%D8%A7%20%D9%85%D8%AF%DB%8C%D9%86%DB%83%20%D8%A7%D9%84%D8%B9%D9%84%D9%85%20%D9%88%20%D8%B9%D9%84%DB%8C%20%D8%A8%D8%A7%D8%A8%DA%BE%D8%A7%20%DA%A9%DB%8C%20%D8%AA%D8%AD%D9%82%DB%8C%D9%82.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2343%D8%AD%D8%AF%DB%8C%D8%AB%20%D8%A7%D9%86%D8%A7%20%D9%85%D8%AF%DB%8C%D9%86%DB%83%20%D8%A7%D9%84%D8%B9%D9%84%D9%85%20%D9%88%20%D8%B9%D9%84%DB%8C%20%D8%A8%D8%A7%D8%A8%DA%BE%D8%A7%20%DA%A9%DB%8C%20%D8%AA%D8%AD%D9%82%DB%8C%D9%82.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2426زخمی حالت میں وضو اور نماز کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2426%D8%B2%D8%AE%D9%85%DB%8C%20%D8%AD%D8%A7%D9%84%D8%AA%20%D9%85%DB%8C%DA%BA%20%D9%88%D8%B6%D9%88%20%D8%A7%D9%88%D8%B1%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2426%D8%B2%D8%AE%D9%85%DB%8C%20%D8%AD%D8%A7%D9%84%D8%AA%20%D9%85%DB%8C%DA%BA%20%D9%88%D8%B6%D9%88%20%D8%A7%D9%88%D8%B1%20%D9%86%D9%85%D8%A7%D8%B2%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2428جہاز میں نماز پڑھنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2428%D8%AC%DB%81%D8%A7%D8%B2%20%D9%85%DB%8C%DA%BA%20%D9%86%D9%85%D8%A7%D8%B2%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2428%D8%AC%DB%81%D8%A7%D8%B2%20%D9%85%DB%8C%DA%BA%20%D9%86%D9%85%D8%A7%D8%B2%20%D9%BE%DA%91%DA%BE%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2460پٹی کے نیچے لگی چکناہٹ کی موجودگی میں غسل کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2460%D9%BE%D9%B9%DB%8C%20%DA%A9%DB%92%20%D9%86%DB%8C%DA%86%DB%92%20%D9%84%DA%AF%DB%8C%20%DA%86%DA%A9%D9%86%D8%A7%DB%81%D9%B9%20%DA%A9%DB%8C%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%DA%AF%DB%8C%20%D9%85%DB%8C%DA%BA%20%D8%BA%D8%B3%D9%84%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2460%D9%BE%D9%B9%DB%8C%20%DA%A9%DB%92%20%D9%86%DB%8C%DA%86%DB%92%20%D9%84%DA%AF%DB%8C%20%DA%86%DA%A9%D9%86%D8%A7%DB%81%D9%B9%20%DA%A9%DB%8C%20%D9%85%D9%88%D8%AC%D9%88%D8%AF%DA%AF%DB%8C%20%D9%85%DB%8C%DA%BA%20%D8%BA%D8%B3%D9%84%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2470کسی کے گناہ پر تبصرہ کرنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2470%DA%A9%D8%B3%DB%8C%20%DA%A9%DB%92%20%DA%AF%D9%86%D8%A7%DB%81%20%D9%BE%D8%B1%20%D8%AA%D8%A8%D8%B5%D8%B1%DB%81%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2470%DA%A9%D8%B3%DB%8C%20%DA%A9%DB%92%20%DA%AF%D9%86%D8%A7%DB%81%20%D9%BE%D8%B1%20%D8%AA%D8%A8%D8%B5%D8%B1%DB%81%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2486حضرت ابن عمر رضی اللہ عنہما اور افطار بالجماع</h3>
+        <div class="buttons"><a class="btn open" href="2486%D8%AD%D8%B6%D8%B1%D8%AA%20%D8%A7%D8%A8%D9%86%20%D8%B9%D9%85%D8%B1%20%D8%B1%D8%B6%DB%8C%20%D8%A7%D9%84%D9%84%DB%81%20%D8%B9%D9%86%DB%81%D9%85%D8%A7%20%D8%A7%D9%88%D8%B1%20%D8%A7%D9%81%D8%B7%D8%A7%D8%B1%20%D8%A8%D8%A7%D9%84%D8%AC%D9%85%D8%A7%D8%B9.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2486%D8%AD%D8%B6%D8%B1%D8%AA%20%D8%A7%D8%A8%D9%86%20%D8%B9%D9%85%D8%B1%20%D8%B1%D8%B6%DB%8C%20%D8%A7%D9%84%D9%84%DB%81%20%D8%B9%D9%86%DB%81%D9%85%D8%A7%20%D8%A7%D9%88%D8%B1%20%D8%A7%D9%81%D8%B7%D8%A7%D8%B1%20%D8%A8%D8%A7%D9%84%D8%AC%D9%85%D8%A7%D8%B9.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2495غسل جنابت میں پٹی پر مسح کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2495%D8%BA%D8%B3%D9%84%20%D8%AC%D9%86%D8%A7%D8%A8%D8%AA%20%D9%85%DB%8C%DA%BA%20%D9%BE%D9%B9%DB%8C%20%D9%BE%D8%B1%20%D9%85%D8%B3%D8%AD%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2495%D8%BA%D8%B3%D9%84%20%D8%AC%D9%86%D8%A7%D8%A8%D8%AA%20%D9%85%DB%8C%DA%BA%20%D9%BE%D9%B9%DB%8C%20%D9%BE%D8%B1%20%D9%85%D8%B3%D8%AD%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2502کچھوے کے پیشاب کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2502%DA%A9%DA%86%DA%BE%D9%88%DB%92%20%DA%A9%DB%92%20%D9%BE%DB%8C%D8%B4%D8%A7%D8%A8%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2502%DA%A9%DA%86%DA%BE%D9%88%DB%92%20%DA%A9%DB%92%20%D9%BE%DB%8C%D8%B4%D8%A7%D8%A8%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2623ستائیس رجب کو روزہ رکھنا کیسا ہے؟(1)</h3>
+        <div class="buttons"><a class="btn open" href="2623%D8%B3%D8%AA%D8%A7%D8%A6%DB%8C%D8%B3%20%D8%B1%D8%AC%D8%A8%20%DA%A9%D9%88%20%D8%B1%D9%88%D8%B2%DB%81%20%D8%B1%DA%A9%DA%BE%D9%86%D8%A7%20%DA%A9%DB%8C%D8%B3%D8%A7%20%DB%81%DB%92%D8%9F%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2623%D8%B3%D8%AA%D8%A7%D8%A6%DB%8C%D8%B3%20%D8%B1%D8%AC%D8%A8%20%DA%A9%D9%88%20%D8%B1%D9%88%D8%B2%DB%81%20%D8%B1%DA%A9%DA%BE%D9%86%D8%A7%20%DA%A9%DB%8C%D8%B3%D8%A7%20%DB%81%DB%92%D8%9F%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2623ستائیس رجب کو روزہ رکھنا کیسا ہے؟</h3>
+        <div class="buttons"><a class="btn open" href="2623%D8%B3%D8%AA%D8%A7%D8%A6%DB%8C%D8%B3%20%D8%B1%D8%AC%D8%A8%20%DA%A9%D9%88%20%D8%B1%D9%88%D8%B2%DB%81%20%D8%B1%DA%A9%DA%BE%D9%86%D8%A7%20%DA%A9%DB%8C%D8%B3%D8%A7%20%DB%81%DB%92%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2623%D8%B3%D8%AA%D8%A7%D8%A6%DB%8C%D8%B3%20%D8%B1%D8%AC%D8%A8%20%DA%A9%D9%88%20%D8%B1%D9%88%D8%B2%DB%81%20%D8%B1%DA%A9%DA%BE%D9%86%D8%A7%20%DA%A9%DB%8C%D8%B3%D8%A7%20%DB%81%DB%92%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2663مسجد کے لیے وقف زمین پر جنازہ گاہ بنادیا گیا اب کیا حکم ہے؟</h3>
+        <div class="buttons"><a class="btn open" href="2663%D9%85%D8%B3%D8%AC%D8%AF%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D9%88%D9%82%D9%81%20%D8%B2%D9%85%DB%8C%D9%86%20%D9%BE%D8%B1%20%D8%AC%D9%86%D8%A7%D8%B2%DB%81%20%DA%AF%D8%A7%DB%81%20%D8%A8%D9%86%D8%A7%D8%AF%DB%8C%D8%A7%20%DA%AF%DB%8C%D8%A7%20%D8%A7%D8%A8%20%DA%A9%DB%8C%D8%A7%20%D8%AD%DA%A9%D9%85%20%DB%81%DB%92%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2663%D9%85%D8%B3%D8%AC%D8%AF%20%DA%A9%DB%92%20%D9%84%DB%8C%DB%92%20%D9%88%D9%82%D9%81%20%D8%B2%D9%85%DB%8C%D9%86%20%D9%BE%D8%B1%20%D8%AC%D9%86%D8%A7%D8%B2%DB%81%20%DA%AF%D8%A7%DB%81%20%D8%A8%D9%86%D8%A7%D8%AF%DB%8C%D8%A7%20%DA%AF%DB%8C%D8%A7%20%D8%A7%D8%A8%20%DA%A9%DB%8C%D8%A7%20%D8%AD%DA%A9%D9%85%20%DB%81%DB%92%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2723موبائپ اکاؤنٹ میں رقم رکھنے پر ملنے والے فری منٹس استعمال کرنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2723%D9%85%D9%88%D8%A8%D8%A7%D8%A6%D9%BE%20%D8%A7%DA%A9%D8%A7%D8%A4%D9%86%D9%B9%20%D9%85%DB%8C%DA%BA%20%D8%B1%D9%82%D9%85%20%D8%B1%DA%A9%DA%BE%D9%86%DB%92%20%D9%BE%D8%B1%20%D9%85%D9%84%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D9%81%D8%B1%DB%8C%20%D9%85%D9%86%D9%B9%D8%B3%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2723%D9%85%D9%88%D8%A8%D8%A7%D8%A6%D9%BE%20%D8%A7%DA%A9%D8%A7%D8%A4%D9%86%D9%B9%20%D9%85%DB%8C%DA%BA%20%D8%B1%D9%82%D9%85%20%D8%B1%DA%A9%DA%BE%D9%86%DB%92%20%D9%BE%D8%B1%20%D9%85%D9%84%D9%86%DB%92%20%D9%88%D8%A7%D9%84%DB%92%20%D9%81%D8%B1%DB%8C%20%D9%85%D9%86%D9%B9%D8%B3%20%D8%A7%D8%B3%D8%AA%D8%B9%D9%85%D8%A7%D9%84%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2724پانچ بیٹوں اور پانچ بیٹیوں میں وراثت کی تقسیم</h3>
+        <div class="buttons"><a class="btn open" href="2724%D9%BE%D8%A7%D9%86%DA%86%20%D8%A8%DB%8C%D9%B9%D9%88%DA%BA%20%D8%A7%D9%88%D8%B1%20%D9%BE%D8%A7%D9%86%DA%86%20%D8%A8%DB%8C%D9%B9%DB%8C%D9%88%DA%BA%20%D9%85%DB%8C%DA%BA%20%D9%88%D8%B1%D8%A7%D8%AB%D8%AA%20%DA%A9%DB%8C%20%D8%AA%D9%82%D8%B3%DB%8C%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2724%D9%BE%D8%A7%D9%86%DA%86%20%D8%A8%DB%8C%D9%B9%D9%88%DA%BA%20%D8%A7%D9%88%D8%B1%20%D9%BE%D8%A7%D9%86%DA%86%20%D8%A8%DB%8C%D9%B9%DB%8C%D9%88%DA%BA%20%D9%85%DB%8C%DA%BA%20%D9%88%D8%B1%D8%A7%D8%AB%D8%AA%20%DA%A9%DB%8C%20%D8%AA%D9%82%D8%B3%DB%8C%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2753ناجائز تعلق قائم کرلیا ہو تو نکاح ٹوٹ جاتا ہے یا نہیں؟</h3>
+        <div class="buttons"><a class="btn open" href="2753%D9%86%D8%A7%D8%AC%D8%A7%D8%A6%D8%B2%20%D8%AA%D8%B9%D9%84%D9%82%20%D9%82%D8%A7%D8%A6%D9%85%20%DA%A9%D8%B1%D9%84%DB%8C%D8%A7%20%DB%81%D9%88%20%D8%AA%D9%88%20%D9%86%DA%A9%D8%A7%D8%AD%20%D9%B9%D9%88%D9%B9%20%D8%AC%D8%A7%D8%AA%D8%A7%20%DB%81%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2753%D9%86%D8%A7%D8%AC%D8%A7%D8%A6%D8%B2%20%D8%AA%D8%B9%D9%84%D9%82%20%D9%82%D8%A7%D8%A6%D9%85%20%DA%A9%D8%B1%D9%84%DB%8C%D8%A7%20%DB%81%D9%88%20%D8%AA%D9%88%20%D9%86%DA%A9%D8%A7%D8%AD%20%D9%B9%D9%88%D9%B9%20%D8%AC%D8%A7%D8%AA%D8%A7%20%DB%81%DB%92%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2866مسبوق؛فاتحہ کے ساتھ دوسری سورت ملاۓ گا یا نہیں؟</h3>
+        <div class="buttons"><a class="btn open" href="2866%D9%85%D8%B3%D8%A8%D9%88%D9%82%D8%9B%D9%81%D8%A7%D8%AA%D8%AD%DB%81%20%DA%A9%DB%92%20%D8%B3%D8%A7%D8%AA%DA%BE%20%D8%AF%D9%88%D8%B3%D8%B1%DB%8C%20%D8%B3%D9%88%D8%B1%D8%AA%20%D9%85%D9%84%D8%A7%DB%93%20%DA%AF%D8%A7%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2866%D9%85%D8%B3%D8%A8%D9%88%D9%82%D8%9B%D9%81%D8%A7%D8%AA%D8%AD%DB%81%20%DA%A9%DB%92%20%D8%B3%D8%A7%D8%AA%DA%BE%20%D8%AF%D9%88%D8%B3%D8%B1%DB%8C%20%D8%B3%D9%88%D8%B1%D8%AA%20%D9%85%D9%84%D8%A7%DB%93%20%DA%AF%D8%A7%20%DB%8C%D8%A7%20%D9%86%DB%81%DB%8C%DA%BA%D8%9F.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2871مختلف ملبوسات کی خریدوفروخت کی ایک صورت کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="2871%D9%85%D8%AE%D8%AA%D9%84%D9%81%20%D9%85%D9%84%D8%A8%D9%88%D8%B3%D8%A7%D8%AA%20%DA%A9%DB%8C%20%D8%AE%D8%B1%DB%8C%D8%AF%D9%88%D9%81%D8%B1%D9%88%D8%AE%D8%AA%20%DA%A9%DB%8C%20%D8%A7%DB%8C%DA%A9%20%D8%B5%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2871%D9%85%D8%AE%D8%AA%D9%84%D9%81%20%D9%85%D9%84%D8%A8%D9%88%D8%B3%D8%A7%D8%AA%20%DA%A9%DB%8C%20%D8%AE%D8%B1%DB%8C%D8%AF%D9%88%D9%81%D8%B1%D9%88%D8%AE%D8%AA%20%DA%A9%DB%8C%20%D8%A7%DB%8C%DA%A9%20%D8%B5%D9%88%D8%B1%D8%AA%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+    </section>
+
+  </div>
+</body>
+</html>

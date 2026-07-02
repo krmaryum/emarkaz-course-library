@@ -31,6 +31,7 @@ PUBLIC_LIBRARY_ROOTS = [
     "books",
     "emarkaz-books",
     "quran-juzz",
+    "Fatawaz",
 ]
 
 BOOKS_DIR = Path("books")
