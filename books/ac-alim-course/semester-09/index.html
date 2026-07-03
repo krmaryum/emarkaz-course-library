@@ -193,7 +193,7 @@
 
     <section class="search-wrap">
       <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
-      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، Fatawa..." oninput="searchLibraryItems()" />
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، wazu, namaz, zakat..." oninput="searchLibraryItems()" />
       <div class="search-count" id="searchCount">5 کل آئٹمز / total items</div>
       <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
     </section>
@@ -234,6 +234,138 @@
 
   </div>
   <script>
+    const searchAliases = {
+      "namaz": ["نماز", "صلوٰۃ", "salah", "salat"],
+      "salah": ["نماز", "صلوٰۃ", "namaz", "salat"],
+      "salat": ["نماز", "صلوٰۃ", "namaz", "salah"],
+      "wazu": ["وضو", "wudu", "wudhu"],
+      "wudu": ["وضو", "wazu", "wudhu"],
+      "wudhu": ["وضو", "wazu", "wudu"],
+      "ghusal": ["غسل", "ghusl"],
+      "ghusl": ["غسل", "ghusal"],
+      "roza": ["روزہ", "sawm", "fast", "fasting"],
+      "sawm": ["روزہ", "roza", "fast", "fasting"],
+      "fast": ["روزہ", "roza", "sawm"],
+      "fasting": ["روزہ", "roza", "sawm"],
+      "zakat": ["زکوٰۃ", "زکوة", "zakah"],
+      "zakah": ["زکوٰۃ", "زکوة", "zakat"],
+      "nikah": ["نکاح", "marriage"],
+      "marriage": ["نکاح", "nikah"],
+      "talaq": ["طلاق", "divorce"],
+      "divorce": ["طلاق", "talaq"],
+      "janaza": ["جنازہ", "janazah", "funeral"],
+      "janazah": ["جنازہ", "janaza", "funeral"],
+      "funeral": ["جنازہ", "janaza", "janazah"],
+      "qurbani": ["قربانی", "udhiyah", "sacrifice"],
+      "udhiyah": ["قربانی", "qurbani", "sacrifice"],
+      "sacrifice": ["قربانی", "qurbani"],
+      "dua": ["دعا", "duaa", "prayer"],
+      "duaa": ["دعا", "dua"],
+      "quran": ["قرآن", "قران", "qur'an"],
+      "quranic": ["قرآنی", "قرانی", "quran"],
+      "hadith": ["حدیث", "hadees", "hadeeth"],
+      "hadees": ["حدیث", "hadith", "hadeeth"],
+      "hadeeth": ["حدیث", "hadith", "hadees"],
+      "imam": ["امام"],
+      "masjid": ["مسجد", "mosque"],
+      "mosque": ["مسجد", "masjid"],
+      "ramzan": ["رمضان", "ramadan"],
+      "ramadan": ["رمضان", "ramzan"],
+      "eid": ["عید"],
+      "hajj": ["حج"],
+      "umrah": ["عمرہ"],
+      "sunnat": ["سنت", "sunnah"],
+      "sunnah": ["سنت", "sunnat"],
+      "farz": ["فرض", "fard"],
+      "fard": ["فرض", "farz"],
+      "wajib": ["واجب"],
+      "halal": ["حلال"],
+      "haram": ["حرام"],
+      "makrooh": ["مکروہ", "makruh"],
+      "makruh": ["مکروہ", "makrooh"],
+      "pak": ["پاک", "taharat", "tahara"],
+      "napak": ["ناپاک", "najis", "najasat"],
+      "najis": ["نجس", "ناپاک", "najasat"],
+      "najasat": ["نجاست", "ناپاک", "najis"],
+      "taharat": ["طہارت", "پاک", "tahara"],
+      "tahara": ["طہارت", "پاک", "taharat"],
+      "qibla": ["قبلہ"],
+      "ruku": ["رکوع"],
+      "sajda": ["سجدہ", "sujud"],
+      "sujud": ["سجدہ", "sajda"],
+      "azan": ["اذان", "adhan"],
+      "adhan": ["اذان", "azan"],
+      "iqamat": ["اقامت", "iqamah"],
+      "iqamah": ["اقامت", "iqamat"],
+      "taraweeh": ["تراویح", "tarawih"],
+      "tarawih": ["تراویح", "taraweeh"],
+      "itr": ["عطر", "perfume"],
+      "perfume": ["عطر", "itr"],
+      "mirath": ["میراث", "inheritance", "meeras"],
+      "meeras": ["میراث", "mirath", "inheritance"],
+      "inheritance": ["میراث", "mirath", "meeras"],
+      "qarz": ["قرض", "loan"],
+      "loan": ["قرض", "qarz"],
+      "sood": ["سود", "interest", "riba"],
+      "riba": ["سود", "interest", "sood"],
+      "interest": ["سود", "riba", "sood"],
+      "business": ["کاروبار", "tijarat"],
+      "tijarat": ["تجارت", "business"],
+      "kafan": ["کفن"],
+      "qabr": ["قبر", "grave"],
+      "grave": ["قبر", "qabr"],
+      "mayyat": ["میت", "dead body"],
+      "miya": ["شوہر", "husband"],
+      "husband": ["شوہر", "miya"],
+      "biwi": ["بیوی", "wife"],
+      "wife": ["بیوی", "biwi"],
+      "aurat": ["عورت", "woman"],
+      "woman": ["عورت", "aurat"],
+      "mard": ["مرد", "man"],
+      "man": ["مرد", "mard"],
+      "bachay": ["بچے", "children"],
+      "children": ["بچے", "bachay"],
+      "walid": ["والد", "father"],
+      "father": ["والد", "walid"],
+      "maa": ["ماں", "mother"],
+      "mother": ["ماں", "maa"],
+      "fatwa": ["فتوی", "فتویٰ", "fatawa"],
+      "fatawa": ["فتاویٰ", "فتاوی", "fatwa"]
+    };
+
+    function normalizeText(value) {
+      return (value || "")
+        .toString()
+        .toLowerCase()
+        .replace(/[’']/g, "")
+        .replace(/[۔،؟?]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function expandSearchQuery(query) {
+      const normalized = normalizeText(query);
+      if (!normalized) return [];
+
+      const terms = new Set([normalized]);
+      normalized.split(" ").forEach(function(word) {
+        if (word) terms.add(word);
+        if (searchAliases[word]) {
+          searchAliases[word].forEach(function(alias) {
+            terms.add(normalizeText(alias));
+          });
+        }
+      });
+
+      if (searchAliases[normalized]) {
+        searchAliases[normalized].forEach(function(alias) {
+          terms.add(normalizeText(alias));
+        });
+      }
+
+      return Array.from(terms).filter(Boolean);
+    }
+
     function searchLibraryItems() {
       const input = document.getElementById("librarySearch");
       const count = document.getElementById("searchCount");
@@ -242,12 +374,15 @@
 
       if (!input) return;
 
-      const query = input.value.trim().toLowerCase();
+      const query = normalizeText(input.value);
+      const terms = expandSearchQuery(query);
       let visible = 0;
 
       cards.forEach(function(card) {
-        const text = (card.getAttribute("data-search") || card.innerText || "").toLowerCase();
-        const match = text.includes(query);
+        const text = normalizeText((card.getAttribute("data-search") || "") + " " + (card.innerText || ""));
+        const match = !query || terms.some(function(term) {
+          return text.includes(term);
+        });
         card.style.display = match ? "" : "none";
         if (match) visible++;
       });

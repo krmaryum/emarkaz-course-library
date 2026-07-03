@@ -252,6 +252,54 @@ def page_css() -> str:
     .open { background:#059669; color:white; }
     .download { background:#1d4ed8; color:white; }
     .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
     @media (max-width:600px) {
       body { padding:18px; }
       .book-card h3,.folder-card h3 { min-height:auto; }
@@ -291,7 +339,7 @@ def file_cards(files):
         )
 
         cards.append(f"""
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="{escape(title_from_filename(file_path)).lower()} {escape(file_path.name).lower()}">
         <div class="file-type"><span>{escape(info["icon"])}</span> {escape(info["label"])}</div>
         <h3>{escape(title_from_filename(file_path))}</h3>
         <div class="buttons">{' '.join(buttons)}</div>
@@ -303,7 +351,7 @@ def folder_cards(folders):
     for folder in folders:
         names = pretty_folder_name(folder.name)
         cards.append(f"""
-      <article class="folder-card">
+      <article class="folder-card searchable-card" data-search="{escape(names["ur"]).lower()} {escape(names["en"]).lower()} {escape(folder.name).lower()}">
         <div class="file-type"><span>📁</span> Folder</div>
         <h3>{escape(names["ur"])}</h3>
         <p class="english">{escape(names["en"])}</p>
@@ -367,6 +415,18 @@ def library_page(root_folder: Path, current_folder: Path):
     </section>
 """
 
+    total_items = len(subfolders) + len(files)
+    search_section = ""
+    if total_items:
+        search_section = f"""
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، Fatawa..." oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">{total_items} کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+"""
+
     return f"""<!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
@@ -389,8 +449,39 @@ def library_page(root_folder: Path, current_folder: Path):
       <h1>{escape(title_ur)}</h1>
       <h2>{escape(title_en)}</h2>
     </section>
-{folders_section}{files_section}
+{search_section}{folders_section}{files_section}
   </div>
+  <script>
+    function searchLibraryItems() {{
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = input.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(function(card) {{
+        const text = (card.getAttribute("data-search") || card.innerText || "").toLowerCase();
+        const match = text.includes(query);
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      }});
+
+      if (count) {{
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }}
+
+      if (noResults) {{
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }}
+    }}
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
 </body>
 </html>
 """
