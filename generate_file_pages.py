@@ -417,11 +417,16 @@ def library_page(root_folder: Path, current_folder: Path):
 
     total_items = len(subfolders) + len(files)
     search_section = ""
+    search_label = "کتاب یا فولڈر تلاش کریں"
+    search_placeholder = "مثال: وضو، نماز، wazu, namaz, zakat..."
+    if root_folder.name == "Fatawaz":
+        search_label = "فتویٰ تلاش کریں"
+        search_placeholder = "مثال: نماز، وضو، نکاح، wazu, namaz..."
     if total_items:
         search_section = f"""
     <section class="search-wrap">
-      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
-      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، wazu, namaz, zakat..." oninput="searchLibraryItems()" />
+      <label class="search-label" for="librarySearch">{search_label}</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="{search_placeholder}" oninput="searchLibraryItems()" />
       <div class="search-count" id="searchCount">{total_items} کل آئٹمز / total items</div>
       <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
     </section>
