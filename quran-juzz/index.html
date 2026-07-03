@@ -122,6 +122,54 @@
     .open { background:#059669; color:white; }
     .download { background:#1d4ed8; color:white; }
     .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
     @media (max-width:600px) {
       body { padding:18px; }
       .book-card h3,.folder-card h3 { min-height:auto; }
@@ -143,178 +191,185 @@
       <h2>Quran Juzz</h2>
     </section>
 
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، Fatawa..." oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">29 کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+
     <h2 class="section-title">فائلیں</h2>
     <section class="books-grid">
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 1 الم پارہ 1 - الم.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 1 الم</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%201%20-%20%D8%A7%D9%84%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%201%20-%20%D8%A7%D9%84%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 2 سیقول پارہ 2 - سیقول.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 2 سیقول</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%202%20-%20%D8%B3%DB%8C%D9%82%D9%88%D9%84.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%202%20-%20%D8%B3%DB%8C%D9%82%D9%88%D9%84.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 3 تلک الرسل پارہ 3 - تلک الرسل.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 3 تلک الرسل</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%203%20-%20%D8%AA%D9%84%DA%A9%20%D8%A7%D9%84%D8%B1%D8%B3%D9%84.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%203%20-%20%D8%AA%D9%84%DA%A9%20%D8%A7%D9%84%D8%B1%D8%B3%D9%84.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 4 لن تنالوا پارہ 4 - لن تنالوا.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 4 لن تنالوا</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%204%20-%20%D9%84%D9%86%20%D8%AA%D9%86%D8%A7%D9%84%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%204%20-%20%D9%84%D9%86%20%D8%AA%D9%86%D8%A7%D9%84%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 5 والمحصنت پارہ 5 - والمحصنت.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 5 والمحصنت</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%205%20-%20%D9%88%D8%A7%D9%84%D9%85%D8%AD%D8%B5%D9%86%D8%AA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%205%20-%20%D9%88%D8%A7%D9%84%D9%85%D8%AD%D8%B5%D9%86%D8%AA.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 6 لا یحب اللہ پارہ 6 - لا یحب اللہ.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 6 لا یحب اللہ</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%206%20-%20%D9%84%D8%A7%20%DB%8C%D8%AD%D8%A8%20%D8%A7%D9%84%D9%84%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%206%20-%20%D9%84%D8%A7%20%DB%8C%D8%AD%D8%A8%20%D8%A7%D9%84%D9%84%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 7 واذا سمعوا پارہ 7 - واذا سمعوا.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 7 واذا سمعوا</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%207%20-%20%D9%88%D8%A7%D8%B0%D8%A7%20%D8%B3%D9%85%D8%B9%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%207%20-%20%D9%88%D8%A7%D8%B0%D8%A7%20%D8%B3%D9%85%D8%B9%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 8 ولو اننا پارہ 8 - ولو اننا.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 8 ولو اننا</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%208%20-%20%D9%88%D9%84%D9%88%20%D8%A7%D9%86%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%208%20-%20%D9%88%D9%84%D9%88%20%D8%A7%D9%86%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 9 قال الملا پارہ 9 - قال الملا.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 9 قال الملا</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%209%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85%D9%84%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%209%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85%D9%84%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 10 واعلموا پارہ 10 - واعلموا.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 10 واعلموا</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2010%20-%20%D9%88%D8%A7%D8%B9%D9%84%D9%85%D9%88%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2010%20-%20%D9%88%D8%A7%D8%B9%D9%84%D9%85%D9%88%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 11 یعتذرون پارہ 11 - یعتذرون.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 11 یعتذرون</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2011%20-%20%DB%8C%D8%B9%D8%AA%D8%B0%D8%B1%D9%88%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2011%20-%20%DB%8C%D8%B9%D8%AA%D8%B0%D8%B1%D9%88%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 12 وما من دآبۃ پارہ 12 وما من دآبۃ.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 12 وما من دآبۃ</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2012%20%D9%88%D9%85%D8%A7%20%D9%85%D9%86%20%D8%AF%D8%A2%D8%A8%DB%83.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2012%20%D9%88%D9%85%D8%A7%20%D9%85%D9%86%20%D8%AF%D8%A2%D8%A8%DB%83.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 13 وما ابرئ پارہ 13 - وما ابرئ.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 13 وما ابرئ</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2013%20-%20%D9%88%D9%85%D8%A7%20%D8%A7%D8%A8%D8%B1%D8%A6.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2013%20-%20%D9%88%D9%85%D8%A7%20%D8%A7%D8%A8%D8%B1%D8%A6.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 14 ربما پارہ 14 - ربما.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 14 ربما</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2014%20-%20%D8%B1%D8%A8%D9%85%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2014%20-%20%D8%B1%D8%A8%D9%85%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 15 سبحان الذی پارہ 15 - سبحان الذی.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 15 سبحان الذی</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2015%20-%20%D8%B3%D8%A8%D8%AD%D8%A7%D9%86%20%D8%A7%D9%84%D8%B0%DB%8C.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2015%20-%20%D8%B3%D8%A8%D8%AD%D8%A7%D9%86%20%D8%A7%D9%84%D8%B0%DB%8C.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 16 قال الم پارہ 16 - قال الم.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 16 قال الم</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2016%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2016%20-%20%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 17 اقترب للناس پارہ 17 - اقترب للناس.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 17 اقترب للناس</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2017%20-%20%D8%A7%D9%82%D8%AA%D8%B1%D8%A8%20%D9%84%D9%84%D9%86%D8%A7%D8%B3.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2017%20-%20%D8%A7%D9%82%D8%AA%D8%B1%D8%A8%20%D9%84%D9%84%D9%86%D8%A7%D8%B3.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 18 قد افلح پارہ 18 - قد افلح.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 18 قد افلح</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2018%20-%20%D9%82%D8%AF%20%D8%A7%D9%81%D9%84%D8%AD.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2018%20-%20%D9%82%D8%AF%20%D8%A7%D9%81%D9%84%D8%AD.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 19 وقال الذین پارہ 19 - وقال الذین.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 19 وقال الذین</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2019%20-%20%D9%88%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D8%B0%DB%8C%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2019%20-%20%D9%88%D9%82%D8%A7%D9%84%20%D8%A7%D9%84%D8%B0%DB%8C%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 20 امن خلق پارہ 20 - امن خلق.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 20 امن خلق</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2020%20-%20%D8%A7%D9%85%D9%86%20%D8%AE%D9%84%D9%82.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2020%20-%20%D8%A7%D9%85%D9%86%20%D8%AE%D9%84%D9%82.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 21 اتل ما پارہ 21 - اتل ما.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 21 اتل ما</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2021%20-%20%D8%A7%D8%AA%D9%84%20%D9%85%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2021%20-%20%D8%A7%D8%AA%D9%84%20%D9%85%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 22 ومن یقنت پارہ 22 - ومن یقنت.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 22 ومن یقنت</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2022%20-%20%D9%88%D9%85%D9%86%20%DB%8C%D9%82%D9%86%D8%AA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2022%20-%20%D9%88%D9%85%D9%86%20%DB%8C%D9%82%D9%86%D8%AA.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 23 وما لی پارہ 23 - وما لی.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 23 وما لی</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2023%20-%20%D9%88%D9%85%D8%A7%20%D9%84%DB%8C.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2023%20-%20%D9%88%D9%85%D8%A7%20%D9%84%DB%8C.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 24 فمن اظلم پارہ 24 - فمن اظلم.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 24 فمن اظلم</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2024%20-%20%D9%81%D9%85%D9%86%20%D8%A7%D8%B8%D9%84%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2024%20-%20%D9%81%D9%85%D9%86%20%D8%A7%D8%B8%D9%84%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 25 الیہ یرد پارہ 25 - الیہ یرد.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 25 الیہ یرد</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2025%20-%20%D8%A7%D9%84%DB%8C%DB%81%20%DB%8C%D8%B1%D8%AF.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2025%20-%20%D8%A7%D9%84%DB%8C%DB%81%20%DB%8C%D8%B1%D8%AF.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 26 حم پارہ 26 - حم.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 26 حم</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2026%20-%20%D8%AD%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2026%20-%20%D8%AD%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 27 قال فما خطبکم پارہ 27 - قال فما خطبکم.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 27 قال فما خطبکم</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2027%20-%20%D9%82%D8%A7%D9%84%20%D9%81%D9%85%D8%A7%20%D8%AE%D8%B7%D8%A8%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2027%20-%20%D9%82%D8%A7%D9%84%20%D9%81%D9%85%D8%A7%20%D8%AE%D8%B7%D8%A8%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 28 قد سمع اللہ پارہ 28 - قد سمع اللہ.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 28 قد سمع اللہ</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2028%20-%20%D9%82%D8%AF%20%D8%B3%D9%85%D8%B9%20%D8%A7%D9%84%D9%84%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2028%20-%20%D9%82%D8%AF%20%D8%B3%D9%85%D8%B9%20%D8%A7%D9%84%D9%84%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="پارہ 30 عم پارہ 30 - عم.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>پارہ 30 عم</h3>
         <div class="buttons"><a class="btn open" href="%D9%BE%D8%A7%D8%B1%DB%81%2030%20-%20%D8%B9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%BE%D8%A7%D8%B1%DB%81%2030%20-%20%D8%B9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
@@ -322,5 +377,36 @@
     </section>
 
   </div>
+  <script>
+    function searchLibraryItems() {
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = input.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(function(card) {
+        const text = (card.getAttribute("data-search") || card.innerText || "").toLowerCase();
+        const match = text.includes(query);
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (count) {
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }
+
+      if (noResults) {
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }
+    }
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
 </body>
 </html>

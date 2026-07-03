@@ -122,6 +122,54 @@
     .open { background:#059669; color:white; }
     .download { background:#1d4ed8; color:white; }
     .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
     @media (max-width:600px) {
       body { padding:18px; }
       .book-card h3,.folder-card h3 { min-height:auto; }
@@ -143,130 +191,137 @@
       <h2>TFA - Takhasus fil Aqaid - Semester 01</h2>
     </section>
 
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، Fatawa..." oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">21 کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+
     <h2 class="section-title">فائلیں</h2>
     <section class="books-grid">
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اسلامی عقائد، از متکلم اسلام حفظہ اللہ، جدید ایڈیشن 2025ء اسلامی عقائد، از متکلم اسلام حفظہ اللہ، جدید ایڈیشن 2025ء.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اسلامی عقائد، از متکلم اسلام حفظہ اللہ، جدید ایڈیشن 2025ء</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B3%D9%84%D8%A7%D9%85%DB%8C%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF%D8%8C%20%D8%A7%D8%B2%20%D9%85%D8%AA%DA%A9%D9%84%D9%85%20%D8%A7%D8%B3%D9%84%D8%A7%D9%85%20%D8%AD%D9%81%D8%B8%DB%81%20%D8%A7%D9%84%D9%84%DB%81%D8%8C%20%D8%AC%D8%AF%DB%8C%D8%AF%20%D8%A7%DB%8C%DA%88%DB%8C%D8%B4%D9%86%202025%D8%A1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B3%D9%84%D8%A7%D9%85%DB%8C%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF%D8%8C%20%D8%A7%D8%B2%20%D9%85%D8%AA%DA%A9%D9%84%D9%85%20%D8%A7%D8%B3%D9%84%D8%A7%D9%85%20%D8%AD%D9%81%D8%B8%DB%81%20%D8%A7%D9%84%D9%84%DB%81%D8%8C%20%D8%AC%D8%AF%DB%8C%D8%AF%20%D8%A7%DB%8C%DA%88%DB%8C%D8%B4%D9%86%202025%D8%A1.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول تاریخ اپریل 2025 اصول تاریخ   اپریل 2025.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول تاریخ اپریل 2025</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE%20%20%20%D8%A7%D9%BE%D8%B1%DB%8C%D9%84%202025.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE%20%20%20%D8%A7%D9%BE%D8%B1%DB%8C%D9%84%202025.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول تفسیر 1 1 اصول تفسیر-1-1.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول تفسیر 1 1</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AA%D9%81%D8%B3%DB%8C%D8%B1-1-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AA%D9%81%D8%B3%DB%8C%D8%B1-1-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول تفسیر 1 2 اصول تفسیر-1-2.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول تفسیر 1 2</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AA%D9%81%D8%B3%DB%8C%D8%B1-1-2.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AA%D9%81%D8%B3%DB%8C%D8%B1-1-2.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول جرح تعدیل اصول جرح تعدیل.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول جرح تعدیل</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AC%D8%B1%D8%AD%20%D8%AA%D8%B9%D8%AF%DB%8C%D9%84.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AC%D8%B1%D8%AD%20%D8%AA%D8%B9%D8%AF%DB%8C%D9%84.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول حدیث (1) اصول حدیث (1).pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول حدیث (1)</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AD%D8%AF%DB%8C%D8%AB%20%281%29.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AD%D8%AF%DB%8C%D8%AB%20%281%29.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول عقائد 2025 1 اصول عقائد 2025-1.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول عقائد 2025 1</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF%202025-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF%202025-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول عقائد 2024 اصول عقائد  2024 .pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول عقائد 2024</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF%20%202024%20.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF%20%202024%20.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول فقہ، حصہ اول اصول فقہ، حصہ اول.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول فقہ، حصہ اول</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D9%81%D9%82%DB%81%D8%8C%20%D8%AD%D8%B5%DB%81%20%D8%A7%D9%88%D9%84.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D9%81%D9%82%DB%81%D8%8C%20%D8%AD%D8%B5%DB%81%20%D8%A7%D9%88%D9%84.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصول مناظرہ اصول مناظرہ.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصول مناظرہ</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D9%85%D9%86%D8%A7%D8%B8%D8%B1%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D9%85%D9%86%D8%A7%D8%B8%D8%B1%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصولِ حدیث، حصہ اول 1 اصولِ حدیث، حصہ اول-1.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصولِ حدیث، حصہ اول 1</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%D9%90%20%D8%AD%D8%AF%DB%8C%D8%AB%D8%8C%20%D8%AD%D8%B5%DB%81%20%D8%A7%D9%88%D9%84-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%D9%90%20%D8%AD%D8%AF%DB%8C%D8%AB%D8%8C%20%D8%AD%D8%B5%DB%81%20%D8%A7%D9%88%D9%84-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="اصولِ فقہ اصولِ فقہ.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>اصولِ فقہ</h3>
         <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%D9%90%20%D9%81%D9%82%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%D9%90%20%D9%81%D9%82%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="توحید باری تعالیٰ 1 توحید_باری_تعالیٰ-1.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>توحید باری تعالیٰ 1</h3>
         <div class="buttons"><a class="btn open" href="%D8%AA%D9%88%D8%AD%DB%8C%D8%AF_%D8%A8%D8%A7%D8%B1%DB%8C_%D8%AA%D8%B9%D8%A7%D9%84%DB%8C%D9%B0-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%AA%D9%88%D8%AD%DB%8C%D8%AF_%D8%A8%D8%A7%D8%B1%DB%8C_%D8%AA%D8%B9%D8%A7%D9%84%DB%8C%D9%B0-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="حیات النبی صلی اللہ علیہ و سلم حیات النبی صلی اللہ علیہ و سلم.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>حیات النبی صلی اللہ علیہ و سلم</h3>
         <div class="buttons"><a class="btn open" href="%D8%AD%DB%8C%D8%A7%D8%AA%20%D8%A7%D9%84%D9%86%D8%A8%DB%8C%20%D8%B5%D9%84%DB%8C%20%D8%A7%D9%84%D9%84%DB%81%20%D8%B9%D9%84%DB%8C%DB%81%20%D9%88%20%D8%B3%D9%84%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%AD%DB%8C%D8%A7%D8%AA%20%D8%A7%D9%84%D9%86%D8%A8%DB%8C%20%D8%B5%D9%84%DB%8C%20%D8%A7%D9%84%D9%84%DB%81%20%D8%B9%D9%84%DB%8C%DB%81%20%D9%88%20%D8%B3%D9%84%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="صفاتِ باری تعالی صفاتِ باری تعالی.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>صفاتِ باری تعالی</h3>
         <div class="buttons"><a class="btn open" href="%D8%B5%D9%81%D8%A7%D8%AA%D9%90%20%D8%A8%D8%A7%D8%B1%DB%8C%20%D8%AA%D8%B9%D8%A7%D9%84%DB%8C.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B5%D9%81%D8%A7%D8%AA%D9%90%20%D8%A8%D8%A7%D8%B1%DB%8C%20%D8%AA%D8%B9%D8%A7%D9%84%DB%8C.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="عصمت انبیاء عصمت_انبیاء.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>عصمت انبیاء</h3>
         <div class="buttons"><a class="btn open" href="%D8%B9%D8%B5%D9%85%D8%AA_%D8%A7%D9%86%D8%A8%DB%8C%D8%A7%D8%A1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%D8%B5%D9%85%D8%AA_%D8%A7%D9%86%D8%A8%DB%8C%D8%A7%D8%A1.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="عقیدہ ختم نبوت عقیدہ ختم نبوت .pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>عقیدہ ختم نبوت</h3>
         <div class="buttons"><a class="btn open" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81%20%D8%AE%D8%AA%D9%85%20%D9%86%D8%A8%D9%88%D8%AA%20.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81%20%D8%AE%D8%AA%D9%85%20%D9%86%D8%A8%D9%88%D8%AA%20.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="عقیدہ ثواب وعذاب قبر 1 عقیدہ_ثواب_وعذاب_قبر-1.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>عقیدہ ثواب وعذاب قبر 1</h3>
         <div class="buttons"><a class="btn open" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81_%D8%AB%D9%88%D8%A7%D8%A8_%D9%88%D8%B9%D8%B0%D8%A7%D8%A8_%D9%82%D8%A8%D8%B1-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%D9%82%DB%8C%D8%AF%DB%81_%D8%AB%D9%88%D8%A7%D8%A8_%D9%88%D8%B9%D8%B0%D8%A7%D8%A8_%D9%82%D8%A8%D8%B1-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="مختصر اصول عقائد مختصر اصول عقائد.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>مختصر اصول عقائد</h3>
         <div class="buttons"><a class="btn open" href="%D9%85%D8%AE%D8%AA%D8%B5%D8%B1%20%D8%A7%D8%B5%D9%88%D9%84%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%AE%D8%AA%D8%B5%D8%B1%20%D8%A7%D8%B5%D9%88%D9%84%20%D8%B9%D9%82%D8%A7%D8%A6%D8%AF.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="مسئلہ تقلید مسئلہ_تقلید.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>مسئلہ تقلید</h3>
         <div class="buttons"><a class="btn open" href="%D9%85%D8%B3%D8%A6%D9%84%DB%81_%D8%AA%D9%82%D9%84%DB%8C%D8%AF.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%B3%D8%A6%D9%84%DB%81_%D8%AA%D9%82%D9%84%DB%8C%D8%AF.pdf" download>ڈاؤن لوڈ کریں</a></div>
       </article>
 
-      <article class="book-card">
+      <article class="book-card searchable-card" data-search="مسئلہ توسل 1 مسئلہ_توسل-1.pdf">
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>مسئلہ توسل 1</h3>
         <div class="buttons"><a class="btn open" href="%D9%85%D8%B3%D8%A6%D9%84%DB%81_%D8%AA%D9%88%D8%B3%D9%84-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%B3%D8%A6%D9%84%DB%81_%D8%AA%D9%88%D8%B3%D9%84-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
@@ -274,5 +329,36 @@
     </section>
 
   </div>
+  <script>
+    function searchLibraryItems() {
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = input.value.trim().toLowerCase();
+      let visible = 0;
+
+      cards.forEach(function(card) {
+        const text = (card.getAttribute("data-search") || card.innerText || "").toLowerCase();
+        const match = text.includes(query);
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (count) {
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }
+
+      if (noResults) {
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }
+    }
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
 </body>
 </html>
