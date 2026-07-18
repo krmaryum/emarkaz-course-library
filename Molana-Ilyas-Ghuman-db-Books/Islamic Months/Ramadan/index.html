@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramadan | eMarkaz Course Library</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:linear-gradient(135deg,#f8fafc,#ecfeff);
+      color:#111827;
+      min-height:100vh;
+      line-height:1.9;
+      padding:30px;
+    }
+    .container { max-width:1180px; margin:auto; }
+    .top-bar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+    .back {
+      display:inline-block;
+      background:#064e3b;
+      color:white;
+      padding:10px 18px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      margin-left:8px;
+    }
+    .badge {
+      background:#d1fae5;
+      color:#065f46;
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:bold;
+      border:1px solid #a7f3d0;
+      direction:ltr;
+    }
+    .hero {
+      text-align:center;
+      margin-bottom:35px;
+      padding:35px 20px;
+      background:white;
+      border-radius:24px;
+      box-shadow:0 15px 40px rgba(0,0,0,.08);
+      border:1px solid #e5e7eb;
+    }
+    .hero h1 {
+      font-size:clamp(32px,5vw,56px);
+      color:#064e3b;
+      margin-bottom:10px;
+    }
+    .hero h2 {
+      font-size:24px;
+      color:#374151;
+      margin-bottom:0;
+      direction:ltr;
+    }
+    .section-title {
+      color:#064e3b;
+      margin:30px 0 18px;
+      font-size:30px;
+    }
+    .books-grid,.folders-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+    .book-card,.folder-card {
+      background:white;
+      border-radius:22px;
+      padding:24px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 12px 30px rgba(0,0,0,.07);
+      transition:.3s ease;
+    }
+    .book-card:hover,.folder-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 45px rgba(6,95,70,.16);
+      border-color:#10b981;
+    }
+    .file-type {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfdf5;
+      color:#065f46;
+      padding:6px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:14px;
+      direction:ltr;
+    }
+    .book-card h3,.folder-card h3 {
+      font-size:22px;
+      color:#111827;
+      margin-bottom:12px;
+      min-height:55px;
+    }
+    .english {
+      font-family:Arial,sans-serif;
+      direction:ltr;
+      color:#4b5563;
+      margin-bottom:16px;
+    }
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:.25s;
+    }
+    .open { background:#059669; color:white; }
+    .download { background:#1d4ed8; color:white; }
+    .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
+    @media (max-width:600px) {
+      body { padding:18px; }
+      .book-card h3,.folder-card h3 { min-height:auto; }
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div>
+        <a class="back" href="../../../index.html">مرکزی صفحہ</a>
+        <a class="back" href="../">واپس</a>
+      </div>
+      <span class="badge">Molana Ilyas Ghuman Db Books</span>
+    </div>
+
+    <section class="hero">
+      <h1>Ramadan</h1>
+      <h2>Ramadan</h2>
+    </section>
+
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، wazu, namaz, zakat..." oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">37 کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+
+    <h2 class="section-title">فائلیں</h2>
+    <section class="books-grid">
+
+      <article class="book-card searchable-card" data-search="10رمضان المبارک یوم باب الاسلام از مولانا محمد الیاس گھمن 10رمضان_المبارک_یوم_باب_الاسلام_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>10رمضان المبارک یوم باب الاسلام از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="10%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%DB%8C%D9%88%D9%85_%D8%A8%D8%A7%D8%A8_%D8%A7%D9%84%D8%A7%D8%B3%D9%84%D8%A7%D9%85_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="10%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%DB%8C%D9%88%D9%85_%D8%A8%D8%A7%D8%A8_%D8%A7%D9%84%D8%A7%D8%B3%D9%84%D8%A7%D9%85_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="17رمضان المبارک غزوہ بدر از مولانا محمد الیاس گھمن 17رمضان_المبارک_غزوہ_بدر_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>17رمضان المبارک غزوہ بدر از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="17%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%D8%BA%D8%B2%D9%88%DB%81_%D8%A8%D8%AF%D8%B1_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="17%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%D8%BA%D8%B2%D9%88%DB%81_%D8%A8%D8%AF%D8%B1_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="20رمضان المبارک فتح مکہ از مولانا محمد الیاس گھمن 20رمضان_المبارک_فتح_مکہ_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>20رمضان المبارک فتح مکہ از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="20%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%D9%81%D8%AA%D8%AD_%D9%85%DA%A9%DB%81_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="20%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%D9%81%D8%AA%D8%AD_%D9%85%DA%A9%DB%81_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="2165رمضان المبارک کے آخری جمعہ کو جمعۃ الوداع کہنے کااور اس دن چ 2165رمضان_المبارک_کے_آخری_جمعہ_کو_جمعۃ_الوداع_کہنے_کااور_اس_دن_چ.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>2165رمضان المبارک کے آخری جمعہ کو جمعۃ الوداع کہنے کااور اس دن چ</h3>
+        <div class="buttons"><a class="btn open" href="2165%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%DA%A9%DB%92_%D8%A2%D8%AE%D8%B1%DB%8C_%D8%AC%D9%85%D8%B9%DB%81_%DA%A9%D9%88_%D8%AC%D9%85%D8%B9%DB%83_%D8%A7%D9%84%D9%88%D8%AF%D8%A7%D8%B9_%DA%A9%DB%81%D9%86%DB%92_%DA%A9%D8%A7%D8%A7%D9%88%D8%B1_%D8%A7%D8%B3_%D8%AF%D9%86_%DA%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="2165%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9_%DA%A9%DB%92_%D8%A2%D8%AE%D8%B1%DB%8C_%D8%AC%D9%85%D8%B9%DB%81_%DA%A9%D9%88_%D8%AC%D9%85%D8%B9%DB%83_%D8%A7%D9%84%D9%88%D8%AF%D8%A7%D8%B9_%DA%A9%DB%81%D9%86%DB%92_%DA%A9%D8%A7%D8%A7%D9%88%D8%B1_%D8%A7%D8%B3_%D8%AF%D9%86_%DA%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="itikaf course english itikaf course english.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>Itikaf Course English</h3>
+        <div class="buttons"><a class="btn open" href="Itikaf%20Course%20English.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="Itikaf%20Course%20English.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="sadaqat ul fitr, virtues and rulings sadaqat-ul-fitr, virtues and rulings.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>Sadaqat ul Fitr, Virtues and Rulings</h3>
+        <div class="buttons"><a class="btn open" href="Sadaqat-ul-Fitr%2C%20Virtues%20and%20Rulings.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="Sadaqat-ul-Fitr%2C%20Virtues%20and%20Rulings.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="stipulating a wage for taraweeh 2983 stipulating a wage for taraweeh 2983.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>Stipulating a wage for Taraweeh 2983</h3>
+        <div class="buttons"><a class="btn open" href="Stipulating%20a%20wage%20for%20Taraweeh%202983.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="Stipulating%20a%20wage%20for%20Taraweeh%202983.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="اختتام سحری کے بعد اور اذان سے قبل کھانے سے روزہ ہو گا یا نہیں اختتام_سحری_کے_بعد_اور_اذان_سے_قبل_کھانے_سے_روزہ_ہو_گا_یا_نہیں.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>اختتام سحری کے بعد اور اذان سے قبل کھانے سے روزہ ہو گا یا نہیں</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D8%AE%D8%AA%D8%AA%D8%A7%D9%85_%D8%B3%D8%AD%D8%B1%DB%8C_%DA%A9%DB%92_%D8%A8%D8%B9%D8%AF_%D8%A7%D9%88%D8%B1_%D8%A7%D8%B0%D8%A7%D9%86_%D8%B3%DB%92_%D9%82%D8%A8%D9%84_%DA%A9%DA%BE%D8%A7%D9%86%DB%92_%D8%B3%DB%92_%D8%B1%D9%88%D8%B2%DB%81_%DB%81%D9%88_%DA%AF%D8%A7_%DB%8C%D8%A7_%D9%86%DB%81%DB%8C%DA%BA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%AE%D8%AA%D8%AA%D8%A7%D9%85_%D8%B3%D8%AD%D8%B1%DB%8C_%DA%A9%DB%92_%D8%A8%D8%B9%D8%AF_%D8%A7%D9%88%D8%B1_%D8%A7%D8%B0%D8%A7%D9%86_%D8%B3%DB%92_%D9%82%D8%A8%D9%84_%DA%A9%DA%BE%D8%A7%D9%86%DB%92_%D8%B3%DB%92_%D8%B1%D9%88%D8%B2%DB%81_%DB%81%D9%88_%DA%AF%D8%A7_%DB%8C%D8%A7_%D9%86%DB%81%DB%8C%DA%BA.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="استقبال رمضان 1443 2 استقبال رمضان 1443-2.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>استقبال رمضان 1443 2</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D8%B3%D8%AA%D9%82%D8%A8%D8%A7%D9%84%20%D8%B1%D9%85%D8%B6%D8%A7%D9%86%201443-2.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B3%D8%AA%D9%82%D8%A8%D8%A7%D9%84%20%D8%B1%D9%85%D8%B6%D8%A7%D9%86%201443-2.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="اعتکاف کورس اردو اعتکاف کورس اردو.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>اعتکاف کورس اردو</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%DA%A9%D9%88%D8%B1%D8%B3%20%D8%A7%D8%B1%D8%AF%D9%88.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%DA%A9%D9%88%D8%B1%D8%B3%20%D8%A7%D8%B1%D8%AF%D9%88.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="اعتکاف کورس اعتکاف کورس.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>اعتکاف کورس</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%DA%A9%D9%88%D8%B1%D8%B3.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B9%D8%AA%DA%A9%D8%A7%D9%81%20%DA%A9%D9%88%D8%B1%D8%B3.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="امت محمدیہ کا روزہ دار از مولانا محمد الیاس گھمن امت_محمدیہ_کا_روزہ_دار از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>امت محمدیہ کا روزہ دار از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D9%85%D8%AA_%D9%85%D8%AD%D9%85%D8%AF%DB%8C%DB%81_%DA%A9%D8%A7_%D8%B1%D9%88%D8%B2%DB%81_%D8%AF%D8%A7%D8%B1%20%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D9%85%D8%AA_%D9%85%D8%AD%D9%85%D8%AF%DB%8C%DB%81_%DA%A9%D8%A7_%D8%B1%D9%88%D8%B2%DB%81_%D8%AF%D8%A7%D8%B1%20%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="بیرون ملک مقیم افراد صدقہ الفطر کس ملک کے اعتبار سے ادا کریں بیرون_ملک_مقیم_افراد_صدقہ_الفطر_کس_ملک_کے_اعتبار_سے_ادا_کریں.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>بیرون ملک مقیم افراد صدقہ الفطر کس ملک کے اعتبار سے ادا کریں</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A8%DB%8C%D8%B1%D9%88%D9%86_%D9%85%D9%84%DA%A9_%D9%85%D9%82%DB%8C%D9%85_%D8%A7%D9%81%D8%B1%D8%A7%D8%AF_%D8%B5%D8%AF%D9%82%DB%81_%D8%A7%D9%84%D9%81%D8%B7%D8%B1_%DA%A9%D8%B3_%D9%85%D9%84%DA%A9_%DA%A9%DB%92_%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1_%D8%B3%DB%92_%D8%A7%D8%AF%D8%A7_%DA%A9%D8%B1%DB%8C%DA%BA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A8%DB%8C%D8%B1%D9%88%D9%86_%D9%85%D9%84%DA%A9_%D9%85%D9%82%DB%8C%D9%85_%D8%A7%D9%81%D8%B1%D8%A7%D8%AF_%D8%B5%D8%AF%D9%82%DB%81_%D8%A7%D9%84%D9%81%D8%B7%D8%B1_%DA%A9%D8%B3_%D9%85%D9%84%DA%A9_%DA%A9%DB%92_%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1_%D8%B3%DB%92_%D8%A7%D8%AF%D8%A7_%DA%A9%D8%B1%DB%8C%DA%BA.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="بیس رکعات تراویح 2023ء 1 بیس رکعات تراویح 2023ء-1.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>بیس رکعات تراویح 2023ء 1</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A8%DB%8C%D8%B3%20%D8%B1%DA%A9%D8%B9%D8%A7%D8%AA%20%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%202023%D8%A1-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A8%DB%8C%D8%B3%20%D8%B1%DA%A9%D8%B9%D8%A7%D8%AA%20%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%202023%D8%A1-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="بیس رکعات تراویح، برائے شرکاء، 2024 بیس رکعات تراویح، برائے شرکاء، 2024.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>بیس رکعات تراویح، برائے شرکاء، 2024</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A8%DB%8C%D8%B3%20%D8%B1%DA%A9%D8%B9%D8%A7%D8%AA%20%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%D8%8C%20%D8%A8%D8%B1%D8%A7%D8%A6%DB%92%20%D8%B4%D8%B1%DA%A9%D8%A7%D8%A1%D8%8C%202024.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A8%DB%8C%D8%B3%20%D8%B1%DA%A9%D8%B9%D8%A7%D8%AA%20%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%D8%8C%20%D8%A8%D8%B1%D8%A7%D8%A6%DB%92%20%D8%B4%D8%B1%DA%A9%D8%A7%D8%A1%D8%8C%202024.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="بیس رکعات نماز تراویح بیس رکعات نماز تراویح.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>بیس رکعات نماز تراویح</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A8%DB%8C%D8%B3%20%D8%B1%DA%A9%D8%B9%D8%A7%D8%AA%20%D9%86%D9%85%D8%A7%D8%B2%20%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A8%DB%8C%D8%B3%20%D8%B1%DA%A9%D8%B9%D8%A7%D8%AA%20%D9%86%D9%85%D8%A7%D8%B2%20%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="تراویح کی اجرت طے کرنے کا حکم 1 تراویح کی اجرت طے کرنے کا حکم-1.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>تراویح کی اجرت طے کرنے کا حکم 1</h3>
+        <div class="buttons"><a class="btn open" href="%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%20%DA%A9%DB%8C%20%D8%A7%D8%AC%D8%B1%D8%AA%20%D8%B7%DB%92%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85-1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD%20%DA%A9%DB%8C%20%D8%A7%D8%AC%D8%B1%D8%AA%20%D8%B7%DB%92%20%DA%A9%D8%B1%D9%86%DB%92%20%DA%A9%D8%A7%20%D8%AD%DA%A9%D9%85-1.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="تکمیل قرآن کے موقع پر فرشتوں کا آمین کہنا تکمیل_قرآن_کے_موقع_پر_فرشتوں_کا_آمین_کہنا.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>تکمیل قرآن کے موقع پر فرشتوں کا آمین کہنا</h3>
+        <div class="buttons"><a class="btn open" href="%D8%AA%DA%A9%D9%85%DB%8C%D9%84_%D9%82%D8%B1%D8%A2%D9%86_%DA%A9%DB%92_%D9%85%D9%88%D9%82%D8%B9_%D9%BE%D8%B1_%D9%81%D8%B1%D8%B4%D8%AA%D9%88%DA%BA_%DA%A9%D8%A7_%D8%A2%D9%85%DB%8C%D9%86_%DA%A9%DB%81%D9%86%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%AA%DA%A9%D9%85%DB%8C%D9%84_%D9%82%D8%B1%D8%A2%D9%86_%DA%A9%DB%92_%D9%85%D9%88%D9%82%D8%B9_%D9%BE%D8%B1_%D9%81%D8%B1%D8%B4%D8%AA%D9%88%DA%BA_%DA%A9%D8%A7_%D8%A2%D9%85%DB%8C%D9%86_%DA%A9%DB%81%D9%86%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="حافظہ خاتون کے لیے تراویح پڑھانے کا حکم 1 حافظہ_خاتون_کے_لیے_تراویح_پڑھانے_کا_حکم_1.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>حافظہ خاتون کے لیے تراویح پڑھانے کا حکم 1</h3>
+        <div class="buttons"><a class="btn open" href="%D8%AD%D8%A7%D9%81%D8%B8%DB%81_%D8%AE%D8%A7%D8%AA%D9%88%D9%86_%DA%A9%DB%92_%D9%84%DB%8C%DB%92_%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD_%D9%BE%DA%91%DA%BE%D8%A7%D9%86%DB%92_%DA%A9%D8%A7_%D8%AD%DA%A9%D9%85_1.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%AD%D8%A7%D9%81%D8%B8%DB%81_%D8%AE%D8%A7%D8%AA%D9%88%D9%86_%DA%A9%DB%92_%D9%84%DB%8C%DB%92_%D8%AA%D8%B1%D8%A7%D9%88%DB%8C%D8%AD_%D9%BE%DA%91%DA%BE%D8%A7%D9%86%DB%92_%DA%A9%D8%A7_%D8%AD%DA%A9%D9%85_1.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="دوران اذان سحری کرنا جائز ہے یا نہیں دوران_اذان_سحری_کرنا_جائز_ہے_یا_نہیں.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>دوران اذان سحری کرنا جائز ہے یا نہیں</h3>
+        <div class="buttons"><a class="btn open" href="%D8%AF%D9%88%D8%B1%D8%A7%D9%86_%D8%A7%D8%B0%D8%A7%D9%86_%D8%B3%D8%AD%D8%B1%DB%8C_%DA%A9%D8%B1%D9%86%D8%A7_%D8%AC%D8%A7%D8%A6%D8%B2_%DB%81%DB%92_%DB%8C%D8%A7_%D9%86%DB%81%DB%8C%DA%BA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%AF%D9%88%D8%B1%D8%A7%D9%86_%D8%A7%D8%B0%D8%A7%D9%86_%D8%B3%D8%AD%D8%B1%DB%8C_%DA%A9%D8%B1%D9%86%D8%A7_%D8%AC%D8%A7%D8%A6%D8%B2_%DB%81%DB%92_%DB%8C%D8%A7_%D9%86%DB%81%DB%8C%DA%BA.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان اور ادائیگی زکوۃ از مولانا محمد الیاس گھمن رمضان اور ادائیگی زکوۃ از مولانا محمد الیاس گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان اور ادائیگی زکوۃ از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%AF%D8%A7%D8%A6%DB%8C%DA%AF%DB%8C%20%D8%B2%DA%A9%D9%88%DB%83%20%D8%A7%D8%B2%20%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7%20%D9%85%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%DB%8C%D8%A7%D8%B3%20%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86%20%D8%A7%D9%88%D8%B1%20%D8%A7%D8%AF%D8%A7%D8%A6%DB%8C%DA%AF%DB%8C%20%D8%B2%DA%A9%D9%88%DB%83%20%D8%A7%D8%B2%20%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7%20%D9%85%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%DB%8C%D8%A7%D8%B3%20%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان باہمی ہمدردی کا مہینہ از مولانا محمد الیاس گھمن رمضان_  _باہمی_ہمدردی_کا_مہینہ _از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان باہمی ہمدردی کا مہینہ از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%20%20_%D8%A8%D8%A7%DB%81%D9%85%DB%8C_%DB%81%D9%85%D8%AF%D8%B1%D8%AF%DB%8C_%DA%A9%D8%A7_%D9%85%DB%81%DB%8C%D9%86%DB%81%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%20%20_%D8%A8%D8%A7%DB%81%D9%85%DB%8C_%DB%81%D9%85%D8%AF%D8%B1%D8%AF%DB%8C_%DA%A9%D8%A7_%D9%85%DB%81%DB%8C%D9%86%DB%81%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان المبارک فضائل و مسائل مولانا الیاس گھمن رمضان_المبارک _فضائل_و_مسائل_مولانا_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان المبارک فضائل و مسائل مولانا الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9%20_%D9%81%D8%B6%D8%A7%D8%A6%D9%84_%D9%88_%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%DA%A9%20_%D9%81%D8%B6%D8%A7%D8%A6%D9%84_%D9%88_%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان اور انفاق فی سبیل اللہ از مولانا محمد الیاس گھمن رمضان_اور_انفاق_فی_سبیل_اللہ _از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان اور انفاق فی سبیل اللہ از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%88%D8%B1_%D8%A7%D9%86%D9%81%D8%A7%D9%82_%D9%81%DB%8C_%D8%B3%D8%A8%DB%8C%D9%84_%D8%A7%D9%84%D9%84%DB%81%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%88%D8%B1_%D8%A7%D9%86%D9%81%D8%A7%D9%82_%D9%81%DB%8C_%D8%B3%D8%A8%DB%8C%D9%84_%D8%A7%D9%84%D9%84%DB%81%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان اور قرآن از مولانا محمد الیاس گھمن رمضان_اور_قرآن_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان اور قرآن از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%88%D8%B1_%D9%82%D8%B1%D8%A2%D9%86_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%A7%D9%88%D8%B1_%D9%82%D8%B1%D8%A2%D9%86_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان صبر کا مہینہ از مولانا محمد الیاس گھمن رمضان_صبر_کا_مہینہ _از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان صبر کا مہینہ از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%B5%D8%A8%D8%B1_%DA%A9%D8%A7_%D9%85%DB%81%DB%8C%D9%86%DB%81%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D8%B5%D8%A8%D8%B1_%DA%A9%D8%A7_%D9%85%DB%81%DB%8C%D9%86%DB%81%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان میں جھوٹ سے بچیں از مولانا محمد الیاس گھمن رمضان_میں_جھوٹ_سے_بچیں_ _از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان میں جھوٹ سے بچیں از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D9%85%DB%8C%DA%BA_%D8%AC%DA%BE%D9%88%D9%B9_%D8%B3%DB%92_%D8%A8%DA%86%DB%8C%DA%BA_%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D9%85%DB%8C%DA%BA_%D8%AC%DA%BE%D9%88%D9%B9_%D8%B3%DB%92_%D8%A8%DA%86%DB%8C%DA%BA_%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="رمضان میں ذکر اللہ کی کثرت از مولانا محمد الیاس گھمن رمضان_میں_ذکر_اللہ_کی_کثرت _از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>رمضان میں ذکر اللہ کی کثرت از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D9%85%DB%8C%DA%BA_%D8%B0%DA%A9%D8%B1_%D8%A7%D9%84%D9%84%DB%81_%DA%A9%DB%8C_%DA%A9%D8%AB%D8%B1%D8%AA%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D9%85%DB%8C%DA%BA_%D8%B0%DA%A9%D8%B1_%D8%A7%D9%84%D9%84%DB%81_%DA%A9%DB%8C_%DA%A9%D8%AB%D8%B1%D8%AA%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="سحری کی فضیلت از مولانا محمد الیاس گھمن سحری_کی_فضیلت_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>سحری کی فضیلت از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B3%D8%AD%D8%B1%DB%8C_%DA%A9%DB%8C_%D9%81%D8%B6%DB%8C%D9%84%D8%AA_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B3%D8%AD%D8%B1%DB%8C_%DA%A9%DB%8C_%D9%81%D8%B6%DB%8C%D9%84%D8%AA_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="شوال کے چھ روزے فضائل ومسائل شوال کے چھ روزے  فضائل ومسائل.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>شوال کے چھ روزے فضائل ومسائل</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B4%D9%88%D8%A7%D9%84%20%DA%A9%DB%92%20%DA%86%DA%BE%20%D8%B1%D9%88%D8%B2%DB%92%20%20%D9%81%D8%B6%D8%A7%D8%A6%D9%84%20%D9%88%D9%85%D8%B3%D8%A7%D8%A6%D9%84.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B4%D9%88%D8%A7%D9%84%20%DA%A9%DB%92%20%DA%86%DA%BE%20%D8%B1%D9%88%D8%B2%DB%92%20%20%D9%81%D8%B6%D8%A7%D8%A6%D9%84%20%D9%88%D9%85%D8%B3%D8%A7%D8%A6%D9%84.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="صدقۃ الفطر کے مسائل از مولانا محمد الیاس گھمن صدقۃ_الفطر_کے_مسائل_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>صدقۃ الفطر کے مسائل از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B5%D8%AF%D9%82%DB%83_%D8%A7%D9%84%D9%81%D8%B7%D8%B1_%DA%A9%DB%92_%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B5%D8%AF%D9%82%DB%83_%D8%A7%D9%84%D9%81%D8%B7%D8%B1_%DA%A9%DB%92_%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="عشر فضائل مسائل از مولانا محمد الیاس گھمن عشر_فضائل_مسائل_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>عشر فضائل مسائل از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B9%D8%B4%D8%B1_%D9%81%D8%B6%D8%A7%D8%A6%D9%84_%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%D8%B4%D8%B1_%D9%81%D8%B6%D8%A7%D8%A6%D9%84_%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="عشرہ مغفرت اسباب مغفرت از مولانا محمد الیاس گھمن عشرہ_مغفرت_اسباب_مغفرت _از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>عشرہ مغفرت اسباب مغفرت از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B9%D8%B4%D8%B1%DB%81_%D9%85%D8%BA%D9%81%D8%B1%D8%AA_%D8%A7%D8%B3%D8%A8%D8%A7%D8%A8_%D9%85%D8%BA%D9%81%D8%B1%D8%AA%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%D8%B4%D8%B1%DB%81_%D9%85%D8%BA%D9%81%D8%B1%D8%AA_%D8%A7%D8%B3%D8%A8%D8%A7%D8%A8_%D9%85%D8%BA%D9%81%D8%B1%D8%AA%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="عید الفطر احکام ومسائل از مولانا محمد الیاس گھمن عید_الفطر_ _احکام_ومسائل_از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>عید الفطر احکام ومسائل از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B9%DB%8C%D8%AF_%D8%A7%D9%84%D9%81%D8%B7%D8%B1_%20_%D8%A7%D8%AD%DA%A9%D8%A7%D9%85_%D9%88%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B9%DB%8C%D8%AF_%D8%A7%D9%84%D9%81%D8%B7%D8%B1_%20_%D8%A7%D8%AD%DA%A9%D8%A7%D9%85_%D9%88%D9%85%D8%B3%D8%A7%D8%A6%D9%84_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="فتوی 2678 بیرون ملک مقیم افراد صدقہ فطر کس ملک کے اعتبار سے ادا فتوی_2678_بیرون_ملک_مقیم_افراد_صدقہ_فطر_کس_ملک_کے_اعتبار_سے_ادا.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>فتوی 2678 بیرون ملک مقیم افراد صدقہ فطر کس ملک کے اعتبار سے ادا</h3>
+        <div class="buttons"><a class="btn open" href="%D9%81%D8%AA%D9%88%DB%8C_2678_%D8%A8%DB%8C%D8%B1%D9%88%D9%86_%D9%85%D9%84%DA%A9_%D9%85%D9%82%DB%8C%D9%85_%D8%A7%D9%81%D8%B1%D8%A7%D8%AF_%D8%B5%D8%AF%D9%82%DB%81_%D9%81%D8%B7%D8%B1_%DA%A9%D8%B3_%D9%85%D9%84%DA%A9_%DA%A9%DB%92_%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1_%D8%B3%DB%92_%D8%A7%D8%AF%D8%A7.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%81%D8%AA%D9%88%DB%8C_2678_%D8%A8%DB%8C%D8%B1%D9%88%D9%86_%D9%85%D9%84%DA%A9_%D9%85%D9%82%DB%8C%D9%85_%D8%A7%D9%81%D8%B1%D8%A7%D8%AF_%D8%B5%D8%AF%D9%82%DB%81_%D9%81%D8%B7%D8%B1_%DA%A9%D8%B3_%D9%85%D9%84%DA%A9_%DA%A9%DB%92_%D8%A7%D8%B9%D8%AA%D8%A8%D8%A7%D8%B1_%D8%B3%DB%92_%D8%A7%D8%AF%D8%A7.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="ماہ رمضان ماہ عبادات از مولانا محمد الیاس گھمن ماہ_رمضان_ماہ_عبادات _از_مولانا_محمد_الیاس_گھمن.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>ماہ رمضان ماہ عبادات از مولانا محمد الیاس گھمن</h3>
+        <div class="buttons"><a class="btn open" href="%D9%85%D8%A7%DB%81_%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D9%85%D8%A7%DB%81_%D8%B9%D8%A8%D8%A7%D8%AF%D8%A7%D8%AA%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%85%D8%A7%DB%81_%D8%B1%D9%85%D8%B6%D8%A7%D9%86_%D9%85%D8%A7%DB%81_%D8%B9%D8%A8%D8%A7%D8%AF%D8%A7%D8%AA%20_%D8%A7%D8%B2_%D9%85%D9%88%D9%84%D8%A7%D9%86%D8%A7_%D9%85%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%DB%8C%D8%A7%D8%B3_%DA%AF%DA%BE%D9%85%D9%86.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="نماز میں قرآن مجید دیکھ کر قرأت کرنے کا حکم نماز_میں_قرآن_مجید_دیکھ_کر_قرأت_کرنے_کا_حکم.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>نماز میں قرآن مجید دیکھ کر قرأت کرنے کا حکم</h3>
+        <div class="buttons"><a class="btn open" href="%D9%86%D9%85%D8%A7%D8%B2_%D9%85%DB%8C%DA%BA_%D9%82%D8%B1%D8%A2%D9%86_%D9%85%D8%AC%DB%8C%D8%AF_%D8%AF%DB%8C%DA%A9%DA%BE_%DA%A9%D8%B1_%D9%82%D8%B1%D8%A3%D8%AA_%DA%A9%D8%B1%D9%86%DB%92_%DA%A9%D8%A7_%D8%AD%DA%A9%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D9%86%D9%85%D8%A7%D8%B2_%D9%85%DB%8C%DA%BA_%D9%82%D8%B1%D8%A2%D9%86_%D9%85%D8%AC%DB%8C%D8%AF_%D8%AF%DB%8C%DA%A9%DA%BE_%DA%A9%D8%B1_%D9%82%D8%B1%D8%A3%D8%AA_%DA%A9%D8%B1%D9%86%DB%92_%DA%A9%D8%A7_%D8%AD%DA%A9%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+    </section>
+
+  </div>
+  <script>
+    const searchAliases = {
+      "namaz": ["نماز", "صلوٰۃ", "salah", "salat"],
+      "salah": ["نماز", "صلوٰۃ", "namaz", "salat"],
+      "salat": ["نماز", "صلوٰۃ", "namaz", "salah"],
+      "wazu": ["وضو", "wudu", "wudhu"],
+      "wudu": ["وضو", "wazu", "wudhu"],
+      "wudhu": ["وضو", "wazu", "wudu"],
+      "ghusal": ["غسل", "ghusl"],
+      "ghusl": ["غسل", "ghusal"],
+      "roza": ["روزہ", "sawm", "fast", "fasting"],
+      "sawm": ["روزہ", "roza", "fast", "fasting"],
+      "fast": ["روزہ", "roza", "sawm"],
+      "fasting": ["روزہ", "roza", "sawm"],
+      "zakat": ["زکوٰۃ", "زکوة", "zakah"],
+      "zakah": ["زکوٰۃ", "زکوة", "zakat"],
+      "nikah": ["نکاح", "marriage"],
+      "marriage": ["نکاح", "nikah"],
+      "talaq": ["طلاق", "divorce"],
+      "divorce": ["طلاق", "talaq"],
+      "janaza": ["جنازہ", "janazah", "funeral"],
+      "janazah": ["جنازہ", "janaza", "funeral"],
+      "funeral": ["جنازہ", "janaza", "janazah"],
+      "qurbani": ["قربانی", "udhiyah", "sacrifice"],
+      "udhiyah": ["قربانی", "qurbani", "sacrifice"],
+      "sacrifice": ["قربانی", "qurbani"],
+      "dua": ["دعا", "duaa", "prayer"],
+      "duaa": ["دعا", "dua"],
+      "quran": ["قرآن", "قران", "qur'an"],
+      "quranic": ["قرآنی", "قرانی", "quran"],
+      "hadith": ["حدیث", "hadees", "hadeeth"],
+      "hadees": ["حدیث", "hadith", "hadeeth"],
+      "hadeeth": ["حدیث", "hadith", "hadees"],
+      "imam": ["امام"],
+      "masjid": ["مسجد", "mosque"],
+      "mosque": ["مسجد", "masjid"],
+      "ramzan": ["رمضان", "ramadan"],
+      "ramadan": ["رمضان", "ramzan"],
+      "eid": ["عید"],
+      "hajj": ["حج"],
+      "umrah": ["عمرہ"],
+      "sunnat": ["سنت", "sunnah"],
+      "sunnah": ["سنت", "sunnat"],
+      "farz": ["فرض", "fard"],
+      "fard": ["فرض", "farz"],
+      "wajib": ["واجب"],
+      "halal": ["حلال"],
+      "haram": ["حرام"],
+      "makrooh": ["مکروہ", "makruh"],
+      "makruh": ["مکروہ", "makrooh"],
+      "pak": ["پاک", "taharat", "tahara"],
+      "napak": ["ناپاک", "najis", "najasat"],
+      "najis": ["نجس", "ناپاک", "najasat"],
+      "najasat": ["نجاست", "ناپاک", "najis"],
+      "taharat": ["طہارت", "پاک", "tahara"],
+      "tahara": ["طہارت", "پاک", "taharat"],
+      "qibla": ["قبلہ"],
+      "ruku": ["رکوع"],
+      "sajda": ["سجدہ", "sujud"],
+      "sujud": ["سجدہ", "sajda"],
+      "azan": ["اذان", "adhan"],
+      "adhan": ["اذان", "azan"],
+      "iqamat": ["اقامت", "iqamah"],
+      "iqamah": ["اقامت", "iqamat"],
+      "taraweeh": ["تراویح", "tarawih"],
+      "tarawih": ["تراویح", "taraweeh"],
+      "itr": ["عطر", "perfume"],
+      "perfume": ["عطر", "itr"],
+      "mirath": ["میراث", "inheritance", "meeras"],
+      "meeras": ["میراث", "mirath", "inheritance"],
+      "inheritance": ["میراث", "mirath", "meeras"],
+      "qarz": ["قرض", "loan"],
+      "loan": ["قرض", "qarz"],
+      "sood": ["سود", "interest", "riba"],
+      "riba": ["سود", "interest", "sood"],
+      "interest": ["سود", "riba", "sood"],
+      "business": ["کاروبار", "tijarat"],
+      "tijarat": ["تجارت", "business"],
+      "kafan": ["کفن"],
+      "qabr": ["قبر", "grave"],
+      "grave": ["قبر", "qabr"],
+      "mayyat": ["میت", "dead body"],
+      "miya": ["شوہر", "husband"],
+      "husband": ["شوہر", "miya"],
+      "biwi": ["بیوی", "wife"],
+      "wife": ["بیوی", "biwi"],
+      "aurat": ["عورت", "woman"],
+      "woman": ["عورت", "aurat"],
+      "mard": ["مرد", "man"],
+      "man": ["مرد", "mard"],
+      "bachay": ["بچے", "children"],
+      "children": ["بچے", "bachay"],
+      "walid": ["والد", "father"],
+      "father": ["والد", "walid"],
+      "maa": ["ماں", "mother"],
+      "mother": ["ماں", "maa"],
+      "fatwa": ["فتوی", "فتویٰ", "fatawa"],
+      "fatawa": ["فتاویٰ", "فتاوی", "fatwa"]
+    };
+
+    function normalizeText(value) {
+      return (value || "")
+        .toString()
+        .toLowerCase()
+        .replace(/[’']/g, "")
+        .replace(/[۔،؟?]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function expandSearchQuery(query) {
+      const normalized = normalizeText(query);
+      if (!normalized) return [];
+
+      const terms = new Set([normalized]);
+      normalized.split(" ").forEach(function(word) {
+        if (word) terms.add(word);
+        if (searchAliases[word]) {
+          searchAliases[word].forEach(function(alias) {
+            terms.add(normalizeText(alias));
+          });
+        }
+      });
+
+      if (searchAliases[normalized]) {
+        searchAliases[normalized].forEach(function(alias) {
+          terms.add(normalizeText(alias));
+        });
+      }
+
+      return Array.from(terms).filter(Boolean);
+    }
+
+    function searchLibraryItems() {
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = normalizeText(input.value);
+      const terms = expandSearchQuery(query);
+      let visible = 0;
+
+      cards.forEach(function(card) {
+        const text = normalizeText((card.getAttribute("data-search") || "") + " " + (card.innerText || ""));
+        const match = !query || terms.some(function(term) {
+          return text.includes(term);
+        });
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (count) {
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }
+
+      if (noResults) {
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }
+    }
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahadith Mubarka | eMarkaz Course Library</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:linear-gradient(135deg,#f8fafc,#ecfeff);
+      color:#111827;
+      min-height:100vh;
+      line-height:1.9;
+      padding:30px;
+    }
+    .container { max-width:1180px; margin:auto; }
+    .top-bar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+    .back {
+      display:inline-block;
+      background:#064e3b;
+      color:white;
+      padding:10px 18px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      margin-left:8px;
+    }
+    .badge {
+      background:#d1fae5;
+      color:#065f46;
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:bold;
+      border:1px solid #a7f3d0;
+      direction:ltr;
+    }
+    .hero {
+      text-align:center;
+      margin-bottom:35px;
+      padding:35px 20px;
+      background:white;
+      border-radius:24px;
+      box-shadow:0 15px 40px rgba(0,0,0,.08);
+      border:1px solid #e5e7eb;
+    }
+    .hero h1 {
+      font-size:clamp(32px,5vw,56px);
+      color:#064e3b;
+      margin-bottom:10px;
+    }
+    .hero h2 {
+      font-size:24px;
+      color:#374151;
+      margin-bottom:0;
+      direction:ltr;
+    }
+    .section-title {
+      color:#064e3b;
+      margin:30px 0 18px;
+      font-size:30px;
+    }
+    .books-grid,.folders-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+    .book-card,.folder-card {
+      background:white;
+      border-radius:22px;
+      padding:24px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 12px 30px rgba(0,0,0,.07);
+      transition:.3s ease;
+    }
+    .book-card:hover,.folder-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 45px rgba(6,95,70,.16);
+      border-color:#10b981;
+    }
+    .file-type {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfdf5;
+      color:#065f46;
+      padding:6px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:14px;
+      direction:ltr;
+    }
+    .book-card h3,.folder-card h3 {
+      font-size:22px;
+      color:#111827;
+      margin-bottom:12px;
+      min-height:55px;
+    }
+    .english {
+      font-family:Arial,sans-serif;
+      direction:ltr;
+      color:#4b5563;
+      margin-bottom:16px;
+    }
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:.25s;
+    }
+    .open { background:#059669; color:white; }
+    .download { background:#1d4ed8; color:white; }
+    .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
+    @media (max-width:600px) {
+      body { padding:18px; }
+      .book-card h3,.folder-card h3 { min-height:auto; }
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div>
+        <a class="back" href="../../index.html">مرکزی صفحہ</a>
+        <a class="back" href="../">واپس</a>
+      </div>
+      <span class="badge">Molana Ilyas Ghuman Db Books</span>
+    </div>
+
+    <section class="hero">
+      <h1>Ahadith Mubarka</h1>
+      <h2>Ahadith Mubarka</h2>
+    </section>
+
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، wazu, namaz, zakat..." oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">7 کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+
+    <h2 class="section-title">فائلیں</h2>
+    <section class="books-grid">
+
+      <article class="book-card searchable-card" data-search="452 احادیث بیان کرنے میں احتیاط کیجیے حصہ دوم 452_احادیث_بیان_کرنے_میں_احتیاط_کیجیے_حصہ_دوم.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>452 احادیث بیان کرنے میں احتیاط کیجیے حصہ دوم</h3>
+        <div class="buttons"><a class="btn open" href="452_%D8%A7%D8%AD%D8%A7%D8%AF%DB%8C%D8%AB_%D8%A8%DB%8C%D8%A7%D9%86_%DA%A9%D8%B1%D9%86%DB%92_%D9%85%DB%8C%DA%BA_%D8%A7%D8%AD%D8%AA%DB%8C%D8%A7%D8%B7_%DA%A9%DB%8C%D8%AC%DB%8C%DB%92_%D8%AD%D8%B5%DB%81_%D8%AF%D9%88%D9%85.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="452_%D8%A7%D8%AD%D8%A7%D8%AF%DB%8C%D8%AB_%D8%A8%DB%8C%D8%A7%D9%86_%DA%A9%D8%B1%D9%86%DB%92_%D9%85%DB%8C%DA%BA_%D8%A7%D8%AD%D8%AA%DB%8C%D8%A7%D8%B7_%DA%A9%DB%8C%D8%AC%DB%8C%DB%92_%D8%AD%D8%B5%DB%81_%D8%AF%D9%88%D9%85.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="zubdah tu shamael eng zubdah tu shamael eng.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>Zubdah tu Shamael eng</h3>
+        <div class="buttons"><a class="btn open" href="Zubdah%20tu%20Shamael%20eng.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="Zubdah%20tu%20Shamael%20eng.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="اصطلاحات اصطلاحات.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>اصطلاحات</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D8%B7%D9%84%D8%A7%D8%AD%D8%A7%D8%AA.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D8%B7%D9%84%D8%A7%D8%AD%D8%A7%D8%AA.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="اصول حدیث عربی اصول حدیث عربی.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>اصول حدیث عربی</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AD%D8%AF%DB%8C%D8%AB%20%D8%B9%D8%B1%D8%A8%DB%8C.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AD%D8%AF%DB%8C%D8%AB%20%D8%B9%D8%B1%D8%A8%DB%8C.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="اصول حدیث اصول حدیث.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>اصول حدیث</h3>
+        <div class="buttons"><a class="btn open" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AD%D8%AF%DB%8C%D8%AB.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%A7%D8%B5%D9%88%D9%84%20%D8%AD%D8%AF%DB%8C%D8%AB.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="دروس الحدیث ج1 متکلم اسلام حفظہ اللہ دروس_الحدیث_ج1_متکلم_اسلام_حفظہ_اللہ.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>دروس الحدیث ج1 متکلم اسلام حفظہ اللہ</h3>
+        <div class="buttons"><a class="btn open" href="%D8%AF%D8%B1%D9%88%D8%B3_%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB_%D8%AC1_%D9%85%D8%AA%DA%A9%D9%84%D9%85_%D8%A7%D8%B3%D9%84%D8%A7%D9%85_%D8%AD%D9%81%D8%B8%DB%81_%D8%A7%D9%84%D9%84%DB%81.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%AF%D8%B1%D9%88%D8%B3_%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB_%D8%AC1_%D9%85%D8%AA%DA%A9%D9%84%D9%85_%D8%A7%D8%B3%D9%84%D8%A7%D9%85_%D8%AD%D9%81%D8%B8%DB%81_%D8%A7%D9%84%D9%84%DB%81.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="زبدۃ الشمائل شرح شمائل ترمذی زبدۃ الشمائل شرح شمائل ترمذی.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>زبدۃ الشمائل شرح شمائل ترمذی</h3>
+        <div class="buttons"><a class="btn open" href="%D8%B2%D8%A8%D8%AF%DB%83%20%D8%A7%D9%84%D8%B4%D9%85%D8%A7%D8%A6%D9%84%20%D8%B4%D8%B1%D8%AD%20%D8%B4%D9%85%D8%A7%D8%A6%D9%84%20%D8%AA%D8%B1%D9%85%D8%B0%DB%8C.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="%D8%B2%D8%A8%D8%AF%DB%83%20%D8%A7%D9%84%D8%B4%D9%85%D8%A7%D8%A6%D9%84%20%D8%B4%D8%B1%D8%AD%20%D8%B4%D9%85%D8%A7%D8%A6%D9%84%20%D8%AA%D8%B1%D9%85%D8%B0%DB%8C.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+    </section>
+
+  </div>
+  <script>
+    const searchAliases = {
+      "namaz": ["نماز", "صلوٰۃ", "salah", "salat"],
+      "salah": ["نماز", "صلوٰۃ", "namaz", "salat"],
+      "salat": ["نماز", "صلوٰۃ", "namaz", "salah"],
+      "wazu": ["وضو", "wudu", "wudhu"],
+      "wudu": ["وضو", "wazu", "wudhu"],
+      "wudhu": ["وضو", "wazu", "wudu"],
+      "ghusal": ["غسل", "ghusl"],
+      "ghusl": ["غسل", "ghusal"],
+      "roza": ["روزہ", "sawm", "fast", "fasting"],
+      "sawm": ["روزہ", "roza", "fast", "fasting"],
+      "fast": ["روزہ", "roza", "sawm"],
+      "fasting": ["روزہ", "roza", "sawm"],
+      "zakat": ["زکوٰۃ", "زکوة", "zakah"],
+      "zakah": ["زکوٰۃ", "زکوة", "zakat"],
+      "nikah": ["نکاح", "marriage"],
+      "marriage": ["نکاح", "nikah"],
+      "talaq": ["طلاق", "divorce"],
+      "divorce": ["طلاق", "talaq"],
+      "janaza": ["جنازہ", "janazah", "funeral"],
+      "janazah": ["جنازہ", "janaza", "funeral"],
+      "funeral": ["جنازہ", "janaza", "janazah"],
+      "qurbani": ["قربانی", "udhiyah", "sacrifice"],
+      "udhiyah": ["قربانی", "qurbani", "sacrifice"],
+      "sacrifice": ["قربانی", "qurbani"],
+      "dua": ["دعا", "duaa", "prayer"],
+      "duaa": ["دعا", "dua"],
+      "quran": ["قرآن", "قران", "qur'an"],
+      "quranic": ["قرآنی", "قرانی", "quran"],
+      "hadith": ["حدیث", "hadees", "hadeeth"],
+      "hadees": ["حدیث", "hadith", "hadeeth"],
+      "hadeeth": ["حدیث", "hadith", "hadees"],
+      "imam": ["امام"],
+      "masjid": ["مسجد", "mosque"],
+      "mosque": ["مسجد", "masjid"],
+      "ramzan": ["رمضان", "ramadan"],
+      "ramadan": ["رمضان", "ramzan"],
+      "eid": ["عید"],
+      "hajj": ["حج"],
+      "umrah": ["عمرہ"],
+      "sunnat": ["سنت", "sunnah"],
+      "sunnah": ["سنت", "sunnat"],
+      "farz": ["فرض", "fard"],
+      "fard": ["فرض", "farz"],
+      "wajib": ["واجب"],
+      "halal": ["حلال"],
+      "haram": ["حرام"],
+      "makrooh": ["مکروہ", "makruh"],
+      "makruh": ["مکروہ", "makrooh"],
+      "pak": ["پاک", "taharat", "tahara"],
+      "napak": ["ناپاک", "najis", "najasat"],
+      "najis": ["نجس", "ناپاک", "najasat"],
+      "najasat": ["نجاست", "ناپاک", "najis"],
+      "taharat": ["طہارت", "پاک", "tahara"],
+      "tahara": ["طہارت", "پاک", "taharat"],
+      "qibla": ["قبلہ"],
+      "ruku": ["رکوع"],
+      "sajda": ["سجدہ", "sujud"],
+      "sujud": ["سجدہ", "sajda"],
+      "azan": ["اذان", "adhan"],
+      "adhan": ["اذان", "azan"],
+      "iqamat": ["اقامت", "iqamah"],
+      "iqamah": ["اقامت", "iqamat"],
+      "taraweeh": ["تراویح", "tarawih"],
+      "tarawih": ["تراویح", "taraweeh"],
+      "itr": ["عطر", "perfume"],
+      "perfume": ["عطر", "itr"],
+      "mirath": ["میراث", "inheritance", "meeras"],
+      "meeras": ["میراث", "mirath", "inheritance"],
+      "inheritance": ["میراث", "mirath", "meeras"],
+      "qarz": ["قرض", "loan"],
+      "loan": ["قرض", "qarz"],
+      "sood": ["سود", "interest", "riba"],
+      "riba": ["سود", "interest", "sood"],
+      "interest": ["سود", "riba", "sood"],
+      "business": ["کاروبار", "tijarat"],
+      "tijarat": ["تجارت", "business"],
+      "kafan": ["کفن"],
+      "qabr": ["قبر", "grave"],
+      "grave": ["قبر", "qabr"],
+      "mayyat": ["میت", "dead body"],
+      "miya": ["شوہر", "husband"],
+      "husband": ["شوہر", "miya"],
+      "biwi": ["بیوی", "wife"],
+      "wife": ["بیوی", "biwi"],
+      "aurat": ["عورت", "woman"],
+      "woman": ["عورت", "aurat"],
+      "mard": ["مرد", "man"],
+      "man": ["مرد", "mard"],
+      "bachay": ["بچے", "children"],
+      "children": ["بچے", "bachay"],
+      "walid": ["والد", "father"],
+      "father": ["والد", "walid"],
+      "maa": ["ماں", "mother"],
+      "mother": ["ماں", "maa"],
+      "fatwa": ["فتوی", "فتویٰ", "fatawa"],
+      "fatawa": ["فتاویٰ", "فتاوی", "fatwa"]
+    };
+
+    function normalizeText(value) {
+      return (value || "")
+        .toString()
+        .toLowerCase()
+        .replace(/[’']/g, "")
+        .replace(/[۔،؟?]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function expandSearchQuery(query) {
+      const normalized = normalizeText(query);
+      if (!normalized) return [];
+
+      const terms = new Set([normalized]);
+      normalized.split(" ").forEach(function(word) {
+        if (word) terms.add(word);
+        if (searchAliases[word]) {
+          searchAliases[word].forEach(function(alias) {
+            terms.add(normalizeText(alias));
+          });
+        }
+      });
+
+      if (searchAliases[normalized]) {
+        searchAliases[normalized].forEach(function(alias) {
+          terms.add(normalizeText(alias));
+        });
+      }
+
+      return Array.from(terms).filter(Boolean);
+    }
+
+    function searchLibraryItems() {
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = normalizeText(input.value);
+      const terms = expandSearchQuery(query);
+      let visible = 0;
+
+      cards.forEach(function(card) {
+        const text = normalizeText((card.getAttribute("data-search") || "") + " " + (card.innerText || ""));
+        const match = !query || terms.some(function(term) {
+          return text.includes(term);
+        });
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (count) {
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }
+
+      if (noResults) {
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }
+    }
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
+</body>
+</html>
