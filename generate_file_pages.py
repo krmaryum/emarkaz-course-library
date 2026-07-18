@@ -563,7 +563,7 @@ def library_page(root_folder: Path, current_folder: Path):
         .toLowerCase()
         .replace(/[’']/g, "")
         .replace(/[۔،؟?]/g, " ")
-        .replace(/\s+/g, " ")
+        .replace(/\\s+/g, " ")
         .trim();
     }}
 
