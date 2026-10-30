@@ -393,6 +393,36 @@ def display_names_for_page(root_folder: Path, current_folder: Path):
     root_names = pretty_folder_name(root_folder.name)
     return names["ur"], names["en"], root_names["en"]
 
+# SHARED_BUKHARI_SEMESTER_LINK_V1
+
+def shared_bukhari_card(current_folder: Path) -> str:
+    """One shared library card on AC semesters 10, 11 and 12 only."""
+    import posixpath
+
+    allowed = {
+        "books/ac-alim-course/semester-10",
+        "books/ac-alim-course/semester-11",
+        "books/ac-alim-course/semester-12",
+    }
+    if current_folder.as_posix() not in allowed:
+        return ""
+
+    target = "emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/"
+    relative_url = posixpath.relpath(target, start=current_folder.as_posix()) + "/"
+    return f"""
+    <h2 class="section-title">مشترکہ کتب خانہ / Shared Library</h2>
+    <section class="folders-grid">
+      <article class="folder-card searchable-card" data-search="صحیح البخاری البشری sahih bukhari al bushra hadith hades">
+        <div class="file-type"><span>📚</span> Shared Collection</div>
+        <h3>صحیح البخاری — طبع البشری</h3>
+        <p class="english">Sahih Bukhari Al-Bushra · 4 volumes</p>
+        <div class="buttons">
+          <a class="btn open" href="{escape(relative_url)}">مکمل مجموعہ کھولیں →</a>
+        </div>
+      </article>
+    </section>
+"""
+
 def library_page(root_folder: Path, current_folder: Path):
     subfolders = subfolders_in(current_folder)
     files = supported_files_in(current_folder)
@@ -433,6 +463,8 @@ def library_page(root_folder: Path, current_folder: Path):
     </section>
 """
 
+    shared_bukhari_section = shared_bukhari_card(current_folder)
+
     return f"""<!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
@@ -455,7 +487,7 @@ def library_page(root_folder: Path, current_folder: Path):
       <h1>{escape(title_ur)}</h1>
       <h2>{escape(title_en)}</h2>
     </section>
-{search_section}{folders_section}{files_section}
+{search_section}{folders_section}{files_section}{shared_bukhari_section}
   </div>
   <script>
     const searchAliases = {{
