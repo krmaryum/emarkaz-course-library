@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Volume 04 | eMarkaz Course Library</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:linear-gradient(135deg,#f8fafc,#ecfeff);
+      color:#111827;
+      min-height:100vh;
+      line-height:1.9;
+      padding:30px;
+    }
+    .container { max-width:1180px; margin:auto; }
+    .top-bar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+    .back {
+      display:inline-block;
+      background:#064e3b;
+      color:white;
+      padding:10px 18px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      margin-left:8px;
+    }
+    .badge {
+      background:#d1fae5;
+      color:#065f46;
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:bold;
+      border:1px solid #a7f3d0;
+      direction:ltr;
+    }
+    .hero {
+      text-align:center;
+      margin-bottom:35px;
+      padding:35px 20px;
+      background:white;
+      border-radius:24px;
+      box-shadow:0 15px 40px rgba(0,0,0,.08);
+      border:1px solid #e5e7eb;
+    }
+    .hero h1 {
+      font-size:clamp(32px,5vw,56px);
+      color:#064e3b;
+      margin-bottom:10px;
+    }
+    .hero h2 {
+      font-size:24px;
+      color:#374151;
+      margin-bottom:0;
+      direction:ltr;
+    }
+    .section-title {
+      color:#064e3b;
+      margin:30px 0 18px;
+      font-size:30px;
+    }
+    .books-grid,.folders-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+    .book-card,.folder-card {
+      background:white;
+      border-radius:22px;
+      padding:24px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 12px 30px rgba(0,0,0,.07);
+      transition:.3s ease;
+    }
+    .book-card:hover,.folder-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 45px rgba(6,95,70,.16);
+      border-color:#10b981;
+    }
+    .file-type {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfdf5;
+      color:#065f46;
+      padding:6px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:14px;
+      direction:ltr;
+    }
+    .book-card h3,.folder-card h3 {
+      font-size:22px;
+      color:#111827;
+      margin-bottom:12px;
+      min-height:55px;
+    }
+    .english {
+      font-family:Arial,sans-serif;
+      direction:ltr;
+      color:#4b5563;
+      margin-bottom:16px;
+    }
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:.25s;
+    }
+    .open { background:#059669; color:white; }
+    .download { background:#1d4ed8; color:white; }
+    .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
+    @media (max-width:600px) {
+      body { padding:18px; }
+      .book-card h3,.folder-card h3 { min-height:auto; }
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div>
+        <a class="back" href="../../../../../index.html">مرکزی صفحہ</a>
+        <a class="back" href="../">واپس</a>
+      </div>
+      <span class="badge">eMarkaz Books</span>
+    </div>
+
+    <section class="hero">
+      <h1>Volume 04</h1>
+      <h2>Volume 04</h2>
+    </section>
+
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، wazu, namaz, zakat..." oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">28 کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+
+    <h2 class="section-title">فائلیں</h2>
+    <section class="books-grid">
+
+      <article class="book-card searchable-card" data-search="078 كتاب المرضى pages 2547 2562 078_كتاب_المرضى_pages_2547-2562.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>078 كتاب المرضى Pages 2547 2562</h3>
+        <div class="buttons"><a class="btn open" href="078_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%85%D8%B1%D8%B6%D9%89_Pages_2547-2562.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="078_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%85%D8%B1%D8%B6%D9%89_Pages_2547-2562.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="079 كتاب الطب pages 2562 2601 079_كتاب_الطب_pages_2562-2601.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>079 كتاب الطب Pages 2562 2601</h3>
+        <div class="buttons"><a class="btn open" href="079_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%B7%D8%A8_Pages_2562-2601.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="079_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%B7%D8%A8_Pages_2562-2601.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="080 كتاب اللباس pages 2602 2665 080_كتاب_اللباس_pages_2602-2665.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>080 كتاب اللباس Pages 2602 2665</h3>
+        <div class="buttons"><a class="btn open" href="080_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%84%D8%A8%D8%A7%D8%B3_Pages_2602-2665.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="080_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%84%D8%A8%D8%A7%D8%B3_Pages_2602-2665.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="081 كتاب الأدب pages 2666 2763 081_كتاب_الأدب_pages_2666-2763.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>081 كتاب الأدب Pages 2666 2763</h3>
+        <div class="buttons"><a class="btn open" href="081_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A3%D8%AF%D8%A8_Pages_2666-2763.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="081_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A3%D8%AF%D8%A8_Pages_2666-2763.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="082 كتاب الاستئذان pages 2764 2796 082_كتاب_الاستئذان_pages_2764-2796.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>082 كتاب الاستئذان Pages 2764 2796</h3>
+        <div class="buttons"><a class="btn open" href="082_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%A6%D8%B0%D8%A7%D9%86_Pages_2764-2796.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="082_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D8%A6%D8%B0%D8%A7%D9%86_Pages_2764-2796.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="083 كتاب الدعوات pages 2797 2838 083_كتاب_الدعوات_pages_2797-2838.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>083 كتاب الدعوات Pages 2797 2838</h3>
+        <div class="buttons"><a class="btn open" href="083_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AF%D8%B9%D9%88%D8%A7%D8%AA_Pages_2797-2838.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="083_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AF%D8%B9%D9%88%D8%A7%D8%AA_Pages_2797-2838.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="084 كتاب الرقاق pages 2839 2899 084_كتاب_الرقاق_pages_2839-2899.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>084 كتاب الرقاق Pages 2839 2899</h3>
+        <div class="buttons"><a class="btn open" href="084_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%B1%D9%82%D8%A7%D9%82_Pages_2839-2899.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="084_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%B1%D9%82%D8%A7%D9%82_Pages_2839-2899.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="085 كتاب الحوض pages 2900 2904 085_كتاب_الحوض_pages_2900-2904.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>085 كتاب الحوض Pages 2900 2904</h3>
+        <div class="buttons"><a class="btn open" href="085_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AD%D9%88%D8%B6_Pages_2900-2904.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="085_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AD%D9%88%D8%B6_Pages_2900-2904.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="086 كتاب القدر pages 2905 2916 086_كتاب_القدر_pages_2905-2916.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>086 كتاب القدر Pages 2905 2916</h3>
+        <div class="buttons"><a class="btn open" href="086_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%82%D8%AF%D8%B1_Pages_2905-2916.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="086_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%82%D8%AF%D8%B1_Pages_2905-2916.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="087 كتاب الأيمان والنذور pages 2917 2948 087_كتاب_الأيمان_والنذور_pages_2917-2948.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>087 كتاب الأيمان والنذور Pages 2917 2948</h3>
+        <div class="buttons"><a class="btn open" href="087_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A3%D9%8A%D9%85%D8%A7%D9%86_%D9%88%D8%A7%D9%84%D9%86%D8%B0%D9%88%D8%B1_Pages_2917-2948.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="087_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A3%D9%8A%D9%85%D8%A7%D9%86_%D9%88%D8%A7%D9%84%D9%86%D8%B0%D9%88%D8%B1_Pages_2917-2948.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="088 كتاب كفارات الأيمان pages 2948 2955 088_كتاب_كفارات_الأيمان_pages_2948-2955.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>088 كتاب كفارات الأيمان Pages 2948 2955</h3>
+        <div class="buttons"><a class="btn open" href="088_%D9%83%D8%AA%D8%A7%D8%A8_%D9%83%D9%81%D8%A7%D8%B1%D8%A7%D8%AA_%D8%A7%D9%84%D8%A3%D9%8A%D9%85%D8%A7%D9%86_Pages_2948-2955.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="088_%D9%83%D8%AA%D8%A7%D8%A8_%D9%83%D9%81%D8%A7%D8%B1%D8%A7%D8%AA_%D8%A7%D9%84%D8%A3%D9%8A%D9%85%D8%A7%D9%86_Pages_2948-2955.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="089 كتاب الفرائض pages 2956 2974 089_كتاب_الفرائض_pages_2956-2974.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>089 كتاب الفرائض Pages 2956 2974</h3>
+        <div class="buttons"><a class="btn open" href="089_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%81%D8%B1%D8%A7%D8%A6%D8%B6_Pages_2956-2974.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="089_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%81%D8%B1%D8%A7%D8%A6%D8%B6_Pages_2956-2974.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="090 كتاب الحدود pages 2975 2984 090_كتاب_الحدود_pages_2975-2984.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>090 كتاب الحدود Pages 2975 2984</h3>
+        <div class="buttons"><a class="btn open" href="090_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AD%D8%AF%D9%88%D8%AF_Pages_2975-2984.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="090_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AD%D8%AF%D9%88%D8%AF_Pages_2975-2984.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="091 كتاب المحاربين من أهل الكفر والردة pages 2985 3011 091_كتاب_المحاربين_من_أهل_الكفر_والردة_pages_2985-3011.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>091 كتاب المحاربين من أهل الكفر والردة Pages 2985 3011</h3>
+        <div class="buttons"><a class="btn open" href="091_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D8%B1%D8%A8%D9%8A%D9%86_%D9%85%D9%86_%D8%A3%D9%87%D9%84_%D8%A7%D9%84%D9%83%D9%81%D8%B1_%D9%88%D8%A7%D9%84%D8%B1%D8%AF%D8%A9_Pages_2985-3011.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="091_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D8%B1%D8%A8%D9%8A%D9%86_%D9%85%D9%86_%D8%A3%D9%87%D9%84_%D8%A7%D9%84%D9%83%D9%81%D8%B1_%D9%88%D8%A7%D9%84%D8%B1%D8%AF%D8%A9_Pages_2985-3011.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="092 كتاب الديات pages 3012 3038 092_كتاب_الديات_pages_3012-3038.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>092 كتاب الديات Pages 3012 3038</h3>
+        <div class="buttons"><a class="btn open" href="092_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AF%D9%8A%D8%A7%D8%AA_Pages_3012-3038.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="092_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AF%D9%8A%D8%A7%D8%AA_Pages_3012-3038.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="093 كتاب استتابة المعاندين والمرتدين وقتالهم pages 3039 3051 093_كتاب_استتابة_المعاندين_والمرتدين_وقتالهم_pages_3039-3051.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>093 كتاب استتابة المعاندين والمرتدين وقتالهم Pages 3039 3051</h3>
+        <div class="buttons"><a class="btn open" href="093_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D8%B3%D8%AA%D8%AA%D8%A7%D8%A8%D8%A9_%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D9%86%D8%AF%D9%8A%D9%86_%D9%88%D8%A7%D9%84%D9%85%D8%B1%D8%AA%D8%AF%D9%8A%D9%86_%D9%88%D9%82%D8%AA%D8%A7%D9%84%D9%87%D9%85_Pages_3039-3051.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="093_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D8%B3%D8%AA%D8%AA%D8%A7%D8%A8%D8%A9_%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D9%86%D8%AF%D9%8A%D9%86_%D9%88%D8%A7%D9%84%D9%85%D8%B1%D8%AA%D8%AF%D9%8A%D9%86_%D9%88%D9%82%D8%AA%D8%A7%D9%84%D9%87%D9%85_Pages_3039-3051.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="094 كتاب الإكراه pages 3052 3061 094_كتاب_الإكراه_pages_3052-3061.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>094 كتاب الإكراه Pages 3052 3061</h3>
+        <div class="buttons"><a class="btn open" href="094_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A5%D9%83%D8%B1%D8%A7%D9%87_Pages_3052-3061.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="094_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A5%D9%83%D8%B1%D8%A7%D9%87_Pages_3052-3061.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="095 كتاب الحيل pages 3062 3083 095_كتاب_الحيل_pages_3062-3083.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>095 كتاب الحيل Pages 3062 3083</h3>
+        <div class="buttons"><a class="btn open" href="095_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AD%D9%8A%D9%84_Pages_3062-3083.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="095_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AD%D9%8A%D9%84_Pages_3062-3083.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="096 كتاب التعبير pages 3084 3118 096_كتاب_التعبير_pages_3084-3118.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>096 كتاب التعبير Pages 3084 3118</h3>
+        <div class="buttons"><a class="btn open" href="096_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AA%D8%B9%D8%A8%D9%8A%D8%B1_Pages_3084-3118.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="096_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AA%D8%B9%D8%A8%D9%8A%D8%B1_Pages_3084-3118.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="097 كتاب الفتن pages 3119 3150 097_كتاب_الفتن_pages_3119-3150.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>097 كتاب الفتن Pages 3119 3150</h3>
+        <div class="buttons"><a class="btn open" href="097_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%81%D8%AA%D9%86_Pages_3119-3150.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="097_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D9%81%D8%AA%D9%86_Pages_3119-3150.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="098 كتاب الأحكام pages 3151 3197 098_كتاب_الأحكام_pages_3151-3197.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>098 كتاب الأحكام Pages 3151 3197</h3>
+        <div class="buttons"><a class="btn open" href="098_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A3%D8%AD%D9%83%D8%A7%D9%85_Pages_3151-3197.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="098_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A3%D8%AD%D9%83%D8%A7%D9%85_Pages_3151-3197.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="099 كتاب التمني pages 3198 3205 099_كتاب_التمني_pages_3198-3205.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>099 كتاب التمني Pages 3198 3205</h3>
+        <div class="buttons"><a class="btn open" href="099_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AA%D9%85%D9%86%D9%8A_Pages_3198-3205.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="099_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AA%D9%85%D9%86%D9%8A_Pages_3198-3205.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="100 كتاب أخبار الآحاد pages 3206 3215 100_كتاب_أخبار_الآحاد_pages_3206-3215.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>100 كتاب أخبار الآحاد Pages 3206 3215</h3>
+        <div class="buttons"><a class="btn open" href="100_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1_%D8%A7%D9%84%D8%A2%D8%AD%D8%A7%D8%AF_Pages_3206-3215.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="100_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A3%D8%AE%D8%A8%D8%A7%D8%B1_%D8%A7%D9%84%D8%A2%D8%AD%D8%A7%D8%AF_Pages_3206-3215.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="101 كتاب الاعتصام بالكتاب والسنة pages 3216 3262 101_كتاب_الاعتصام_بالكتاب_والسنة_pages_3216-3262.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>101 كتاب الاعتصام بالكتاب والسنة Pages 3216 3262</h3>
+        <div class="buttons"><a class="btn open" href="101_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A7%D8%B9%D8%AA%D8%B5%D8%A7%D9%85_%D8%A8%D8%A7%D9%84%D9%83%D8%AA%D8%A7%D8%A8_%D9%88%D8%A7%D9%84%D8%B3%D9%86%D8%A9_Pages_3216-3262.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="101_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A7%D8%B9%D8%AA%D8%B5%D8%A7%D9%85_%D8%A8%D8%A7%D9%84%D9%83%D8%AA%D8%A7%D8%A8_%D9%88%D8%A7%D9%84%D8%B3%D9%86%D8%A9_Pages_3216-3262.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="102 كتاب التوحيد pages 3263 3369 102_كتاب_التوحيد_pages_3263-3369.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>102 كتاب التوحيد Pages 3263 3369</h3>
+        <div class="buttons"><a class="btn open" href="102_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AA%D9%88%D8%AD%D9%8A%D8%AF_Pages_3263-3369.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="102_%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%AA%D9%88%D8%AD%D9%8A%D8%AF_Pages_3263-3369.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="998 publisher closing page 3370 998_publisher_closing_page_3370.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>998 Publisher Closing Page 3370</h3>
+        <div class="buttons"><a class="btn open" href="998_Publisher_Closing_Page_3370.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="998_Publisher_Closing_Page_3370.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="999 fehrist pages 3371 3416 999_fehrist_pages_3371-3416.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>999 Fehrist Pages 3371 3416</h3>
+        <div class="buttons"><a class="btn open" href="999_Fehrist_Pages_3371-3416.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="999_Fehrist_Pages_3371-3416.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="readme readme.md">
+        <div class="file-type"><span>📝</span> Markdown</div>
+        <h3>README</h3>
+        <div class="buttons"><a class="btn open" href="README.md" target="_blank" rel="noopener">نوٹس کھولیں →</a> <a class="btn download" href="README.md" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+    </section>
+
+  </div>
+  <script>
+    const searchAliases = {
+      "namaz": ["نماز", "صلوٰۃ", "salah", "salat"],
+      "salah": ["نماز", "صلوٰۃ", "namaz", "salat"],
+      "salat": ["نماز", "صلوٰۃ", "namaz", "salah"],
+      "wazu": ["وضو", "wudu", "wudhu"],
+      "wudu": ["وضو", "wazu", "wudhu"],
+      "wudhu": ["وضو", "wazu", "wudu"],
+      "ghusal": ["غسل", "ghusl"],
+      "ghusl": ["غسل", "ghusal"],
+      "roza": ["روزہ", "sawm", "fast", "fasting"],
+      "sawm": ["روزہ", "roza", "fast", "fasting"],
+      "fast": ["روزہ", "roza", "sawm"],
+      "fasting": ["روزہ", "roza", "sawm"],
+      "zakat": ["زکوٰۃ", "زکوة", "zakah"],
+      "zakah": ["زکوٰۃ", "زکوة", "zakat"],
+      "nikah": ["نکاح", "marriage"],
+      "marriage": ["نکاح", "nikah"],
+      "talaq": ["طلاق", "divorce"],
+      "divorce": ["طلاق", "talaq"],
+      "janaza": ["جنازہ", "janazah", "funeral"],
+      "janazah": ["جنازہ", "janaza", "funeral"],
+      "funeral": ["جنازہ", "janaza", "janazah"],
+      "qurbani": ["قربانی", "udhiyah", "sacrifice"],
+      "udhiyah": ["قربانی", "qurbani", "sacrifice"],
+      "sacrifice": ["قربانی", "qurbani"],
+      "dua": ["دعا", "duaa", "prayer"],
+      "duaa": ["دعا", "dua"],
+      "quran": ["قرآن", "قران", "qur'an"],
+      "quranic": ["قرآنی", "قرانی", "quran"],
+      "hadith": ["حدیث", "hadees", "hadeeth"],
+      "hadees": ["حدیث", "hadith", "hadeeth"],
+      "hadeeth": ["حدیث", "hadith", "hadees"],
+      "imam": ["امام"],
+      "masjid": ["مسجد", "mosque"],
+      "mosque": ["مسجد", "masjid"],
+      "ramzan": ["رمضان", "ramadan"],
+      "ramadan": ["رمضان", "ramzan"],
+      "eid": ["عید"],
+      "hajj": ["حج"],
+      "umrah": ["عمرہ"],
+      "sunnat": ["سنت", "sunnah"],
+      "sunnah": ["سنت", "sunnat"],
+      "farz": ["فرض", "fard"],
+      "fard": ["فرض", "farz"],
+      "wajib": ["واجب"],
+      "halal": ["حلال"],
+      "haram": ["حرام"],
+      "makrooh": ["مکروہ", "makruh"],
+      "makruh": ["مکروہ", "makrooh"],
+      "pak": ["پاک", "taharat", "tahara"],
+      "napak": ["ناپاک", "najis", "najasat"],
+      "najis": ["نجس", "ناپاک", "najasat"],
+      "najasat": ["نجاست", "ناپاک", "najis"],
+      "taharat": ["طہارت", "پاک", "tahara"],
+      "tahara": ["طہارت", "پاک", "taharat"],
+      "qibla": ["قبلہ"],
+      "ruku": ["رکوع"],
+      "sajda": ["سجدہ", "sujud"],
+      "sujud": ["سجدہ", "sajda"],
+      "azan": ["اذان", "adhan"],
+      "adhan": ["اذان", "azan"],
+      "iqamat": ["اقامت", "iqamah"],
+      "iqamah": ["اقامت", "iqamat"],
+      "taraweeh": ["تراویح", "tarawih"],
+      "tarawih": ["تراویح", "taraweeh"],
+      "itr": ["عطر", "perfume"],
+      "perfume": ["عطر", "itr"],
+      "mirath": ["میراث", "inheritance", "meeras"],
+      "meeras": ["میراث", "mirath", "inheritance"],
+      "inheritance": ["میراث", "mirath", "meeras"],
+      "qarz": ["قرض", "loan"],
+      "loan": ["قرض", "qarz"],
+      "sood": ["سود", "interest", "riba"],
+      "riba": ["سود", "interest", "sood"],
+      "interest": ["سود", "riba", "sood"],
+      "business": ["کاروبار", "tijarat"],
+      "tijarat": ["تجارت", "business"],
+      "kafan": ["کفن"],
+      "qabr": ["قبر", "grave"],
+      "grave": ["قبر", "qabr"],
+      "mayyat": ["میت", "dead body"],
+      "miya": ["شوہر", "husband"],
+      "husband": ["شوہر", "miya"],
+      "biwi": ["بیوی", "wife"],
+      "wife": ["بیوی", "biwi"],
+      "aurat": ["عورت", "woman"],
+      "woman": ["عورت", "aurat"],
+      "mard": ["مرد", "man"],
+      "man": ["مرد", "mard"],
+      "bachay": ["بچے", "children"],
+      "children": ["بچے", "bachay"],
+      "walid": ["والد", "father"],
+      "father": ["والد", "walid"],
+      "maa": ["ماں", "mother"],
+      "mother": ["ماں", "maa"],
+      "fatwa": ["فتوی", "فتویٰ", "fatawa"],
+      "fatawa": ["فتاویٰ", "فتاوی", "fatwa"]
+    };
+
+    function normalizeText(value) {
+      return (value || "")
+        .toString()
+        .toLowerCase()
+        .replace(/[’']/g, "")
+        .replace(/[۔،؟?]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function expandSearchQuery(query) {
+      const normalized = normalizeText(query);
+      if (!normalized) return [];
+
+      const terms = new Set([normalized]);
+      normalized.split(" ").forEach(function(word) {
+        if (word) terms.add(word);
+        if (searchAliases[word]) {
+          searchAliases[word].forEach(function(alias) {
+            terms.add(normalizeText(alias));
+          });
+        }
+      });
+
+      if (searchAliases[normalized]) {
+        searchAliases[normalized].forEach(function(alias) {
+          terms.add(normalizeText(alias));
+        });
+      }
+
+      return Array.from(terms).filter(Boolean);
+    }
+
+    function searchLibraryItems() {
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = normalizeText(input.value);
+      const terms = expandSearchQuery(query);
+      let visible = 0;
+
+      cards.forEach(function(card) {
+        const text = normalizeText((card.getAttribute("data-search") || "") + " " + (card.innerText || ""));
+        const match = !query || terms.some(function(term) {
+          return text.includes(term);
+        });
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (count) {
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }
+
+      if (noResults) {
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }
+    }
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
+</body>
+</html>
