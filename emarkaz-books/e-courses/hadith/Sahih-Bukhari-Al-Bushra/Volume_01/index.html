@@ -170,6 +170,52 @@
       margin-top:18px;
       font-weight:700;
     }
+    .reader-section {
+      margin:34px 0;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+    }
+    .reader-meta {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .reader-meta p {
+      color:#4b5563;
+      margin:0;
+    }
+    .folder-link-list {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 18px;
+    }
+    .folder-link-list a {
+      display:inline-block;
+      background:#ecfdf5;
+      color:#065f46;
+      border:1px solid #a7f3d0;
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .folder-link-list a:hover {
+      background:#d1fae5;
+    }
+    .reader-frame {
+      width:100%;
+      min-height:1200px;
+      border:1px solid #d1d5db;
+      border-radius:20px;
+      background:#06111f;
+    }
     @media (max-width:600px) {
       body { padding:18px; }
       .book-card h3,.folder-card h3 { min-height:auto; }
@@ -194,8 +240,23 @@
     <section class="search-wrap">
       <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
       <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، wazu, namaz, zakat..." oninput="searchLibraryItems()" />
-      <div class="search-count" id="searchCount">33 کل آئٹمز / total items</div>
+      <div class="search-count" id="searchCount">32 کل آئٹمز / total items</div>
       <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+
+    <section class="reader-section">
+      <div class="reader-meta">
+        <div>
+          <h2 class="section-title" style="margin:0 0 8px;">تعارف / Collection Reader</h2>
+          <p>README خودکار طور پر نیچے کھل رہی ہے۔ اگر چاہیں تو مکمل ریڈر الگ ٹیب میں بھی کھول سکتے ہیں۔</p>
+        </div>
+        <div class="buttons">
+          <a class="btn open" href="../../../../../markdown-viewer.html?file=emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/Volume_01/README.md" target="_blank" rel="noopener">README ریڈر کھولیں →</a>
+          <a class="btn download" href="README.md" download>README ڈاؤن لوڈ کریں</a>
+        </div>
+      </div>
+      
+      <iframe class="reader-frame" src="../../../../../markdown-viewer.html?file=emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/Volume_01/README.md" loading="lazy"></iframe>
     </section>
 
     <h2 class="section-title">فائلیں</h2>
@@ -391,12 +452,6 @@
         <div class="file-type"><span>📕</span> PDF</div>
         <h3>031 أبواب فضائل المدينة Pages 0932 0938</h3>
         <div class="buttons"><a class="btn open" href="031_%D8%A3%D8%A8%D9%88%D8%A7%D8%A8_%D9%81%D8%B6%D8%A7%D8%A6%D9%84_%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9_Pages_0932-0938.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="031_%D8%A3%D8%A8%D9%88%D8%A7%D8%A8_%D9%81%D8%B6%D8%A7%D8%A6%D9%84_%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9_Pages_0932-0938.pdf" download>ڈاؤن لوڈ کریں</a></div>
-      </article>
-
-      <article class="book-card searchable-card" data-search="readme readme.md">
-        <div class="file-type"><span>📝</span> Markdown</div>
-        <h3>README</h3>
-        <div class="buttons"><a class="btn open" href="../../../../../markdown-viewer.html?file=emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/Volume_01/README.md" target="_blank" rel="noopener">نوٹس کھولیں →</a> <a class="btn download" href="README.md" download>ڈاؤن لوڈ کریں</a></div>
       </article>
     </section>
 

@@ -134,6 +134,13 @@ def parent_link(current_folder: Path, root_folder: Path) -> str:
         return root_home_link(current_folder)
     return "../"
 
+
+def markdown_viewer_url(current_folder: Path, file_path: Path) -> str:
+    """Shared Markdown reader at repo root; source path is repo-root relative."""
+    viewer_url = root_home_link(current_folder).removesuffix("index.html") + "markdown-viewer.html"
+    viewer_url += "?file=" + quote(file_path.as_posix(), safe="/")
+    return viewer_url
+
 def page_css() -> str:
     return """
     * { margin:0; padding:0; box-sizing:border-box; }
@@ -301,6 +308,52 @@ def page_css() -> str:
       margin-top:18px;
       font-weight:700;
     }
+    .reader-section {
+      margin:34px 0;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+    }
+    .reader-meta {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .reader-meta p {
+      color:#4b5563;
+      margin:0;
+    }
+    .folder-link-list {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 18px;
+    }
+    .folder-link-list a {
+      display:inline-block;
+      background:#ecfdf5;
+      color:#065f46;
+      border:1px solid #a7f3d0;
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .folder-link-list a:hover {
+      background:#d1fae5;
+    }
+    .reader-frame {
+      width:100%;
+      min-height:1200px;
+      border:1px solid #d1d5db;
+      border-radius:20px;
+      background:#06111f;
+    }
     @media (max-width:600px) {
       body { padding:18px; }
       .book-card h3,.folder-card h3 { min-height:auto; }
@@ -432,7 +485,9 @@ def shared_bukhari_card(current_folder: Path) -> str:
 
 def library_page(root_folder: Path, current_folder: Path):
     subfolders = subfolders_in(current_folder)
-    files = supported_files_in(current_folder)
+    all_files = supported_files_in(current_folder)
+    readme_files = [f for f in all_files if f.name.lower() == "readme.md"]
+    files = [f for f in all_files if f.name.lower() != "readme.md"]
     title_ur, title_en, badge = display_names_for_page(root_folder, current_folder)
 
     folders_section = ""
@@ -470,6 +525,33 @@ def library_page(root_folder: Path, current_folder: Path):
     </section>
 """
 
+    readme_section = ""
+    if readme_files:
+        readme_file = readme_files[0]
+        viewer_url = markdown_viewer_url(current_folder, readme_file)
+        folder_quick_links = ""
+        if subfolders:
+            folder_quick_links = '<div class="folder-link-list">' + ''.join(
+                f'<a href="{escape(url_for_folder(folder))}">{escape(pretty_folder_name(folder.name)["ur"])} / {escape(pretty_folder_name(folder.name)["en"])} </a>'
+                for folder in subfolders
+            ) + '</div>'
+        readme_section = f"""
+    <section class="reader-section">
+      <div class="reader-meta">
+        <div>
+          <h2 class="section-title" style="margin:0 0 8px;">تعارف / Collection Reader</h2>
+          <p>README خودکار طور پر نیچے کھل رہی ہے۔ اگر چاہیں تو مکمل ریڈر الگ ٹیب میں بھی کھول سکتے ہیں۔</p>
+        </div>
+        <div class="buttons">
+          <a class="btn open" href="{escape(viewer_url, quote=True)}" target="_blank" rel="noopener">README ریڈر کھولیں →</a>
+          <a class="btn download" href="{escape(url_for_file(readme_file))}" download>README ڈاؤن لوڈ کریں</a>
+        </div>
+      </div>
+      {folder_quick_links}
+      <iframe class="reader-frame" src="{escape(viewer_url, quote=True)}" loading="lazy"></iframe>
+    </section>
+"""
+
     shared_bukhari_section = shared_bukhari_card(current_folder)
 
     return f"""<!DOCTYPE html>
@@ -494,7 +576,7 @@ def library_page(root_folder: Path, current_folder: Path):
       <h1>{escape(title_ur)}</h1>
       <h2>{escape(title_en)}</h2>
     </section>
-{search_section}{folders_section}{files_section}{shared_bukhari_section}
+{search_section}{folders_section}{readme_section}{files_section}{shared_bukhari_section}
   </div>
   <script>
     const searchAliases = {{

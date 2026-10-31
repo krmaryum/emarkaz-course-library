@@ -1,0 +1,709 @@
+#!/usr/bin/env python3
+"""
+generate_file_pages.py
+
+Auto-generate clean user-facing pages for the eMarkaz Course Library.
+
+Controlled flexible version with natural sorting:
+- Generates pages for approved public library roots only.
+- Keeps special course/semester handling for books/.
+- Supports nested folders.
+- Sorts files naturally by number.
+- Removes developer/debug messages from public pages.
+- Does not show empty-folder or empty-file instruction messages.
+- Does not show "Auto-generated page" footer.
+
+Default public roots:
+    books/
+    emarkaz-books/
+    quran-juzz/
+
+Run from repo root:
+    python generate_file_pages.py
+"""
+
+from pathlib import Path
+from html import escape
+from urllib.parse import quote
+import re
+
+PUBLIC_LIBRARY_ROOTS = [
+    "books",
+    "emarkaz-books",
+    "quran-juzz",
+    "Fatawaz",
+    "Molana-Ilyas-Ghuman-db-Books",
+]
+
+BOOKS_DIR = Path("books")
+
+SUPPORTED_EXTENSIONS = {
+    ".pdf":  {"label": "PDF",      "icon": "📕", "open_text": "کتاب کھولیں",  "download_text": "ڈاؤن لوڈ کریں", "can_open": True},
+    ".docx": {"label": "DOCX",     "icon": "📘", "open_text": "",             "download_text": "ڈاؤن لوڈ کریں", "can_open": False},
+    ".md":   {"label": "Markdown", "icon": "📝", "open_text": "نوٹس کھولیں", "download_text": "ڈاؤن لوڈ کریں", "can_open": True},
+    ".xlsx": {"label": "Excel",    "icon": "📊", "open_text": "",             "download_text": "ڈاؤن لوڈ کریں", "can_open": False},
+    ".xls":  {"label": "Excel",    "icon": "📊", "open_text": "",             "download_text": "ڈاؤن لوڈ کریں", "can_open": False},
+    ".txt":  {"label": "Text",     "icon": "📄", "open_text": "فائل کھولیں", "download_text": "ڈاؤن لوڈ کریں", "can_open": True},
+}
+
+COURSE_NAMES = {
+    "ac-alim-course": {"ur": "عالم کورس", "en": "AC - Alim Course"},
+    "dc-ilm-e-deen-course": {"ur": "علم دین کورس", "en": "DC - Ilm-e-Deen Course"},
+    "tif-takhasus-fil-ifta": {"ur": "تخصص فی الافتاء", "en": "TIF - Takhasus fil Ifta"},
+    "tfa-takhasus-fil-aqaid": {"ur": "تخصص فی العقائد", "en": "TFA - Takhasus fil Aqaid"},
+}
+
+NAME_MAP = {
+    "books": {"ur": "کورس کتابیں", "en": "Course Books"},
+    "emarkaz-books": {"ur": "ای مرکز کتابیں", "en": "eMarkaz Books"},
+    "quran-juzz": {"ur": "قرآن پارے", "en": "Quran Juzz"},
+    "e-courses": {"ur": "ای کورسز", "en": "E-Courses"},
+    "advanced-topics": {"ur": "Advanced Topics", "en": "Advanced Topics"},
+    "aqaid": {"ur": "عقائد", "en": "Aqaid"},
+    "baray-ustaz-jee": {"ur": "بڑے استاذ جی", "en": "Baray Ustaz Jee"},
+    "fataws": {"ur": "فتاویٰ", "en": "Fatawa"},
+    "fiqh": {"ur": "فقہ", "en": "Fiqh"},
+    "grammar": {"ur": "گرامر", "en": "Grammar"},
+    "nawh": {"ur": "نحو", "en": "Nahw"},
+    "surf": {"ur": "صرف", "en": "Sarf"},
+    "hadith": {"ur": "حدیث", "en": "Hadith"},
+    "meeraas": {"ur": "میراث", "en": "Meeraas"},
+    "personalities": {"ur": "شخصیات", "en": "Personalities"},
+    "Prophets": {"ur": "انبیاء", "en": "Prophets"},
+    "Sahabas": {"ur": "صحابہ", "en": "Sahabas"},
+    "Scholars": {"ur": "علماء", "en": "Scholars"},
+    "Walees": {"ur": "اولیاء", "en": "Walees"},
+    "Exam Papers": {"ur": "امتحانی پرچے", "en": "Exam Papers"},
+}
+
+SKIP_DIR_NAMES = {
+    ".git",
+    ".github",
+    "__pycache__",
+    ".venv",
+    "venv",
+    "node_modules",
+}
+
+SKIP_FILE_NAMES = {
+    "index.html",
+    ".gitkeep",
+    ".DS_Store",
+}
+
+def natural_key(value) -> list:
+    text = value.name if isinstance(value, Path) else str(value)
+    text = text.lower()
+    return [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", text)]
+
+def clean_name(text: str) -> str:
+    return " ".join(text.replace("_", " ").replace("-", " ").split())
+
+def title_from_filename(path: Path) -> str:
+    return clean_name(path.stem)
+
+def pretty_folder_name(folder_name: str) -> dict:
+    if folder_name in NAME_MAP:
+        return NAME_MAP[folder_name]
+    clean = clean_name(folder_name)
+    return {"ur": clean, "en": clean.title()}
+
+def semester_label(folder_name: str) -> str:
+    match = re.search(r"semester-(\d+)", folder_name, re.IGNORECASE)
+    if match:
+        return "سمسٹر " + f"{int(match.group(1)):02d}"
+    return clean_name(folder_name)
+
+def semester_en_label(folder_name: str) -> str:
+    match = re.search(r"semester-(\d+)", folder_name, re.IGNORECASE)
+    if match:
+        return "Semester " + f"{int(match.group(1)):02d}"
+    return clean_name(folder_name).title()
+
+def url_for_file(path: Path) -> str:
+    return quote(path.name)
+
+def url_for_folder(path: Path) -> str:
+    return quote(path.name) + "/"
+
+def root_home_link(current_folder: Path) -> str:
+    return ("../" * len(current_folder.parts)) + "index.html"
+
+def parent_link(current_folder: Path, root_folder: Path) -> str:
+    if current_folder == root_folder:
+        return root_home_link(current_folder)
+    return "../"
+
+def page_css() -> str:
+    return """
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:linear-gradient(135deg,#f8fafc,#ecfeff);
+      color:#111827;
+      min-height:100vh;
+      line-height:1.9;
+      padding:30px;
+    }
+    .container { max-width:1180px; margin:auto; }
+    .top-bar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+    .back {
+      display:inline-block;
+      background:#064e3b;
+      color:white;
+      padding:10px 18px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      margin-left:8px;
+    }
+    .badge {
+      background:#d1fae5;
+      color:#065f46;
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:bold;
+      border:1px solid #a7f3d0;
+      direction:ltr;
+    }
+    .hero {
+      text-align:center;
+      margin-bottom:35px;
+      padding:35px 20px;
+      background:white;
+      border-radius:24px;
+      box-shadow:0 15px 40px rgba(0,0,0,.08);
+      border:1px solid #e5e7eb;
+    }
+    .hero h1 {
+      font-size:clamp(32px,5vw,56px);
+      color:#064e3b;
+      margin-bottom:10px;
+    }
+    .hero h2 {
+      font-size:24px;
+      color:#374151;
+      margin-bottom:0;
+      direction:ltr;
+    }
+    .section-title {
+      color:#064e3b;
+      margin:30px 0 18px;
+      font-size:30px;
+    }
+    .books-grid,.folders-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+    .book-card,.folder-card {
+      background:white;
+      border-radius:22px;
+      padding:24px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 12px 30px rgba(0,0,0,.07);
+      transition:.3s ease;
+    }
+    .book-card:hover,.folder-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 45px rgba(6,95,70,.16);
+      border-color:#10b981;
+    }
+    .file-type {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfdf5;
+      color:#065f46;
+      padding:6px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:14px;
+      direction:ltr;
+    }
+    .book-card h3,.folder-card h3 {
+      font-size:22px;
+      color:#111827;
+      margin-bottom:12px;
+      min-height:55px;
+    }
+    .english {
+      font-family:Arial,sans-serif;
+      direction:ltr;
+      color:#4b5563;
+      margin-bottom:16px;
+    }
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:.25s;
+    }
+    .open { background:#059669; color:white; }
+    .download { background:#1d4ed8; color:white; }
+    .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
+    @media (max-width:600px) {
+      body { padding:18px; }
+      .book-card h3,.folder-card h3 { min-height:auto; }
+    }
+    """
+
+def is_skipped_dir(path: Path) -> bool:
+    return any(part in SKIP_DIR_NAMES for part in path.parts)
+
+def supported_files_in(folder: Path):
+    return sorted([
+        p for p in folder.iterdir()
+        if p.is_file()
+        and p.name not in SKIP_FILE_NAMES
+        and p.suffix.lower() in SUPPORTED_EXTENSIONS
+    ], key=natural_key)
+
+def subfolders_in(folder: Path):
+    return sorted([
+        p for p in folder.iterdir()
+        if p.is_dir()
+        and not p.name.startswith(".")
+        and p.name not in SKIP_DIR_NAMES
+    ], key=natural_key)
+
+def file_cards(files):
+    cards = []
+    for file_path in files:
+        info = SUPPORTED_EXTENSIONS[file_path.suffix.lower()]
+        buttons = []
+        if info["can_open"]:
+            if file_path.suffix.lower() == ".md":
+                # Shared Markdown reader at repo root; source path is repo-root relative.
+                viewer_url = root_home_link(file_path.parent).removesuffix("index.html") + "markdown-viewer.html"
+                viewer_url += "?file=" + quote(file_path.as_posix(), safe="/")
+                open_url = viewer_url
+            else:
+                open_url = url_for_file(file_path)
+            buttons.append(
+                f'<a class="btn open" href="{escape(open_url, quote=True)}" target="_blank" rel="noopener">{escape(info["open_text"])} →</a>'
+            )
+        buttons.append(
+            f'<a class="btn download" href="{escape(url_for_file(file_path))}" download>{escape(info["download_text"])}</a>'
+        )
+
+        cards.append(f"""
+      <article class="book-card searchable-card" data-search="{escape(title_from_filename(file_path)).lower()} {escape(file_path.name).lower()}">
+        <div class="file-type"><span>{escape(info["icon"])}</span> {escape(info["label"])}</div>
+        <h3>{escape(title_from_filename(file_path))}</h3>
+        <div class="buttons">{' '.join(buttons)}</div>
+      </article>""")
+    return "\n".join(cards)
+
+def folder_cards(folders):
+    cards = []
+    for folder in folders:
+        names = pretty_folder_name(folder.name)
+        cards.append(f"""
+      <article class="folder-card searchable-card" data-search="{escape(names["ur"]).lower()} {escape(names["en"]).lower()} {escape(folder.name).lower()}">
+        <div class="file-type"><span>📁</span> Folder</div>
+        <h3>{escape(names["ur"])}</h3>
+        <p class="english">{escape(names["en"])}</p>
+        <div class="buttons">
+          <a class="btn open" href="{escape(url_for_folder(folder))}">فولڈر کھولیں →</a>
+        </div>
+      </article>""")
+    return "\n".join(cards)
+
+def find_semester_root(folder: Path):
+    parts = folder.parts
+    for part_index, part in enumerate(parts):
+        if part.lower().startswith("semester-"):
+            return Path(*parts[:part_index + 1])
+    return None
+
+def display_names_for_page(root_folder: Path, current_folder: Path):
+    if root_folder == BOOKS_DIR:
+        semester_root = find_semester_root(current_folder)
+
+        if semester_root and len(semester_root.parts) >= 3:
+            course_slug = semester_root.parent.name
+            semester_slug = semester_root.name
+            course = COURSE_NAMES.get(course_slug, {"ur": clean_name(course_slug), "en": clean_name(course_slug).title()})
+
+            if current_folder == semester_root:
+                title_ur = f'{course["ur"]} - {semester_label(semester_slug)}'
+                title_en = f'{course["en"]} - {semester_en_label(semester_slug)}'
+            else:
+                folder_names = pretty_folder_name(current_folder.name)
+                title_ur = folder_names["ur"]
+                title_en = f'{course["en"]} / {semester_en_label(semester_slug)} / {folder_names["en"]}'
+
+            badge = course["en"]
+            return title_ur, title_en, badge
+
+    names = pretty_folder_name(current_folder.name)
+    root_names = pretty_folder_name(root_folder.name)
+    return names["ur"], names["en"], root_names["en"]
+
+# SHARED_BUKHARI_SEMESTER_LINK_V1
+
+def shared_bukhari_card(current_folder: Path) -> str:
+    """One shared library card on AC semesters 10, 11 and 12 only."""
+    import posixpath
+
+    allowed = {
+        "books/ac-alim-course/semester-10",
+        "books/ac-alim-course/semester-11",
+        "books/ac-alim-course/semester-12",
+    }
+    if current_folder.as_posix() not in allowed:
+        return ""
+
+    target = "emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/"
+    relative_url = posixpath.relpath(target, start=current_folder.as_posix()) + "/"
+    return f"""
+    <h2 class="section-title">مشترکہ کتب خانہ / Shared Library</h2>
+    <section class="folders-grid">
+      <article class="folder-card searchable-card" data-search="صحیح البخاری البشری sahih bukhari al bushra hadith hades">
+        <div class="file-type"><span>📚</span> Shared Collection</div>
+        <h3>صحیح البخاری — طبع البشری</h3>
+        <p class="english">Sahih Bukhari Al-Bushra · 4 volumes</p>
+        <div class="buttons">
+          <a class="btn open" href="{escape(relative_url)}">مکمل مجموعہ کھولیں →</a>
+        </div>
+      </article>
+    </section>
+"""
+
+def library_page(root_folder: Path, current_folder: Path):
+    subfolders = subfolders_in(current_folder)
+    files = supported_files_in(current_folder)
+    title_ur, title_en, badge = display_names_for_page(root_folder, current_folder)
+
+    folders_section = ""
+    if subfolders:
+        folders_section = f"""
+    <h2 class="section-title">فولڈرز</h2>
+    <section class="folders-grid">
+{folder_cards(subfolders)}
+    </section>
+"""
+
+    files_section = ""
+    if files:
+        files_section = f"""
+    <h2 class="section-title">فائلیں</h2>
+    <section class="books-grid">
+{file_cards(files)}
+    </section>
+"""
+
+    total_items = len(subfolders) + len(files)
+    search_section = ""
+    search_label = "کتاب یا فولڈر تلاش کریں"
+    search_placeholder = "مثال: وضو، نماز، wazu, namaz, zakat..."
+    if root_folder.name == "Fatawaz":
+        search_label = "فتویٰ تلاش کریں"
+        search_placeholder = "مثال: نماز، وضو، نکاح، wazu, namaz..."
+    if total_items:
+        search_section = f"""
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">{search_label}</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="{search_placeholder}" oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">{total_items} کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+"""
+
+    shared_bukhari_section = shared_bukhari_card(current_folder)
+
+    return f"""<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{escape(title_ur)} | eMarkaz Course Library</title>
+  <style>{page_css()}</style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div>
+        <a class="back" href="{escape(root_home_link(current_folder))}">مرکزی صفحہ</a>
+        <a class="back" href="{escape(parent_link(current_folder, root_folder))}">واپس</a>
+      </div>
+      <span class="badge">{escape(badge)}</span>
+    </div>
+
+    <section class="hero">
+      <h1>{escape(title_ur)}</h1>
+      <h2>{escape(title_en)}</h2>
+    </section>
+{search_section}{folders_section}{files_section}{shared_bukhari_section}
+  </div>
+  <script>
+    const searchAliases = {{
+      "namaz": ["نماز", "صلوٰۃ", "salah", "salat"],
+      "salah": ["نماز", "صلوٰۃ", "namaz", "salat"],
+      "salat": ["نماز", "صلوٰۃ", "namaz", "salah"],
+      "wazu": ["وضو", "wudu", "wudhu"],
+      "wudu": ["وضو", "wazu", "wudhu"],
+      "wudhu": ["وضو", "wazu", "wudu"],
+      "ghusal": ["غسل", "ghusl"],
+      "ghusl": ["غسل", "ghusal"],
+      "roza": ["روزہ", "sawm", "fast", "fasting"],
+      "sawm": ["روزہ", "roza", "fast", "fasting"],
+      "fast": ["روزہ", "roza", "sawm"],
+      "fasting": ["روزہ", "roza", "sawm"],
+      "zakat": ["زکوٰۃ", "زکوة", "zakah"],
+      "zakah": ["زکوٰۃ", "زکوة", "zakat"],
+      "nikah": ["نکاح", "marriage"],
+      "marriage": ["نکاح", "nikah"],
+      "talaq": ["طلاق", "divorce"],
+      "divorce": ["طلاق", "talaq"],
+      "janaza": ["جنازہ", "janazah", "funeral"],
+      "janazah": ["جنازہ", "janaza", "funeral"],
+      "funeral": ["جنازہ", "janaza", "janazah"],
+      "qurbani": ["قربانی", "udhiyah", "sacrifice"],
+      "udhiyah": ["قربانی", "qurbani", "sacrifice"],
+      "sacrifice": ["قربانی", "qurbani"],
+      "dua": ["دعا", "duaa", "prayer"],
+      "duaa": ["دعا", "dua"],
+      "quran": ["قرآن", "قران", "qur'an"],
+      "quranic": ["قرآنی", "قرانی", "quran"],
+      "hadith": ["حدیث", "hadees", "hadeeth"],
+      "hadees": ["حدیث", "hadith", "hadeeth"],
+      "hadeeth": ["حدیث", "hadith", "hadees"],
+      "imam": ["امام"],
+      "masjid": ["مسجد", "mosque"],
+      "mosque": ["مسجد", "masjid"],
+      "ramzan": ["رمضان", "ramadan"],
+      "ramadan": ["رمضان", "ramzan"],
+      "eid": ["عید"],
+      "hajj": ["حج"],
+      "umrah": ["عمرہ"],
+      "sunnat": ["سنت", "sunnah"],
+      "sunnah": ["سنت", "sunnat"],
+      "farz": ["فرض", "fard"],
+      "fard": ["فرض", "farz"],
+      "wajib": ["واجب"],
+      "halal": ["حلال"],
+      "haram": ["حرام"],
+      "makrooh": ["مکروہ", "makruh"],
+      "makruh": ["مکروہ", "makrooh"],
+      "pak": ["پاک", "taharat", "tahara"],
+      "napak": ["ناپاک", "najis", "najasat"],
+      "najis": ["نجس", "ناپاک", "najasat"],
+      "najasat": ["نجاست", "ناپاک", "najis"],
+      "taharat": ["طہارت", "پاک", "tahara"],
+      "tahara": ["طہارت", "پاک", "taharat"],
+      "qibla": ["قبلہ"],
+      "ruku": ["رکوع"],
+      "sajda": ["سجدہ", "sujud"],
+      "sujud": ["سجدہ", "sajda"],
+      "azan": ["اذان", "adhan"],
+      "adhan": ["اذان", "azan"],
+      "iqamat": ["اقامت", "iqamah"],
+      "iqamah": ["اقامت", "iqamat"],
+      "taraweeh": ["تراویح", "tarawih"],
+      "tarawih": ["تراویح", "taraweeh"],
+      "itr": ["عطر", "perfume"],
+      "perfume": ["عطر", "itr"],
+      "mirath": ["میراث", "inheritance", "meeras"],
+      "meeras": ["میراث", "mirath", "inheritance"],
+      "inheritance": ["میراث", "mirath", "meeras"],
+      "qarz": ["قرض", "loan"],
+      "loan": ["قرض", "qarz"],
+      "sood": ["سود", "interest", "riba"],
+      "riba": ["سود", "interest", "sood"],
+      "interest": ["سود", "riba", "sood"],
+      "business": ["کاروبار", "tijarat"],
+      "tijarat": ["تجارت", "business"],
+      "kafan": ["کفن"],
+      "qabr": ["قبر", "grave"],
+      "grave": ["قبر", "qabr"],
+      "mayyat": ["میت", "dead body"],
+      "miya": ["شوہر", "husband"],
+      "husband": ["شوہر", "miya"],
+      "biwi": ["بیوی", "wife"],
+      "wife": ["بیوی", "biwi"],
+      "aurat": ["عورت", "woman"],
+      "woman": ["عورت", "aurat"],
+      "mard": ["مرد", "man"],
+      "man": ["مرد", "mard"],
+      "bachay": ["بچے", "children"],
+      "children": ["بچے", "bachay"],
+      "walid": ["والد", "father"],
+      "father": ["والد", "walid"],
+      "maa": ["ماں", "mother"],
+      "mother": ["ماں", "maa"],
+      "fatwa": ["فتوی", "فتویٰ", "fatawa"],
+      "fatawa": ["فتاویٰ", "فتاوی", "fatwa"]
+    }};
+
+    function normalizeText(value) {{
+      return (value || "")
+        .toString()
+        .toLowerCase()
+        .replace(/[’']/g, "")
+        .replace(/[۔،؟?]/g, " ")
+        .replace(/\\s+/g, " ")
+        .trim();
+    }}
+
+    function expandSearchQuery(query) {{
+      const normalized = normalizeText(query);
+      if (!normalized) return [];
+
+      const terms = new Set([normalized]);
+      normalized.split(" ").forEach(function(word) {{
+        if (word) terms.add(word);
+        if (searchAliases[word]) {{
+          searchAliases[word].forEach(function(alias) {{
+            terms.add(normalizeText(alias));
+          }});
+        }}
+      }});
+
+      if (searchAliases[normalized]) {{
+        searchAliases[normalized].forEach(function(alias) {{
+          terms.add(normalizeText(alias));
+        }});
+      }}
+
+      return Array.from(terms).filter(Boolean);
+    }}
+
+    function searchLibraryItems() {{
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = normalizeText(input.value);
+      const terms = expandSearchQuery(query);
+      let visible = 0;
+
+      cards.forEach(function(card) {{
+        const text = normalizeText((card.getAttribute("data-search") || "") + " " + (card.innerText || ""));
+        const match = !query || terms.some(function(term) {{
+          return text.includes(term);
+        }});
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      }});
+
+      if (count) {{
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }}
+
+      if (noResults) {{
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }}
+    }}
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
+</body>
+</html>
+"""
+
+def generate_pages_for_root(root_folder: Path) -> int:
+    if not root_folder.exists():
+        print(f"WARNING: {root_folder}/ not found. Skipping.")
+        return 0
+
+    if not root_folder.is_dir():
+        print(f"WARNING: {root_folder} is not a folder. Skipping.")
+        return 0
+
+    folders = [root_folder] + [
+        p for p in root_folder.rglob("*")
+        if p.is_dir() and not is_skipped_dir(p)
+    ]
+
+    count = 0
+    for folder in sorted(folders, key=lambda x: natural_key(x.as_posix())):
+        html = library_page(root_folder, folder)
+        output_file = folder / "index.html"
+        output_file.write_text(html, encoding="utf-8")
+        count += 1
+        print(f"Generated page: {output_file}")
+
+    return count
+
+def main():
+    total_count = 0
+
+    print("Approved public library roots:")
+    for root in PUBLIC_LIBRARY_ROOTS:
+        print(f"- {root}")
+
+    print()
+
+    for root in PUBLIC_LIBRARY_ROOTS:
+        total_count += generate_pages_for_root(Path(root))
+
+    print("\nDone.")
+    print(f"Generated {total_count} page(s).")
+
+if __name__ == "__main__":
+    main()
