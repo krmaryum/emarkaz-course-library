@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Markdown Reader | eMarkaz Course Library</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    :root {
+      --bg: #f3faf8;
+      --panel: #ffffff;
+      --panel-strong: #e5f5ee;
+      --border: #d6e8e1;
+      --text: #102e26;
+      --muted: #52665e;
+      --cyan: #047857;
+      --cyan2: #065f46;
+      --purple: #0f766e;
+      --code-bg: #e8f2ee;
+    }
+    body { font-family: Arial, "Noto Naskh Arabic", "Noto Nastaliq Urdu", sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    body::before { content:""; position:fixed; inset:0; background:radial-gradient(circle at 10% 10%, rgba(34,211,238,.28), transparent 28%), radial-gradient(circle at 90% 25%, rgba(139,92,246,.25), transparent 32%), radial-gradient(circle at 50% 95%, rgba(16,185,129,.18), transparent 30%); z-index:-2; }
+    body::after { content:""; position:fixed; inset:0; background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px); background-size:45px 45px; z-index:-1; mask-image:linear-gradient(to bottom,black,transparent 90%); }
+    a { color: inherit; text-decoration: none; }
+    .container { width:min(1100px,92%); margin:auto; }
+    header { padding:24px 0; position:sticky; top:0; z-index:10; background:rgba(246,251,249,.94); backdrop-filter:blur(18px); border-bottom:1px solid rgba(255,255,255,.08); }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:20px; }
+    .brand { display:flex; align-items:center; gap:12px; }
+    .logo { width:46px; height:46px; display:grid; place-items:center; border-radius:16px; background:#dcfce7; border:1px solid rgba(255,255,255,.15); color:var(--cyan); font-weight:900; }
+    .brand h3 { font-size:18px; letter-spacing:.4px; }
+    .brand p { color:var(--muted); font-size:12px; margin-top:3px; }
+    nav ul { display:flex; list-style:none; gap:24px; color:var(--muted); font-size:14px; }
+    nav a:hover { color:var(--cyan); }
+    .hero { padding:54px 0 22px; }
+    .badge { display:inline-block; padding:10px 18px; border-radius:999px; background:rgba(103,232,249,.13); border:1px solid rgba(255,255,255,.14); color:#047857; font-size:14px; margin-bottom:18px; font-weight:700; }
+    h1 { font-size:clamp(34px,5vw,60px); line-height:1.05; letter-spacing:-1.5px; margin-bottom:18px; }
+    .gradient-text { background:linear-gradient(90deg,var(--cyan),var(--cyan2),var(--purple)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .subtitle { color:var(--muted); line-height:1.8; max-width:820px; font-size:17px; }
+    .buttons { display:flex; flex-wrap:wrap; gap:14px; margin-top:24px; }
+    .btn { padding:13px 18px; border-radius:15px; font-weight:800; transition:.25s; display:inline-flex; align-items:center; gap:8px; border:0; cursor:pointer; font-size:15px; }
+    .btn-primary { background:var(--cyan); color:#064e3b; }
+    .btn-outline { background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.18); color:#064e3b; }
+    .btn:hover { transform:translateY(-4px); box-shadow:0 18px 40px rgba(103,232,249,.15); }
+    .reader-shell { margin:26px auto 70px; display:grid; grid-template-columns: 260px 1fr; gap:24px; align-items:start; }
+    .toc, .article { background:var(--panel); border:1px solid var(--border); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-radius:28px; box-shadow:0 25px 70px rgba(0,0,0,.28); }
+    .toc { padding:22px; position:sticky; top:112px; max-height:calc(100vh - 140px); overflow:auto; }
+    .toc h2 { font-size:16px; margin-bottom:12px; color:var(--cyan); letter-spacing:2px; text-transform:uppercase; }
+    .toc a { display:block; color:var(--muted); padding:8px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:14px; line-height:1.4; }
+    .toc a:hover { color:var(--cyan); }
+    .article { padding:clamp(22px,4vw,46px); }
+    .note-content { color:#173e32; line-height:1.82; font-size:17px; }
+    .note-content h1, .note-content h2, .note-content h3, .note-content h4 { color:#064e3b; line-height:1.2; margin:28px 0 14px; letter-spacing:-.4px; }
+    .note-content h1 { font-size:clamp(30px,4vw,48px); border-bottom:1px solid rgba(255,255,255,.14); padding-bottom:18px; margin-top:0; }
+    .note-content h2 { font-size:30px; color:#065f46; }
+    .note-content h3 { font-size:23px; color:#064e3b; }
+    .note-content h4 { font-size:19px; color:#064e3b; }
+    .note-content p { margin:14px 0; color:#173e32; }
+    .note-content strong { color:#064e3b; }
+    .note-content em { color:#065f46; }
+    .note-content ul, .note-content ol { margin:12px 0 18px 26px; }
+    .note-content li { margin:8px 0; }
+    .note-content code { background:rgba(103,232,249,.12); border:1px solid rgba(103,232,249,.22); color:#047857; padding:2px 7px; border-radius:8px; font-family: Consolas, Monaco, 'Courier New', monospace; font-size:.94em; }
+    .note-content pre { margin:18px 0; padding:20px; overflow:auto; background:var(--code-bg); border:1px solid rgba(255,255,255,.12); border-radius:18px; box-shadow:inset 0 1px 0 rgba(255,255,255,.05); }
+    .note-content pre code { background:transparent; border:0; padding:0; color:#23483a; display:block; white-space:pre; }
+    .note-content blockquote { margin:18px 0; padding:16px 20px; border-left:4px solid var(--cyan); background:rgba(103,232,249,.08); border-radius:14px; color:#065f46; }
+    .note-content hr { border:0; border-top:1px solid rgba(255,255,255,.16); margin:28px 0; }
+    .note-content table { width:100%; border-collapse:collapse; margin:20px 0; overflow:hidden; border-radius:14px; }
+    .note-content th, .note-content td { border:1px solid rgba(255,255,255,.14); padding:12px; text-align:left; }
+    .note-content th { background:rgba(103,232,249,.13); color:#064e3b; }
+    .note-content a { color:var(--cyan); text-decoration:underline; text-underline-offset:3px; }
+    .status { padding:26px; color:var(--muted); }
+    .footer { text-align:center; padding:26px; color:#94a3b8; border-top:1px solid rgba(255,255,255,.08); }
+    @media (max-width:920px) { nav ul { display:none; } .reader-shell { grid-template-columns:1fr; } .toc { position:relative; top:auto; max-height:none; } }
+    @media print { header, .hero .buttons, .toc, .footer { display:none; } body { background:white; color:#111827; } .container { width:100%; } .reader-shell { display:block; margin:0; } .article { box-shadow:none; border:0; background:white; color:#111827; padding:0; } .note-content, .note-content p { color:#111827; } .note-content h1, .note-content h2, .note-content h3 { color:#111827; } }
+    /* eMarkaz reader overrides: suitable for long Urdu/Arabic indices. */
+    body::before, body::after { display:none; }
+    .note-content { direction:rtl; text-align:right; font-size:19px; line-height:2; overflow-wrap:anywhere; }
+    .note-content table { display:block; overflow-x:auto; direction:rtl; }
+    .note-content th, .note-content td { text-align:right; min-width:110px; white-space:normal; }
+    .note-content td a { text-decoration:underline; }
+    .note-content pre, .note-content code { direction:ltr; text-align:left; }
+    .note-content a { color:#047857; }
+    .toc a { color:#23483a; }
+    .note-content ul, .note-content ol { margin:12px 28px 18px 0; }
+    .btn-outline { color:#064e3b; border-color:#b2d6c6; }
+    .note-content h1, .note-content h2, .note-content h3, .note-content h4 { color:#064e3b; }
+    .note-content th { background:#dcfce7; color:#064e3b; }
+    .note-content th, .note-content td { border-color:#c9ded3; }
+    .toc h2 { color:#047857; }
+    .badge { color:#065f46; background:#dcfce7; }
+    @media print { .note-content table { overflow:visible; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="index.html"><div class="logo">EM</div><div><h3>ای مرکز کورس لائبریری</h3><p>eMarkaz Course Library</p></div></a>
+      <nav><ul><li><a href="index.html">مرکزی صفحہ</a></li><li><a href="emarkaz-books/">کتابیں</a></li></ul></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="container hero">
+      <span class="badge">مطالعہ گاہ / Markdown Reader</span>
+      <h1 id="pageTitle">کتاب <span class="gradient-text">لوڈ ہو رہی ہے</span></h1>
+      <p class="subtitle" id="pageSubtitle">اردو اور عربی متن، فہرست اور متعلقہ PDF روابط ایک ہی جگہ پڑھیں۔</p>
+      <div class="buttons">
+        <a class="btn btn-primary" href="emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/">صحیح بخاری مجموعہ</a>
+        <a class="btn btn-outline" href="index.html">مرکزی صفحہ</a>
+        <a class="btn btn-outline" id="rawLink" href="#">اصل Markdown فائل</a>
+        <button class="btn btn-outline" onclick="window.print()">پرنٹ / PDF محفوظ کریں</button>
+      </div>
+    </section>
+
+    <div class="container reader-shell">
+      <aside class="toc" id="toc"><h2>فہرست / Contents</h2><div class="status">Loading headings...</div></aside>
+      <article class="article"><div class="note-content" id="content"><div class="status">Loading note...</div></div></article>
+    </div>
+  </main>
+
+  <footer class="footer"><p>eMarkaz Course Library · Markdown Reader</p></footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const file = params.get('file') || '';
+    const content = document.getElementById('content');
+    const title = document.getElementById('pageTitle');
+    const subtitle = document.getElementById('pageSubtitle');
+    const rawLink = document.getElementById('rawLink');
+    const toc = document.getElementById('toc');
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+    }
+
+    function slugify(text) {
+      return 'heading-' + Array.from(text).map(ch => ch.codePointAt(0).toString(16)).join('-').slice(0, 120);
+    }
+
+    function inlineMarkdown(text) {
+      let s = escapeHtml(text);
+      s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+      s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      return s;
+    }
+
+    function parseTable(lines, start) {
+      const header = lines[start];
+      const sep = lines[start + 1] || '';
+      if (!header.includes('|') || !/^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/.test(sep)) return null;
+      const split = row => row.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => inlineMarkdown(c.trim()));
+      const headers = split(header);
+      let i = start + 2;
+      const rows = [];
+      while (i < lines.length && lines[i].includes('|') && lines[i].trim()) { rows.push(split(lines[i])); i++; }
+      let html = '<table><thead><tr>' + headers.map(h => '<th>' + h + '</th>').join('') + '</tr></thead><tbody>';
+      html += rows.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('');
+      html += '</tbody></table>';
+      return { html, next: i };
+    }
+
+    function markdownToHtml(md) {
+      const lines = md.replace(/\r\n/g, '\n').split('\n');
+      let html = '';
+      let inCode = false, code = [], listType = null, para = [];
+      const closePara = () => { if (para.length) { html += '<p>' + inlineMarkdown(para.join(' ')) + '</p>'; para = []; } };
+      const closeList = () => { if (listType) { html += '</' + listType + '>'; listType = null; } };
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+        if (trimmed.startsWith('```')) {
+          closePara(); closeList();
+          if (!inCode) { inCode = true; code = []; }
+          else { html += '<pre><code>' + escapeHtml(code.join('\n')) + '</code></pre>'; inCode = false; }
+          continue;
+        }
+        if (inCode) { code.push(line); continue; }
+        if (!trimmed) { closePara(); closeList(); continue; }
+        const table = parseTable(lines, i);
+        if (table) { closePara(); closeList(); html += table.html; i = table.next - 1; continue; }
+        if (/^---+$/.test(trimmed)) { closePara(); closeList(); html += '<hr>'; continue; }
+        const h = trimmed.match(/^(#{1,6})\s+(.+)$/);
+        if (h) {
+          closePara(); closeList();
+          const level = h[1].length;
+          const text = inlineMarkdown(h[2]);
+          const id = slugify(h[2]);
+          html += `<h${level} id="${id}">${text}</h${level}>`;
+          continue;
+        }
+        const quote = trimmed.match(/^>\s?(.*)$/);
+        if (quote) { closePara(); closeList(); html += '<blockquote>' + inlineMarkdown(quote[1]) + '</blockquote>'; continue; }
+        const ul = trimmed.match(/^[-*+]\s+(.+)$/);
+        if (ul) { closePara(); if (listType !== 'ul') { closeList(); html += '<ul>'; listType = 'ul'; } html += '<li>' + inlineMarkdown(ul[1]) + '</li>'; continue; }
+        const ol = trimmed.match(/^\d+\.\s+(.+)$/);
+        if (ol) { closePara(); if (listType !== 'ol') { closeList(); html += '<ol>'; listType = 'ol'; } html += '<li>' + inlineMarkdown(ol[1]) + '</li>'; continue; }
+        para.push(trimmed);
+      }
+      closePara(); closeList();
+      if (inCode) html += '<pre><code>' + escapeHtml(code.join('\n')) + '</code></pre>';
+      return html;
+    }
+
+    function buildToc() {
+      const headings = content.querySelectorAll('h1, h2, h3');
+      if (!headings.length) { toc.innerHTML = '<h2>فہرست / Contents</h2><div class="status">No headings found.</div>'; return; }
+      let links = '<h2>فہرست / Contents</h2>';
+      headings.forEach(h => {
+        links += `<a style="padding-left:${(Number(h.tagName.substring(1))-1)*10}px" href="#${h.id}">${h.textContent}</a>`;
+      });
+      toc.innerHTML = links;
+    }
+
+    function niceName(path) {
+      const base = path.split('/').pop().replace(/\.md$/i, '');
+      return base.split(/[-_]+/).filter(Boolean).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    async function loadNote() {
+      if (!file || !/\.md$/i.test(file) || file.split('/').includes('..') || file.startsWith('/') || file.startsWith('\\') || /^[a-z]+:/i.test(file)) {
+        content.innerHTML = '<div class="status">Invalid note link. Please go back to Study Notes and open a note again.</div>';
+        title.innerHTML = 'Note <span class="gradient-text">Not Found</span>';
+        return;
+      }
+      const markdownUrl = new URL(file.split('/').map(encodeURIComponent).join('/'), window.location.href);
+      rawLink.href = markdownUrl.href;
+      title.textContent = niceName(file);
+      subtitle.textContent = file;
+      try {
+        const res = await fetch(markdownUrl.href, { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const md = await res.text();
+        content.innerHTML = markdownToHtml(md);
+        // Markdown relative links belong to the source Markdown folder, not this reader's folder.
+        content.querySelectorAll('a[href]').forEach(a => {
+          const href = a.getAttribute('href');
+          if (/^(?:javascript|data|vbscript):/i.test(href.trim())) { a.removeAttribute('href'); return; }
+          try { a.href = new URL(href, markdownUrl).href; } catch (_) { a.removeAttribute('href'); }
+        });
+        content.querySelectorAll('img[src]').forEach(img => {
+          const src = img.getAttribute('src');
+          if (/^(?:javascript|data|vbscript):/i.test(src.trim())) { img.removeAttribute('src'); return; }
+          try { img.src = new URL(src, markdownUrl).href; } catch (_) { img.removeAttribute('src'); }
+        });
+        buildToc();
+        document.title = niceName(file) + ' | eMarkaz';
+      } catch (err) {
+        content.innerHTML = '<div class="status">Could not load this Markdown note. Please check that the file exists in the notes folder.<br><br>Error: ' + escapeHtml(err.message) + '</div>';
+        toc.innerHTML = '<h2>فہرست / Contents</h2><div class="status">No content loaded.</div>';
+      }
+    }
+
+    loadNote();
+  </script>
+</body>
+</html>

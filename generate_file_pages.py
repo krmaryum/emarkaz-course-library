@@ -332,8 +332,15 @@ def file_cards(files):
         info = SUPPORTED_EXTENSIONS[file_path.suffix.lower()]
         buttons = []
         if info["can_open"]:
+            if file_path.suffix.lower() == ".md":
+                # Shared Markdown reader at repo root; source path is repo-root relative.
+                viewer_url = root_home_link(file_path.parent).removesuffix("index.html") + "markdown-viewer.html"
+                viewer_url += "?file=" + quote(file_path.as_posix(), safe="/")
+                open_url = viewer_url
+            else:
+                open_url = url_for_file(file_path)
             buttons.append(
-                f'<a class="btn open" href="{escape(url_for_file(file_path))}" target="_blank" rel="noopener">{escape(info["open_text"])} →</a>'
+                f'<a class="btn open" href="{escape(open_url, quote=True)}" target="_blank" rel="noopener">{escape(info["open_text"])} →</a>'
             )
         buttons.append(
             f'<a class="btn download" href="{escape(url_for_file(file_path))}" download>{escape(info["download_text"])}</a>'
