@@ -1,19 +1,37 @@
-# Sahih al-Bukhari - Al-Bushra Edition
+# صحیح البخاری — طبع البشری
 
-## Collection information
+## مجموعے کی معلومات
 
-- 102 separate Kitab / Abwab / major topic PDFs, plus the introduction, publisher closing page, and original table of contents (105 PDFs in total).
-- All 3,416 source PDF pages are preserved across the collection.
-- Arabic scanned pages and commentaries are preserved without rewriting, cropping, or changing their quality.
-- File sequence numbers are organizational numbers, not the publisher's Kitab numbering or the numbering used by other editions. This edition groups some topics differently.
-- The subdivisions include standalone Abwab and useful major topics such as Manaqib al-Ansar and al-Iddah. These should not be interpreted as a claim that this edition has 102 numbered Kitabs.
-- Printed main-text page numbers match the source PDF page positions. Filenames and tables use the one-based page positions in the source PDF.
-- When an old section ends and a new section begins on the same page, that complete page is included in both PDFs to preserve all text and commentary. Such overlap is intentional.
-- The first seven ranges follow the supplied handwritten list: 117-126, 127-158, 159-204, 205-253, 254-271, 272-290, and 291-300.
+- اس مجموعے میں کتابوں، مستقل ابواب اور اہم موضوعات پر مشتمل **102 الگ الگ PDF فائلیں** موجود ہیں۔ ان کے علاوہ مقدمہ، ناشر کا اختتامی صفحہ اور اصل فہرستِ مضامین بھی شامل ہیں۔ اس طرح مجموعی طور پر **105 PDF فائلیں** ہیں۔
 
-## Roman Urdu guide
+- اس مجموعے میں اصل PDF کے تمام **3,416 صفحات** مکمل طور پر محفوظ رکھے گئے ہیں۔
 
-Har Kitab / mustaqil Abwab ya bare mauzu ki alag PDF hai. File ke naam mein asal PDF ke shuru aur aakhri safhay diye gaye hain. Jahan aik safhay par pichla hissa khatam aur agla shuru hota hai, wahan woh poora safha dono files mein rakha gaya hai taa-ke matn ya tashreeh cut na ho. File ki serial numbering sirf tarteeb ke liye hai.
+- عربی متن کے اسکین شدہ صفحات اور شروحات کو کسی قسم کی تبدیلی، دوبارہ تحریر، تراش خراش یا معیار میں کمی کیے بغیر اصل حالت میں محفوظ رکھا گیا ہے۔
+
+- فائلوں کے ساتھ دیے گئے سلسلہ وار نمبر صرف **ترتیب اور تنظیم** کے لیے ہیں۔ یہ ناشر کی کتابوں کی اصل نمبرنگ یا صحیح البخاری کے دوسرے نسخوں میں استعمال ہونے والی نمبرنگ نہیں ہے۔ اس نسخے میں بعض موضوعات کی تقسیم اور ترتیب دوسرے نسخوں سے مختلف ہے۔
+
+- اس مجموعے کی تقسیم میں بعض مستقل ابواب اور اہم موضوعات، مثلاً **مناقب الانصار** اور **العدۃ**، کو الگ PDF فائلوں میں رکھا گیا ہے۔ اس تقسیم کا یہ مطلب ہرگز نہیں کہ اس نسخے میں 102 مستقل اور نمبر وار کتابیں موجود ہیں۔
+
+- اصل مطبوعہ متن کے صفحات کے نمبر، اصل PDF میں صفحات کی ترتیب کے مطابق ہیں۔ فائلوں کے ناموں اور جدولوں میں صفحات کی نشاندہی اصل PDF کے پہلے صفحے کو صفحہ نمبر 1 شمار کرتے ہوئے کی گئی ہے۔
+
+- جہاں کسی صفحے پر پچھلا باب یا حصہ ختم ہوتا ہے اور نیا باب یا حصہ شروع ہوتا ہے، وہاں **وہ مکمل صفحہ دونوں متعلقہ PDF فائلوں میں شامل کیا گیا ہے**، تاکہ اصل عربی متن یا شرح کا کوئی حصہ ضائع نہ ہو۔ اس طرح بعض صفحات کا دو فائلوں میں مشترک ہونا جان بوجھ کر رکھا گیا ہے۔
+
+- ابتدائی سات حصوں کے صفحات کی تقسیم فراہم کردہ ہاتھ سے لکھی ہوئی فہرست کے مطابق کی گئی ہے:
+
+  **117–126، 127–158، 159–204، 205–253، 254–271، 272–290، اور 291–300۔**
+
+## قارئین کے لیے رہنما ہدایات
+
+اس مجموعے میں ہر کتاب، مستقل باب یا اہم موضوع کی الگ PDF فائل تیار کی گئی ہے، تاکہ قارئین، طلبہ اور اساتذہ اپنی مطلوبہ کتاب یا موضوع تک آسانی سے رسائی حاصل کر سکیں۔
+
+ہر فائل کے نام میں اصل PDF کے متعلقہ حصے کے **ابتدائی اور آخری صفحے کا نمبر** درج کیا گیا ہے۔
+
+جہاں ایک ہی صفحے پر پچھلا حصہ ختم ہوتا ہے اور اگلا حصہ شروع ہوتا ہے، وہاں وہ مکمل صفحہ دونوں فائلوں میں شامل کیا گیا ہے، تاکہ عربی متن، شرح یا حاشیے کا کوئی حصہ کٹنے یا ضائع ہونے سے محفوظ رہے۔
+
+فائلوں کی سلسلہ وار نمبرنگ صرف مطالعے، تلاش اور ترتیب میں آسانی پیدا کرنے کے لیے رکھی گئی ہے۔ اسے اصل کتابوں کی شرعی، علمی یا ناشرانہ ترتیب کا متبادل نہ سمجھا جائے۔
+
+**اہم وضاحت:** اس مجموعے کا بنیادی مقصد صحیح البخاری کے اصل متن اور اس کی شروحات کو محفوظ رکھتے ہوئے انہیں موضوعات کے اعتبار سے الگ الگ PDF فائلوں کی صورت میں پیش کرنا ہے، تاکہ مطالعہ، تدریس اور علمی تحقیق میں سہولت حاصل ہو۔
+
 
 ## Source
 
