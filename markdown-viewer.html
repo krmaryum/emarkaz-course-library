@@ -226,7 +226,7 @@
       }
       const markdownUrl = new URL(file.split('/').map(encodeURIComponent).join('/'), window.location.href);
       rawLink.href = markdownUrl.href;
-      title.innerHTML = niceName(file) + " <span class="gradient-text">Reader</span>";
+      title.textContent = niceName(file) + ' — Reader';
       subtitle.textContent = file;
       try {
         const res = await fetch(markdownUrl.href, { cache: 'no-store' });
