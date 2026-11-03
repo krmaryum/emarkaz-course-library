@@ -456,7 +456,7 @@ def display_names_for_page(root_folder: Path, current_folder: Path):
 # SHARED_BUKHARI_SEMESTER_LINK_V1
 
 def shared_bukhari_card(current_folder: Path) -> str:
-    """One shared library card on AC semesters 10, 11 and 12 only."""
+    """Shared Hadith library cards for AC semesters 10, 11 and 12."""
     import posixpath
 
     allowed = {
@@ -467,21 +467,38 @@ def shared_bukhari_card(current_folder: Path) -> str:
     if current_folder.as_posix() not in allowed:
         return ""
 
-    target = "emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/"
-    relative_url = posixpath.relpath(target, start=current_folder.as_posix()) + "/"
-    return f"""
-    <h2 class="section-title">مشترکہ کتب خانہ / Shared Library</h2>
-    <section class="folders-grid">
-      <article class="folder-card searchable-card" data-search="صحیح البخاری البشری sahih bukhari al bushra hadith hades">
+    collections = [
+        (
+            "emarkaz-books/e-courses/hadith/Sahih-Bukhari-Al-Bushra/",
+            "صحیح البخاری — طبع البشری",
+            "Sahih Bukhari Al-Bushra · 4 volumes",
+            "صحیح البخاری البشری sahih bukhari al bushra hadith",
+        ),
+        (
+            "emarkaz-books/e-courses/hadith/Sahih_Muslim/",
+            "صحیح مسلم — مکمل مجموعہ",
+            "Sahih Muslim · 7 volumes",
+            "صحیح مسلم sahih muslim muslim bushra hadith",
+        ),
+    ]
+    cards = []
+    for target, urdu_title, english_title, search_words in collections:
+        relative_url = posixpath.relpath(target.rstrip("/"), start=current_folder.as_posix()) + "/"
+        cards.append(f"""
+      <article class="folder-card searchable-card" data-search="{escape(search_words, quote=True)}">
         <div class="file-type"><span>📚</span> Shared Collection</div>
-        <h3>صحیح البخاری — طبع البشری</h3>
-        <p class="english">Sahih Bukhari Al-Bushra · 4 volumes</p>
+        <h3>{escape(urdu_title)}</h3>
+        <p class="english">{escape(english_title)}</p>
         <div class="buttons">
-          <a class="btn open" href="{escape(relative_url)}">مکمل مجموعہ کھولیں →</a>
+          <a class="btn open" href="{escape(relative_url, quote=True)}">مکمل مجموعہ کھولیں →</a>
         </div>
-      </article>
-    </section>
-"""
+      </article>""")
+    return (
+        '<h2 class="section-title">مشترکہ کتب خانہ / Shared Library</h2>\n'
+        '<section class="folders-grid">\n'
+        + "\n".join(cards)
+        + "\n</section>"
+    )
 
 def library_page(root_folder: Path, current_folder: Path):
     subfolders = subfolders_in(current_folder)
