@@ -786,6 +786,9 @@ def main():
 
     print("\nDone.")
     print(f"Generated {total_count} page(s).")
+    # EMARKAZ_HADITH_SEARCH_AUTO_BUILD_V1
+    from build_hadith_search import main as build_hadith_search_main
+    build_hadith_search_main()
 
 if __name__ == "__main__":
     main()

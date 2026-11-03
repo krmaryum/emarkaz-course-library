@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تلاشِ کتب حدیث | eMarkaz</title>
+<style>
+:root{color-scheme:dark;--bg:#071320;--card:#102334;--line:#284456;--text:#eef7ff;--muted:#b1c7d6;--accent:#6ce2bd}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#163747 0%,var(--bg) 65%);font-family:Arial,"Noto Naskh Arabic","Noto Nastaliq Urdu",sans-serif;color:var(--text);line-height:1.7}
+.wrap{max-width:1180px;margin:auto;padding:26px 20px 70px}header{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:32px}a{color:var(--accent)}a.home{color:var(--text);text-decoration:none;border:1px solid var(--line);padding:8px 16px;border-radius:12px}
+h1{margin:0;font-size:clamp(28px,5vw,47px)}.subtitle{color:var(--muted);margin:5px 0 24px}.panel{background:rgba(16,35,52,.92);border:1px solid var(--line);border-radius:24px;padding:22px;margin-bottom:22px;box-shadow:0 22px 55px rgba(0,0,0,.18)}
+label{display:block;margin-bottom:8px;font-weight:700}input,select{background:#091926;color:var(--text);border:1px solid #476477;border-radius:12px;padding:13px 15px;font-size:16px;width:100%}input:focus,select:focus{outline:2px solid var(--accent)}.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:15px}.stat{color:var(--muted);font-size:14px;margin-top:12px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}.pill{border:1px solid #35586b;background:#163448;color:#e4f6f4;border-radius:999px;padding:8px 14px;cursor:pointer;font:inherit}.pill.active{background:#087e66;color:white;border-color:#0aa885}
+.results{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:15px}.result{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:18px;min-width:0}.result h3{font-size:19px;margin:8px 0 12px;overflow-wrap:anywhere;line-height:1.55}.meta{color:var(--muted);font-size:13px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.btn{padding:8px 14px;border-radius:10px;text-decoration:none;font-weight:700;background:#0a946c;color:white}.btn.secondary{background:#23445a;color:#e2f7ff}.empty{padding:26px;color:var(--muted)}.foot{color:var(--muted);font-size:13px;margin-top:25px}.pager{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:22px}.pager button{padding:9px 15px;border:1px solid var(--line);background:#20445a;color:white;border-radius:10px;cursor:pointer}.pager button:disabled{opacity:.4;cursor:default}
+@media(max-width:760px){.filters{grid-template-columns:1fr}.panel{padding:16px}.results{grid-template-columns:1fr}}@media print{body{background:white;color:black}.panel,.result{background:white;color:black;border-color:#bbb}.actions,.pager{display:none}}
+</style>
+</head>
+<body><div class="wrap">
+<header><strong>📚 eMarkaz Course Library</strong><a class="home" href="./">← مجموعۂ حدیث / Hadith Library</a></header>
+<h1>تلاشِ کتبِ حدیث</h1>
+<p class="subtitle">Search PDF titles across all collections — Urdu / Arabic / Roman Urdu / English</p>
+<section class="panel"><div class="filters">
+<div><label for="q">کتاب، باب یا موضوع تلاش کریں</label><input id="q" type="search" placeholder="مثلاً: نماز، نکاح، zakat, salah ..." autocomplete="off"></div>
+<div><label for="collection">مجموعہ / Collection</label><select id="collection"><option value="">تمام مجموعے</option></select></div>
+<div><label for="volume">جلد / Volume</label><select id="volume"><option value="">تمام جلدیں</option></select></div>
+</div><div class="stat" id="status" role="status">Loading search index…</div><div class="pills" id="pills"></div></section>
+<main class="results" id="results"></main><div class="pager" id="pager" hidden><button id="prev" type="button">پچھلا صفحہ</button><span id="page"></span><button id="next" type="button">اگلا صفحہ</button></div>
+<p class="foot">یہ تلاش فائلوں کے ناموں اور محفوظ شدہ فہرست پر مبنی ہے۔ اسکین شدہ PDF کے اندر مکمل متن تلاش نہیں کیا جاتا۔</p>
+</div>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const q=$('q'), col=$('collection'), vol=$('volume'), results=$('results'), status=$('status'), pills=$('pills'), pager=$('pager');
+const params=new URLSearchParams(location.search);
+let collections=[],entries=[],page=0;const PAGE_SIZE=40;
+const aliasGroups=[
+ ['نماز','نمازیں','صلاۃ','صلاة','الصلاة','namaz','salah','salat','prayer'],
+ ['زکوۃ','زکوٰۃ','زکاة','زكاة','الزكاة','zakat','zakah'],
+ ['روزہ','روزے','صوم','صیام','الصيام','roza','sawm','fast','fasting'],
+ ['نکاح','النكاح','nikah','marriage'],
+ ['حج','الحج','hajj','pilgrimage'],
+ ['وضو','الوضوء','wazu','wudu','wudhu'],
+ ['غسل','الغسل','ghusl','ghusal'],
+ ['ایمان','الايمان','الإيمان','iman','faith'],
+ ['حدیث','حديث','hadith','hadees','hadeeth'],
+ ['طلاق','الطلاق','talaq','divorce'],
+ ['جنازہ','جنائز','الجنائز','janazah','funeral'],
+ ['جہاد','الجهاد','jihad'],
+ ['توبہ','التوبة','tawba','repentance'],
+ ['فضائل','الفضائل','fazail','virtues'],
+ ['علم','العلم','ilm','knowledge'],
+];
+function norm(s){return String(s||'').normalize('NFKC').toLowerCase().replace(/[\u064b-\u065f\u0670\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/[يى]/g,'ی').replace(/[ك]/g,'ک').replace(/[ةۃ]/g,'ہ').replace(/[ؤ]/g,'و').replace(/[ئ]/g,'ی').replace(/[^\p{L}\p{N}]+/gu,' ').trim().replace(/\s+/g,' ')}
+function words(s){return norm(s).split(' ').filter(Boolean)}
+function tokensForQuery(value){return words(value).map(w=>{const group=aliasGroups.find(g=>g.some(v=>norm(v)===w));return group?group.map(norm):[w]})}
+function match(item,terms){const hay=norm([item.title,item.filename,item.collectionName,item.collectionEnglish,item.volume].join(' '));return terms.every(alts=>alts.some(w=>hay.includes(w)))}
+function el(tag,cls,text){const x=document.createElement(tag);if(cls)x.className=cls;if(text!==undefined)x.textContent=text;return x}
+function addOption(select,value,label){const o=document.createElement('option');o.value=value;o.textContent=label;select.append(o)}
+function updateVolumes(){const previous=vol.value;vol.replaceChildren();addOption(vol,'','تمام جلدیں');const v=new Set(entries.filter(e=>!col.value||e.collection===col.value).map(e=>e.volume).filter(Boolean));[...v].sort((a,b)=>Number(a)-Number(b)).forEach(x=>addOption(vol,x,'جلد '+x));if(v.has(previous))vol.value=previous}
+function updatePills(){pills.replaceChildren();const options=[{id:'',name:'تمام مجموعے'},...collections.map(c=>({id:c.id,name:c.name+' ('+c.count+')'}))];for(const c of options){const b=el('button','pill'+(col.value===c.id?' active':''),c.name);b.type='button';b.addEventListener('click',()=>{col.value=c.id;page=0;updateVolumes();updatePills();render()});pills.append(b)}}
+function render(){const terms=tokensForQuery(q.value);const found=entries.filter(e=>(!col.value||e.collection===col.value)&&(!vol.value||e.volume===vol.value)&&match(e,terms));const count=found.length;const pages=Math.ceil(count/PAGE_SIZE);page=Math.max(0,Math.min(page,pages-1));results.replaceChildren();for(const item of found.slice(page*PAGE_SIZE,(page+1)*PAGE_SIZE)){
+ const card=el('article','result');card.append(el('div','meta',item.collectionName+(item.volume?' · جلد '+item.volume:'')));card.append(el('h3','',item.title));
+ const actions=el('div','actions');const open=el('a','btn','PDF کھولیں');open.href=item.url;open.target='_blank';open.rel='noopener noreferrer';const download=el('a','btn secondary','PDF ڈاؤن لوڈ');download.href=item.url;download.download='';actions.append(open,download);card.append(actions);results.append(card)}
+ if(!count)results.append(el('p','empty','کوئی نتیجہ نہیں ملا۔ الفاظ یا فلٹر تبدیل کرکے دوبارہ کوشش کریں۔'));
+ status.textContent=count.toLocaleString()+' PDFs found · '+collections.length+' collections indexed';pager.hidden=pages<=1;$('page').textContent=(pages? page+1:0)+' / '+pages;$('prev').disabled=page===0;$('next').disabled=page>=pages-1;
+}
+$('prev').addEventListener('click',()=>{page--;render();window.scrollTo({top:0,behavior:'smooth'})});$('next').addEventListener('click',()=>{page++;render();window.scrollTo({top:0,behavior:'smooth'})});
+q.addEventListener('input',()=>{page=0;render()});col.addEventListener('change',()=>{page=0;updateVolumes();updatePills();render()});vol.addEventListener('change',()=>{page=0;render()});
+(async()=>{try{const res=await fetch('./hadith-search-index.json',{cache:'no-store'});if(!res.ok)throw Error('HTTP '+res.status);const data=await res.json();collections=data.collections||[];entries=data.entries||[];collections.forEach(c=>addOption(col,c.id,c.name+' / '+c.english));const preferred=params.get('collection');if(preferred&&collections.some(c=>c.id===preferred))col.value=preferred;updateVolumes();updatePills();render()}catch(e){status.textContent='Search index could not load: '+e.message;results.append(el('p','empty','Run python generate_file_pages.py or python build_hadith_search.py, then commit and push the generated JSON.'))}})();
+</script></body></html>
