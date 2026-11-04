@@ -548,6 +548,12 @@ def shared_bukhari_card(current_folder: Path) -> str:
             "Sahih Muslim · 7 volumes",
             "صحیح مسلم sahih muslim muslim bushra hadith",
         ),
+        (
+            "emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/",
+            "جامع الترمذی — طبع البشری",
+            "Jami al-Tirmidhi Al-Bushra · 5 volumes",
+            "جامع الترمذی ترمذی سنن الترمذی tirmidhi tirimizi jami al tirmidhi hadith",
+        ),
     ]
     cards = []
     for target, urdu_title, english_title, search_words in collections:
