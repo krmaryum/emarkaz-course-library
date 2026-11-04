@@ -2,6 +2,16 @@
   "schemaVersion": 1,
   "collections": [
     {
+      "id": "kitab ul Hadith",
+      "name": "kitab ul Hadith",
+      "english": "kitab ul Hadith",
+      "count": 4,
+      "volumes": [
+        "Other"
+      ],
+      "url": "/emarkaz-books/e-courses/hadith/kitab%20ul%20Hadith/"
+    },
+    {
       "id": "Sahih-Bukhari-Al-Bushra",
       "name": "صحیح البخاری — طبع البشری",
       "english": "Sahih Bukhari Al-Bushra",
@@ -32,6 +42,42 @@
     }
   ],
   "entries": [
+    {
+      "collection": "kitab ul Hadith",
+      "collectionName": "kitab ul Hadith",
+      "collectionEnglish": "kitab ul Hadith",
+      "volume": "",
+      "title": "کتاب الحدیث 1",
+      "filename": "کتاب الحدیث-1.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/kitab%20ul%20Hadith/%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-1.pdf"
+    },
+    {
+      "collection": "kitab ul Hadith",
+      "collectionName": "kitab ul Hadith",
+      "collectionEnglish": "kitab ul Hadith",
+      "volume": "",
+      "title": "کتاب الحدیث 2",
+      "filename": "کتاب الحدیث-2.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/kitab%20ul%20Hadith/%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-2.pdf"
+    },
+    {
+      "collection": "kitab ul Hadith",
+      "collectionName": "kitab ul Hadith",
+      "collectionEnglish": "kitab ul Hadith",
+      "volume": "",
+      "title": "کتاب الحدیث 3",
+      "filename": "کتاب الحدیث-3.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/kitab%20ul%20Hadith/%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-3.pdf"
+    },
+    {
+      "collection": "kitab ul Hadith",
+      "collectionName": "kitab ul Hadith",
+      "collectionEnglish": "kitab ul Hadith",
+      "volume": "",
+      "title": "کتاب الحدیث 4",
+      "filename": "کتاب الحدیث-4.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/kitab%20ul%20Hadith/%DA%A9%D8%AA%D8%A7%D8%A8%20%D8%A7%D9%84%D8%AD%D8%AF%DB%8C%D8%AB-4.pdf"
+    },
     {
       "collection": "Sahih-Bukhari-Al-Bushra",
       "collectionName": "صحیح البخاری — طبع البشری",
