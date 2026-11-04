@@ -19,6 +19,7 @@ OUT = HADITH / 'hadith-search-index.json'
 PAGE_NAME = 'hadith-search.html'
 MARK = '<!-- EMARKAZ_HADITH_SEARCH_BUTTON_V1 -->'
 COLLECTION_NAMES = {
+    'JAMI_AL_TIRMIZI_BUSHRA': {'ur': 'جامع الترمذی — طبع البشری', 'en': 'Jami al-Tirmidhi Al-Bushra'},
     'Sahih-Bukhari-Al-Bushra': {'ur': 'صحیح البخاری — طبع البشری', 'en': 'Sahih Bukhari Al-Bushra'},
     'Sahih_Muslim': {'ur': 'صحیح مسلم', 'en': 'Sahih Muslim'},
 }
