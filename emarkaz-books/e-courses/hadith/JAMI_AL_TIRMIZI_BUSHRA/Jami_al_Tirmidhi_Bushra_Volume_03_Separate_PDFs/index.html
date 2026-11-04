@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jami al Tirmidhi Bushra Volume 03 Separate PDFs | eMarkaz Course Library</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:linear-gradient(135deg,#f8fafc,#ecfeff);
+      color:#111827;
+      min-height:100vh;
+      line-height:1.9;
+      padding:30px;
+    }
+    .container { max-width:1180px; margin:auto; }
+    .top-bar {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      margin-bottom:30px;
+      flex-wrap:wrap;
+    }
+    .back {
+      display:inline-block;
+      background:#064e3b;
+      color:white;
+      padding:10px 18px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      margin-left:8px;
+    }
+    .badge {
+      background:#d1fae5;
+      color:#065f46;
+      padding:8px 16px;
+      border-radius:999px;
+      font-weight:bold;
+      border:1px solid #a7f3d0;
+      direction:ltr;
+    }
+    .hero {
+      text-align:center;
+      margin-bottom:35px;
+      padding:35px 20px;
+      background:white;
+      border-radius:24px;
+      box-shadow:0 15px 40px rgba(0,0,0,.08);
+      border:1px solid #e5e7eb;
+    }
+    .hero h1 {
+      font-size:clamp(32px,5vw,56px);
+      color:#064e3b;
+      margin-bottom:10px;
+    }
+    .hero h2 {
+      font-size:24px;
+      color:#374151;
+      margin-bottom:0;
+      direction:ltr;
+    }
+    .section-title {
+      color:#064e3b;
+      margin:30px 0 18px;
+      font-size:30px;
+    }
+    .books-grid,.folders-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+    .book-card,.folder-card {
+      background:white;
+      border-radius:22px;
+      padding:24px;
+      border:1px solid #e5e7eb;
+      box-shadow:0 12px 30px rgba(0,0,0,.07);
+      transition:.3s ease;
+    }
+    .book-card:hover,.folder-card:hover {
+      transform:translateY(-6px);
+      box-shadow:0 20px 45px rgba(6,95,70,.16);
+      border-color:#10b981;
+    }
+    .file-type {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#ecfdf5;
+      color:#065f46;
+      padding:6px 12px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:13px;
+      margin-bottom:14px;
+      direction:ltr;
+    }
+    .book-card h3,.folder-card h3 {
+      font-size:22px;
+      color:#111827;
+      margin-bottom:12px;
+      min-height:55px;
+    }
+    .english {
+      font-family:Arial,sans-serif;
+      direction:ltr;
+      color:#4b5563;
+      margin-bottom:16px;
+    }
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; }
+    .btn {
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:.25s;
+    }
+    .open { background:#059669; color:white; }
+    .download { background:#1d4ed8; color:white; }
+    .btn:hover { opacity:.88; transform:translateY(-2px); }
+    .search-wrap {
+      margin:0 0 28px;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:22px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+      padding:18px;
+    }
+    .search-label {
+      display:block;
+      color:#064e3b;
+      font-weight:800;
+      margin-bottom:10px;
+      font-size:18px;
+    }
+    .search-input {
+      width:100%;
+      border:1px solid #d1d5db;
+      border-radius:16px;
+      padding:14px 16px;
+      font-size:18px;
+      outline:none;
+      direction:rtl;
+      font-family:Arial, "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", sans-serif;
+      background:#f9fafb;
+    }
+    .search-input:focus {
+      border-color:#10b981;
+      box-shadow:0 0 0 4px rgba(16,185,129,.12);
+      background:white;
+    }
+    .search-count {
+      margin-top:10px;
+      color:#4b5563;
+      font-size:14px;
+      direction:rtl;
+    }
+    .no-results {
+      display:none;
+      background:white;
+      border:1px dashed #d1d5db;
+      color:#4b5563;
+      padding:20px;
+      border-radius:18px;
+      text-align:center;
+      margin-top:18px;
+      font-weight:700;
+    }
+    .reader-section {
+      margin:34px 0;
+      background:white;
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 12px 30px rgba(0,0,0,.06);
+    }
+    .reader-meta {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .reader-meta p {
+      color:#4b5563;
+      margin:0;
+    }
+    .folder-link-list {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 18px;
+    }
+    .folder-link-list a {
+      display:inline-block;
+      background:#ecfdf5;
+      color:#065f46;
+      border:1px solid #a7f3d0;
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:700;
+    }
+    .folder-link-list a:hover {
+      background:#d1fae5;
+    }
+    .reader-frame {
+      width:100%;
+      min-height:1200px;
+      border:1px solid #d1d5db;
+      border-radius:20px;
+      background:#06111f;
+    }
+    @media (max-width:600px) {
+      body { padding:18px; }
+      .book-card h3,.folder-card h3 { min-height:auto; }
+    }
+    
+
+/* EMARKAZ_UNIFIED_DARK_V1 — accessible, consistent dark palette */
+:root { color-scheme: dark; --emarkaz-bg:#071421; --emarkaz-panel:#102739;
+  --emarkaz-line:#315067; --emarkaz-text:#eff7ff;
+  --emarkaz-muted:#c2d3df; --emarkaz-accent:#80edd0; }
+body {
+  background: linear-gradient(155deg,#071421 0%,#0b2031 55%,#0b282c 100%) !important;
+  color:var(--emarkaz-text) !important;
+}
+header, .top-bar:not(.container), .search-wrap, .hero:not(body > .hero),
+.reader-section, .book-card, .folder-card, .toc, .article,
+.panel, .result, .card:not(.glass), .note {
+  background-color:var(--emarkaz-panel) !important;
+  color:var(--emarkaz-text) !important;
+  border-color:var(--emarkaz-line) !important;
+}
+.hero, .search-wrap, .reader-section, .book-card, .folder-card,
+.toc, .article, .panel, .result {
+  box-shadow:0 16px 40px rgba(0,0,0,.25) !important;
+}
+h1,h2,h3,h4,h5,h6, .hero h1, .hero h2,
+.book-card h3, .folder-card h3, .section-title,
+.note-content h1, .note-content h2, .note-content h3, .note-content h4 {
+  color:#f8fafc !important;
+}
+p, li, .english, .reader-meta p, .note-content p,
+.subtitle, .search-count, .status, .foot, .meta {
+  color:var(--emarkaz-muted) !important;
+}
+a:not(.btn):not(.back):not(.semester):not(.open):not(.download):not(.folder-link-list a) {
+  color:#91e9fa;
+}
+.search-input, input[type="search"], input[type="text"], select,
+textarea {
+  background:#091c2b !important;
+  color:#fff !important;
+  border-color:#426078 !important;
+}
+input::placeholder,textarea::placeholder { color:#b8cad6 !important; opacity:1; }
+.search-label, .file-type, .badge { color:#a5f3fc !important; }
+.file-type, .badge {
+  background:#153b43 !important; border-color:#326e70 !important;
+}
+.folder-link-list a {
+  background:#123c42 !important; border-color:#3b6c6b !important;
+  color:#c4ffeb !important;
+}
+.no-results { background:#102739 !important; color:#c2d3df !important;
+  border-color:#426078 !important; }
+.book-card:hover,.folder-card:hover { border-color:#5eead4 !important; }
+.note-content th { background:#153947 !important; color:#fff !important; }
+.note-content th,.note-content td { border-color:#3c6171 !important; }
+.note-content td { color:#e5f2fb !important; }
+.note-content a { color:#84e8fa !important; }
+.note-content pre { background:#06111f !important; }
+.btn.open, .btn-primary, .open { background:#0b8a69 !important; color:#fff !important; }
+.btn.download, .download { background:#2456a6 !important; color:#fff !important; }
+.back { background:#155546 !important; color:#fff !important; }
+.btn-outline { color:#f8fafc !important; border-color:#4a6576 !important; }
+@media print {
+  :root { color-scheme:light; }
+  body { background:#fff !important; color:#111 !important; }
+  .book-card,.folder-card,.article,.reader-section,.search-wrap,
+  .toc,.panel,.result { background:#fff !important; color:#111 !important; }
+  h1,h2,h3,h4,h5,h6,p,li,.note-content p { color:#111 !important; }
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-bar">
+      <div>
+        <a class="back" href="../../../../../index.html">مرکزی صفحہ</a>
+        <a class="back" href="../">واپس</a>
+      </div>
+      <span class="badge">eMarkaz Books</span>
+    </div>
+
+    <section class="hero">
+      <h1>Jami al Tirmidhi Bushra Volume 03 Separate PDFs</h1>
+      <h2>Jami Al Tirmidhi Bushra Volume 03 Separate Pdfs</h2>
+    </section>
+
+    <section class="search-wrap">
+      <label class="search-label" for="librarySearch">کتاب یا فولڈر تلاش کریں</label>
+      <input class="search-input" id="librarySearch" type="search" placeholder="مثال: وضو، نماز، wazu, namaz, zakat..." oninput="searchLibraryItems()" />
+      <div class="search-count" id="searchCount">21 کل آئٹمز / total items</div>
+      <div class="no-results" id="noResults">کوئی نتیجہ نہیں ملا</div>
+    </section>
+
+    <h2 class="section-title">فائلیں</h2>
+    <section class="books-grid">
+
+      <article class="book-card searchable-card" data-search="00 cover and publication details 00_cover_and_publication_details.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>00 Cover and Publication Details</h3>
+        <div class="buttons"><a class="btn open" href="00_Cover_and_Publication_Details.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="00_Cover_and_Publication_Details.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="01 abwab al talaq wal lian 01_abwab_al_talaq_wal_lian.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>01 Abwab al Talaq wal Lian</h3>
+        <div class="buttons"><a class="btn open" href="01_Abwab_al_Talaq_wal_Lian.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="01_Abwab_al_Talaq_wal_Lian.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="02 abwab al buyu 02_abwab_al_buyu.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>02 Abwab al Buyu</h3>
+        <div class="buttons"><a class="btn open" href="02_Abwab_al_Buyu.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="02_Abwab_al_Buyu.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="03 abwab al ahkam 03_abwab_al_ahkam.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>03 Abwab al Ahkam</h3>
+        <div class="buttons"><a class="btn open" href="03_Abwab_al_Ahkam.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="03_Abwab_al_Ahkam.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="04 abwab al diyat 04_abwab_al_diyat.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>04 Abwab al Diyat</h3>
+        <div class="buttons"><a class="btn open" href="04_Abwab_al_Diyat.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="04_Abwab_al_Diyat.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="05 abwab al hudud 05_abwab_al_hudud.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>05 Abwab al Hudud</h3>
+        <div class="buttons"><a class="btn open" href="05_Abwab_al_Hudud.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="05_Abwab_al_Hudud.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="06 abwab al sayd 06_abwab_al_sayd.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>06 Abwab al Sayd</h3>
+        <div class="buttons"><a class="btn open" href="06_Abwab_al_Sayd.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="06_Abwab_al_Sayd.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="07 abwab al adahi 07_abwab_al_adahi.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>07 Abwab al Adahi</h3>
+        <div class="buttons"><a class="btn open" href="07_Abwab_al_Adahi.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="07_Abwab_al_Adahi.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="08 abwab al nudhur wal ayman 08_abwab_al_nudhur_wal_ayman.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>08 Abwab al Nudhur wal Ayman</h3>
+        <div class="buttons"><a class="btn open" href="08_Abwab_al_Nudhur_wal_Ayman.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="08_Abwab_al_Nudhur_wal_Ayman.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="09 abwab al siyar 09_abwab_al_siyar.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>09 Abwab al Siyar</h3>
+        <div class="buttons"><a class="btn open" href="09_Abwab_al_Siyar.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="09_Abwab_al_Siyar.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="10 abwab fadail al jihad 10_abwab_fadail_al_jihad.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>10 Abwab Fadail al Jihad</h3>
+        <div class="buttons"><a class="btn open" href="10_Abwab_Fadail_al_Jihad.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="10_Abwab_Fadail_al_Jihad.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="11 abwab al jihad 11_abwab_al_jihad.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>11 Abwab al Jihad</h3>
+        <div class="buttons"><a class="btn open" href="11_Abwab_al_Jihad.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="11_Abwab_al_Jihad.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="12 abwab al libas 12_abwab_al_libas.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>12 Abwab al Libas</h3>
+        <div class="buttons"><a class="btn open" href="12_Abwab_al_Libas.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="12_Abwab_al_Libas.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="13 abwab al atimah 13_abwab_al_atimah.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>13 Abwab al Atimah</h3>
+        <div class="buttons"><a class="btn open" href="13_Abwab_al_Atimah.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="13_Abwab_al_Atimah.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="14 abwab al ashribah 14_abwab_al_ashribah.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>14 Abwab al Ashribah</h3>
+        <div class="buttons"><a class="btn open" href="14_Abwab_al_Ashribah.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="14_Abwab_al_Ashribah.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="15 abwab al birr wal silah 15_abwab_al_birr_wal_silah.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>15 Abwab al Birr wal Silah</h3>
+        <div class="buttons"><a class="btn open" href="15_Abwab_al_Birr_wal_Silah.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="15_Abwab_al_Birr_wal_Silah.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="16 abwab al tibb 16_abwab_al_tibb.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>16 Abwab al Tibb</h3>
+        <div class="buttons"><a class="btn open" href="16_Abwab_al_Tibb.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="16_Abwab_al_Tibb.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="17 al arf al shadhi index 17_al_arf_al_shadhi_index.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>17 Al Arf al Shadhi Index</h3>
+        <div class="buttons"><a class="btn open" href="17_Al_Arf_al_Shadhi_Index.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="17_Al_Arf_al_Shadhi_Index.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="18 original table of contents 18_original_table_of_contents.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>18 Original Table of Contents</h3>
+        <div class="buttons"><a class="btn open" href="18_Original_Table_of_Contents.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="18_Original_Table_of_Contents.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="19 publisher catalogue 19_publisher_catalogue.pdf">
+        <div class="file-type"><span>📕</span> PDF</div>
+        <h3>19 Publisher Catalogue</h3>
+        <div class="buttons"><a class="btn open" href="19_Publisher_Catalogue.pdf" target="_blank" rel="noopener">کتاب کھولیں →</a> <a class="btn download" href="19_Publisher_Catalogue.pdf" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+
+      <article class="book-card searchable-card" data-search="jami al tirmidhi bushra volume 03 index jami_al_tirmidhi_bushra_volume_03_index.md">
+        <div class="file-type"><span>📝</span> Markdown</div>
+        <h3>Jami al Tirmidhi Bushra Volume 03 Index</h3>
+        <div class="buttons"><a class="btn open" href="../../../../../markdown-viewer.html?file=emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/Jami_al_Tirmidhi_Bushra_Volume_03_Index.md" target="_blank" rel="noopener">نوٹس کھولیں →</a> <a class="btn download" href="Jami_al_Tirmidhi_Bushra_Volume_03_Index.md" download>ڈاؤن لوڈ کریں</a></div>
+      </article>
+    </section>
+
+  </div>
+  <script>
+    const searchAliases = {
+      "namaz": ["نماز", "صلوٰۃ", "salah", "salat"],
+      "salah": ["نماز", "صلوٰۃ", "namaz", "salat"],
+      "salat": ["نماز", "صلوٰۃ", "namaz", "salah"],
+      "wazu": ["وضو", "wudu", "wudhu"],
+      "wudu": ["وضو", "wazu", "wudhu"],
+      "wudhu": ["وضو", "wazu", "wudu"],
+      "ghusal": ["غسل", "ghusl"],
+      "ghusl": ["غسل", "ghusal"],
+      "roza": ["روزہ", "sawm", "fast", "fasting"],
+      "sawm": ["روزہ", "roza", "fast", "fasting"],
+      "fast": ["روزہ", "roza", "sawm"],
+      "fasting": ["روزہ", "roza", "sawm"],
+      "zakat": ["زکوٰۃ", "زکوة", "zakah"],
+      "zakah": ["زکوٰۃ", "زکوة", "zakat"],
+      "nikah": ["نکاح", "marriage"],
+      "marriage": ["نکاح", "nikah"],
+      "talaq": ["طلاق", "divorce"],
+      "divorce": ["طلاق", "talaq"],
+      "janaza": ["جنازہ", "janazah", "funeral"],
+      "janazah": ["جنازہ", "janaza", "funeral"],
+      "funeral": ["جنازہ", "janaza", "janazah"],
+      "qurbani": ["قربانی", "udhiyah", "sacrifice"],
+      "udhiyah": ["قربانی", "qurbani", "sacrifice"],
+      "sacrifice": ["قربانی", "qurbani"],
+      "dua": ["دعا", "duaa", "prayer"],
+      "duaa": ["دعا", "dua"],
+      "quran": ["قرآن", "قران", "qur'an"],
+      "quranic": ["قرآنی", "قرانی", "quran"],
+      "hadith": ["حدیث", "hadees", "hadeeth"],
+      "hadees": ["حدیث", "hadith", "hadeeth"],
+      "hadeeth": ["حدیث", "hadith", "hadees"],
+      "imam": ["امام"],
+      "masjid": ["مسجد", "mosque"],
+      "mosque": ["مسجد", "masjid"],
+      "ramzan": ["رمضان", "ramadan"],
+      "ramadan": ["رمضان", "ramzan"],
+      "eid": ["عید"],
+      "hajj": ["حج"],
+      "umrah": ["عمرہ"],
+      "sunnat": ["سنت", "sunnah"],
+      "sunnah": ["سنت", "sunnat"],
+      "farz": ["فرض", "fard"],
+      "fard": ["فرض", "farz"],
+      "wajib": ["واجب"],
+      "halal": ["حلال"],
+      "haram": ["حرام"],
+      "makrooh": ["مکروہ", "makruh"],
+      "makruh": ["مکروہ", "makrooh"],
+      "pak": ["پاک", "taharat", "tahara"],
+      "napak": ["ناپاک", "najis", "najasat"],
+      "najis": ["نجس", "ناپاک", "najasat"],
+      "najasat": ["نجاست", "ناپاک", "najis"],
+      "taharat": ["طہارت", "پاک", "tahara"],
+      "tahara": ["طہارت", "پاک", "taharat"],
+      "qibla": ["قبلہ"],
+      "ruku": ["رکوع"],
+      "sajda": ["سجدہ", "sujud"],
+      "sujud": ["سجدہ", "sajda"],
+      "azan": ["اذان", "adhan"],
+      "adhan": ["اذان", "azan"],
+      "iqamat": ["اقامت", "iqamah"],
+      "iqamah": ["اقامت", "iqamat"],
+      "taraweeh": ["تراویح", "tarawih"],
+      "tarawih": ["تراویح", "taraweeh"],
+      "itr": ["عطر", "perfume"],
+      "perfume": ["عطر", "itr"],
+      "mirath": ["میراث", "inheritance", "meeras"],
+      "meeras": ["میراث", "mirath", "inheritance"],
+      "inheritance": ["میراث", "mirath", "meeras"],
+      "qarz": ["قرض", "loan"],
+      "loan": ["قرض", "qarz"],
+      "sood": ["سود", "interest", "riba"],
+      "riba": ["سود", "interest", "sood"],
+      "interest": ["سود", "riba", "sood"],
+      "business": ["کاروبار", "tijarat"],
+      "tijarat": ["تجارت", "business"],
+      "kafan": ["کفن"],
+      "qabr": ["قبر", "grave"],
+      "grave": ["قبر", "qabr"],
+      "mayyat": ["میت", "dead body"],
+      "miya": ["شوہر", "husband"],
+      "husband": ["شوہر", "miya"],
+      "biwi": ["بیوی", "wife"],
+      "wife": ["بیوی", "biwi"],
+      "aurat": ["عورت", "woman"],
+      "woman": ["عورت", "aurat"],
+      "mard": ["مرد", "man"],
+      "man": ["مرد", "mard"],
+      "bachay": ["بچے", "children"],
+      "children": ["بچے", "bachay"],
+      "walid": ["والد", "father"],
+      "father": ["والد", "walid"],
+      "maa": ["ماں", "mother"],
+      "mother": ["ماں", "maa"],
+      "fatwa": ["فتوی", "فتویٰ", "fatawa"],
+      "fatawa": ["فتاویٰ", "فتاوی", "fatwa"]
+    };
+
+    function normalizeText(value) {
+      return (value || "")
+        .toString()
+        .toLowerCase()
+        .replace(/[’']/g, "")
+        .replace(/[۔،؟?]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function expandSearchQuery(query) {
+      const normalized = normalizeText(query);
+      if (!normalized) return [];
+
+      const terms = new Set([normalized]);
+      normalized.split(" ").forEach(function(word) {
+        if (word) terms.add(word);
+        if (searchAliases[word]) {
+          searchAliases[word].forEach(function(alias) {
+            terms.add(normalizeText(alias));
+          });
+        }
+      });
+
+      if (searchAliases[normalized]) {
+        searchAliases[normalized].forEach(function(alias) {
+          terms.add(normalizeText(alias));
+        });
+      }
+
+      return Array.from(terms).filter(Boolean);
+    }
+
+    function searchLibraryItems() {
+      const input = document.getElementById("librarySearch");
+      const count = document.getElementById("searchCount");
+      const noResults = document.getElementById("noResults");
+      const cards = document.querySelectorAll(".searchable-card");
+
+      if (!input) return;
+
+      const query = normalizeText(input.value);
+      const terms = expandSearchQuery(query);
+      let visible = 0;
+
+      cards.forEach(function(card) {
+        const text = normalizeText((card.getAttribute("data-search") || "") + " " + (card.innerText || ""));
+        const match = !query || terms.some(function(term) {
+          return text.includes(term);
+        });
+        card.style.display = match ? "" : "none";
+        if (match) visible++;
+      });
+
+      if (count) {
+        count.textContent = query
+          ? visible + " نتیجہ / results found"
+          : cards.length + " کل آئٹمز / total items";
+      }
+
+      if (noResults) {
+        noResults.style.display = visible === 0 ? "block" : "none";
+      }
+    }
+    document.addEventListener("DOMContentLoaded", searchLibraryItems);
+  </script>
+</body>
+</html>

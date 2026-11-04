@@ -2,6 +2,20 @@
   "schemaVersion": 1,
   "collections": [
     {
+      "id": "JAMI_AL_TIRMIZI_BUSHRA",
+      "name": "JAMI AL TIRMIZI BUSHRA",
+      "english": "JAMI AL TIRMIZI BUSHRA",
+      "count": 71,
+      "volumes": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/"
+    },
+    {
       "id": "kitab ul Hadith",
       "name": "kitab ul Hadith",
       "english": "kitab ul Hadith",
@@ -42,6 +56,645 @@
     }
   ],
   "entries": [
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "00 Cover and Publication Details",
+      "filename": "00_Cover_and_Publication_Details.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/00_Cover_and_Publication_Details.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "01 Publisher Introduction and Biographies",
+      "filename": "01_Publisher_Introduction_and_Biographies.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/01_Publisher_Introduction_and_Biographies.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "02 Kitab al Ilal",
+      "filename": "02_Kitab_al_Ilal.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/02_Kitab_al_Ilal.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "03 Commentary Introductions and Chains",
+      "filename": "03_Commentary_Introductions_and_Chains.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/03_Commentary_Introductions_and_Chains.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "04 Abwab al Taharah",
+      "filename": "04_Abwab_al_Taharah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/04_Abwab_al_Taharah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "05 Abwab al Salah",
+      "filename": "05_Abwab_al_Salah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/05_Abwab_al_Salah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "06 Abwab al Witr",
+      "filename": "06_Abwab_al_Witr.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/06_Abwab_al_Witr.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "07 Al Arf al Shadhi Index",
+      "filename": "07_Al_Arf_al_Shadhi_Index.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/07_Al_Arf_al_Shadhi_Index.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "08 Original Table of Contents",
+      "filename": "08_Original_Table_of_Contents.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/08_Original_Table_of_Contents.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "01",
+      "title": "09 Publisher Catalogue",
+      "filename": "09_Publisher_Catalogue.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_01_Separate_PDFs/09_Publisher_Catalogue.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "00 Cover and Publication Details",
+      "filename": "00_Cover_and_Publication_Details.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/00_Cover_and_Publication_Details.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "01 Abwab al Jumuah",
+      "filename": "01_Abwab_al_Jumuah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/01_Abwab_al_Jumuah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "02 Abwab al Eidayn",
+      "filename": "02_Abwab_al_Eidayn.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/02_Abwab_al_Eidayn.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "03 Abwab al Safar",
+      "filename": "03_Abwab_al_Safar.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/03_Abwab_al_Safar.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "04 Abwab al Zakah",
+      "filename": "04_Abwab_al_Zakah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/04_Abwab_al_Zakah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "05 Abwab al Sawm",
+      "filename": "05_Abwab_al_Sawm.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/05_Abwab_al_Sawm.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "06 Abwab al Hajj",
+      "filename": "06_Abwab_al_Hajj.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/06_Abwab_al_Hajj.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "07 Abwab al Janaiz",
+      "filename": "07_Abwab_al_Janaiz.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/07_Abwab_al_Janaiz.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "08 Abwab al Nikah",
+      "filename": "08_Abwab_al_Nikah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/08_Abwab_al_Nikah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "09 Abwab al Rada",
+      "filename": "09_Abwab_al_Rada.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/09_Abwab_al_Rada.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "10 Al Arf al Shadhi Index",
+      "filename": "10_Al_Arf_al_Shadhi_Index.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/10_Al_Arf_al_Shadhi_Index.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "11 Original Table of Contents",
+      "filename": "11_Original_Table_of_Contents.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/11_Original_Table_of_Contents.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "02",
+      "title": "12 Publisher Catalogue",
+      "filename": "12_Publisher_Catalogue.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_02_Separate_PDFs/12_Publisher_Catalogue.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "00 Cover and Publication Details",
+      "filename": "00_Cover_and_Publication_Details.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/00_Cover_and_Publication_Details.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "01 Abwab al Talaq wal Lian",
+      "filename": "01_Abwab_al_Talaq_wal_Lian.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/01_Abwab_al_Talaq_wal_Lian.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "02 Abwab al Buyu",
+      "filename": "02_Abwab_al_Buyu.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/02_Abwab_al_Buyu.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "03 Abwab al Ahkam",
+      "filename": "03_Abwab_al_Ahkam.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/03_Abwab_al_Ahkam.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "04 Abwab al Diyat",
+      "filename": "04_Abwab_al_Diyat.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/04_Abwab_al_Diyat.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "05 Abwab al Hudud",
+      "filename": "05_Abwab_al_Hudud.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/05_Abwab_al_Hudud.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "06 Abwab al Sayd",
+      "filename": "06_Abwab_al_Sayd.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/06_Abwab_al_Sayd.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "07 Abwab al Adahi",
+      "filename": "07_Abwab_al_Adahi.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/07_Abwab_al_Adahi.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "08 Abwab al Nudhur wal Ayman",
+      "filename": "08_Abwab_al_Nudhur_wal_Ayman.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/08_Abwab_al_Nudhur_wal_Ayman.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "09 Abwab al Siyar",
+      "filename": "09_Abwab_al_Siyar.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/09_Abwab_al_Siyar.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "10 Abwab Fadail al Jihad",
+      "filename": "10_Abwab_Fadail_al_Jihad.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/10_Abwab_Fadail_al_Jihad.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "11 Abwab al Jihad",
+      "filename": "11_Abwab_al_Jihad.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/11_Abwab_al_Jihad.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "12 Abwab al Libas",
+      "filename": "12_Abwab_al_Libas.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/12_Abwab_al_Libas.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "13 Abwab al Atimah",
+      "filename": "13_Abwab_al_Atimah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/13_Abwab_al_Atimah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "14 Abwab al Ashribah",
+      "filename": "14_Abwab_al_Ashribah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/14_Abwab_al_Ashribah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "15 Abwab al Birr wal Silah",
+      "filename": "15_Abwab_al_Birr_wal_Silah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/15_Abwab_al_Birr_wal_Silah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "16 Abwab al Tibb",
+      "filename": "16_Abwab_al_Tibb.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/16_Abwab_al_Tibb.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "17 Al Arf al Shadhi Index",
+      "filename": "17_Al_Arf_al_Shadhi_Index.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/17_Al_Arf_al_Shadhi_Index.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "18 Original Table of Contents",
+      "filename": "18_Original_Table_of_Contents.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/18_Original_Table_of_Contents.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "03",
+      "title": "19 Publisher Catalogue",
+      "filename": "19_Publisher_Catalogue.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_03_Separate_PDFs/19_Publisher_Catalogue.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "00 Cover and Publication Details",
+      "filename": "00_Cover_and_Publication_Details.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/00_Cover_and_Publication_Details.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "01 Abwab al Faraid",
+      "filename": "01_Abwab_al_Faraid.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/01_Abwab_al_Faraid.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "02 Abwab al Wasaya",
+      "filename": "02_Abwab_al_Wasaya.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/02_Abwab_al_Wasaya.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "03 Abwab al Wala wal Hibah",
+      "filename": "03_Abwab_al_Wala_wal_Hibah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/03_Abwab_al_Wala_wal_Hibah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "04 Abwab al Qadar",
+      "filename": "04_Abwab_al_Qadar.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/04_Abwab_al_Qadar.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "05 Abwab al Fitan",
+      "filename": "05_Abwab_al_Fitan.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/05_Abwab_al_Fitan.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "06 Abwab al Ruya",
+      "filename": "06_Abwab_al_Ruya.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/06_Abwab_al_Ruya.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "07 Abwab al Shahadat",
+      "filename": "07_Abwab_al_Shahadat.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/07_Abwab_al_Shahadat.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "08 Abwab al Zuhd",
+      "filename": "08_Abwab_al_Zuhd.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/08_Abwab_al_Zuhd.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "09 Abwab Sifat al Jannah",
+      "filename": "09_Abwab_Sifat_al_Jannah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/09_Abwab_Sifat_al_Jannah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "10 Abwab Sifat Jahannam",
+      "filename": "10_Abwab_Sifat_Jahannam.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/10_Abwab_Sifat_Jahannam.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "11 Abwab al Iman",
+      "filename": "11_Abwab_al_Iman.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/11_Abwab_al_Iman.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "12 Abwab al Ilm",
+      "filename": "12_Abwab_al_Ilm.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/12_Abwab_al_Ilm.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "13 Abwab al Istidhan wal Adab",
+      "filename": "13_Abwab_al_Istidhan_wal_Adab.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/13_Abwab_al_Istidhan_wal_Adab.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "14 Abwab al Amthal",
+      "filename": "14_Abwab_al_Amthal.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/14_Abwab_al_Amthal.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "15 Abwab Fadail al Quran",
+      "filename": "15_Abwab_Fadail_al_Quran.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/15_Abwab_Fadail_al_Quran.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "16 Abwab al Qiraat",
+      "filename": "16_Abwab_al_Qiraat.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/16_Abwab_al_Qiraat.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "17 Al Arf al Shadhi Index",
+      "filename": "17_Al_Arf_al_Shadhi_Index.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/17_Al_Arf_al_Shadhi_Index.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "18 Original Table of Contents",
+      "filename": "18_Original_Table_of_Contents.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/18_Original_Table_of_Contents.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "04",
+      "title": "19 Publisher Catalogue",
+      "filename": "19_Publisher_Catalogue.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_04_Download/19_Publisher_Catalogue.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "00 Cover and Publication Details",
+      "filename": "00_Cover_and_Publication_Details.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/00_Cover_and_Publication_Details.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "01 Abwab Tafsir al Quran",
+      "filename": "01_Abwab_Tafsir_al_Quran.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/01_Abwab_Tafsir_al_Quran.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "02 Abwab al Daawat",
+      "filename": "02_Abwab_al_Daawat.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/02_Abwab_al_Daawat.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "03 Abwab al Manaqib",
+      "filename": "03_Abwab_al_Manaqib.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/03_Abwab_al_Manaqib.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "04 Al Shamail al Muhammadiyyah",
+      "filename": "04_Al_Shamail_al_Muhammadiyyah.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/04_Al_Shamail_al_Muhammadiyyah.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "05 Al Arf al Shadhi Index",
+      "filename": "05_Al_Arf_al_Shadhi_Index.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/05_Al_Arf_al_Shadhi_Index.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "06 Original Table of Contents",
+      "filename": "06_Original_Table_of_Contents.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/06_Original_Table_of_Contents.pdf"
+    },
+    {
+      "collection": "JAMI_AL_TIRMIZI_BUSHRA",
+      "collectionName": "JAMI AL TIRMIZI BUSHRA",
+      "collectionEnglish": "JAMI AL TIRMIZI BUSHRA",
+      "volume": "05",
+      "title": "07 Publisher Catalogue",
+      "filename": "07_Publisher_Catalogue.pdf",
+      "url": "/emarkaz-books/e-courses/hadith/JAMI_AL_TIRMIZI_BUSHRA/Jami_al_Tirmidhi_Bushra_Volume_05_Separate_PDFs/07_Publisher_Catalogue.pdf"
+    },
     {
       "collection": "kitab ul Hadith",
       "collectionName": "kitab ul Hadith",
