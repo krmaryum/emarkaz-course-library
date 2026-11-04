@@ -358,7 +358,75 @@ def page_css() -> str:
       body { padding:18px; }
       .book-card h3,.folder-card h3 { min-height:auto; }
     }
-    """
+    
+
+/* EMARKAZ_UNIFIED_DARK_V1 — accessible, consistent dark palette */
+:root { color-scheme: dark; --emarkaz-bg:#071421; --emarkaz-panel:#102739;
+  --emarkaz-line:#315067; --emarkaz-text:#eff7ff;
+  --emarkaz-muted:#c2d3df; --emarkaz-accent:#80edd0; }
+body {
+  background: linear-gradient(155deg,#071421 0%,#0b2031 55%,#0b282c 100%) !important;
+  color:var(--emarkaz-text) !important;
+}
+header, .top-bar:not(.container), .search-wrap, .hero:not(body > .hero),
+.reader-section, .book-card, .folder-card, .toc, .article,
+.panel, .result, .card:not(.glass), .note {
+  background-color:var(--emarkaz-panel) !important;
+  color:var(--emarkaz-text) !important;
+  border-color:var(--emarkaz-line) !important;
+}
+.hero, .search-wrap, .reader-section, .book-card, .folder-card,
+.toc, .article, .panel, .result {
+  box-shadow:0 16px 40px rgba(0,0,0,.25) !important;
+}
+h1,h2,h3,h4,h5,h6, .hero h1, .hero h2,
+.book-card h3, .folder-card h3, .section-title,
+.note-content h1, .note-content h2, .note-content h3, .note-content h4 {
+  color:#f8fafc !important;
+}
+p, li, .english, .reader-meta p, .note-content p,
+.subtitle, .search-count, .status, .foot, .meta {
+  color:var(--emarkaz-muted) !important;
+}
+a:not(.btn):not(.back):not(.semester):not(.open):not(.download):not(.folder-link-list a) {
+  color:#91e9fa;
+}
+.search-input, input[type="search"], input[type="text"], select,
+textarea {
+  background:#091c2b !important;
+  color:#fff !important;
+  border-color:#426078 !important;
+}
+input::placeholder,textarea::placeholder { color:#b8cad6 !important; opacity:1; }
+.search-label, .file-type, .badge { color:#a5f3fc !important; }
+.file-type, .badge {
+  background:#153b43 !important; border-color:#326e70 !important;
+}
+.folder-link-list a {
+  background:#123c42 !important; border-color:#3b6c6b !important;
+  color:#c4ffeb !important;
+}
+.no-results { background:#102739 !important; color:#c2d3df !important;
+  border-color:#426078 !important; }
+.book-card:hover,.folder-card:hover { border-color:#5eead4 !important; }
+.note-content th { background:#153947 !important; color:#fff !important; }
+.note-content th,.note-content td { border-color:#3c6171 !important; }
+.note-content td { color:#e5f2fb !important; }
+.note-content a { color:#84e8fa !important; }
+.note-content pre { background:#06111f !important; }
+.btn.open, .btn-primary, .open { background:#0b8a69 !important; color:#fff !important; }
+.btn.download, .download { background:#2456a6 !important; color:#fff !important; }
+.back { background:#155546 !important; color:#fff !important; }
+.btn-outline { color:#f8fafc !important; border-color:#4a6576 !important; }
+@media print {
+  :root { color-scheme:light; }
+  body { background:#fff !important; color:#111 !important; }
+  .book-card,.folder-card,.article,.reader-section,.search-wrap,
+  .toc,.panel,.result { background:#fff !important; color:#111 !important; }
+  h1,h2,h3,h4,h5,h6,p,li,.note-content p { color:#111 !important; }
+}
+
+"""
 
 def is_skipped_dir(path: Path) -> bool:
     return any(part in SKIP_DIR_NAMES for part in path.parts)
